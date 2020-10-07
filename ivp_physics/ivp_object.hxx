@@ -37,6 +37,8 @@ enum IVP_OBJECT_TYPE {
 };
 
 
+class IVP_Cluster;
+
 /************************************************************************************************
  *	Name:	    	IVP_Object   	
  *	Description:	An abstract object

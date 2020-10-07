@@ -17,6 +17,11 @@
 #ifndef IVP_U_MINLIST_INCLUDED
 #	include <ivu_min_list.hxx>
 #endif
+
+#ifndef IVP_ACTUATOR_INCLUDED
+#   include <ivp_actuator.hxx>
+#endif
+
 // resolve forward references 
 class IVP_Template_Phantom;
 class IVP_SurfaceManager;

@@ -10,6 +10,10 @@
 #	pragma interface
 #endif
 
+#ifndef _IVP_ENVIRONMENT_INCLUDED
+#   include <ivp_environment.hxx>
+#endif
+
 /**********************************************************************************************
  *	Name:	  	IVP_CONTROLLER_PRIORITY   	
  *    controllers give forces to objects (e.g. gravity, friction)

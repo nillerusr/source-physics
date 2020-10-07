@@ -131,7 +131,15 @@ public:
 #endif // HAVANA_CONSTRAINTS
 };
 
-
+class IVP_Cluster_Manager;
+class IVP_Mindist_Manager;
+class IVP_Cache_Object_Manager;
+class IVP_Time_Manager;
+class IVP_Listener_Collision;
+class IVP_Listener_Object;
+class IVP_Template_Real_Object;
+class IVP_Template_Ball;
+class IVP_Hull_Manager_Base;
 /********************************************************************************
  *	Name:	  	IVP_Environment     	
  *	Description:	The physical world:

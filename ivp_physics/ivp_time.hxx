@@ -41,6 +41,8 @@ public:
     IVP_Time_Event_N(IVP_Time time);
 };
 
+class IVP_Time_Manager;
+
 class IVP_Event_Manager {
 public:
 	int mode;

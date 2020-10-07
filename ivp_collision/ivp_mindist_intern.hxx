@@ -98,7 +98,7 @@ public:
 };
 
 
-
+class IVP_OO_Watcher;
 /********************************************************************************
  *	Name:	  	IVP_Synapse_OO     	
  *	Description:	Synapses for the IVP_OO_Watcher

@@ -25,6 +25,9 @@
  *	Attention:	Units: Meters (m), Kilo (kg), Newtons (N)
  ********************************************************************************/
 
+#ifndef _IVP_TEMPLATES_INCLUDED
+#define _IVP_TEMPLATES_INCLUDED
+
 class IVP_Real_Object;
 class IVP_Material;
 
@@ -176,5 +179,5 @@ public:
         IVP_FLOAT radius; // unit: meters // add extra_radius in IVP_Template_Real_Object to get real radius
 };
 
-
+#endif
 
