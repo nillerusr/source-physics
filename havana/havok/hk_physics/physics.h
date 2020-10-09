@@ -34,11 +34,11 @@ public:
 	hk_Rigid_Body(const IVP_Real_Object &real):IVP_Real_Object(real) {}
 
 	/**************************************************************************************
-	 *	Section:	    havana	
+	 *	Section:	    havana
 	 *	Description:	Havana compatibility functions
 	 **************************************************************************************/
 	inline const hk_Vector3 get_center_of_mass(){
-		 return hk_Vector3(&get_core()->get_position_PSI()->k[0]); 
+		 return hk_Vector3(&get_core()->get_position_PSI()->k[0]);
 	}
 
 	inline hk_Transform get_cached_transform(){
@@ -83,7 +83,7 @@ public:
 
 class hk_Rigid_Body_Core: protected IVP_Core {
 public:
-	hk_Rigid_Body_Core(const IVP_Core &core): IVP_Core(core) {} 
+	hk_Rigid_Body_Core(const IVP_Core &core): IVP_Core(core) {}
 
 	hk_Vector3 &_get_spin(){
 		return *(hk_Vector3*)&rot_speed;
@@ -123,7 +123,7 @@ public:
 			hk_real linear_projected_vel = mq_a->m_linear.dot(_get_linear_velocity() );
 			int i_dest_index = mq_a->m_matrix_index;
 
-			vel[i_dest_index] +=  spin_projected_vel + linear_projected_vel; 
+			vel[i_dest_index] +=  spin_projected_vel + linear_projected_vel;
 
 			mq_a ++;
 		} while ( --i >= 0 );
@@ -148,7 +148,7 @@ protected:
 	~hk_Rigid_Body_Binary_EF(){
 
 	}
-	
+
 public:
 	virtual void get_effected_entities(hk_Array<hk_Entity*> &ent_out)
 	{
@@ -159,7 +159,7 @@ public:
 	inline hk_Environment *get_environment();
 	inline hk_Rigid_Body	  *get_rigid_body(int i){
 		return m_entities[i];
-	}	
+	}
 protected:
 };
 
@@ -179,7 +179,7 @@ public:
 
 	virtual void apply_effector_PSI(	class hk_PSI_Info& pi, hk_Array<hk_Entity*>* ) = 0;
 
-	void hk_Link_EF::do_simulation_controller(IVP_Event_Sim *es,IVP_U_Vector<IVP_Core> * /*core_list*/) 
+	void hk_Link_EF::do_simulation_controller(IVP_Event_Sim *es,IVP_U_Vector<IVP_Core> * /*core_list*/)
 	{
 		apply_effector_PSI( *(hk_PSI_Info *)(es), NULL );
 	}
