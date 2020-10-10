@@ -1,0 +1,82 @@
+//-----------------------------------------------------------------------------
+//	HK_MATH.VPC
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$macro SRCDIR		"..\..\..\.."
+$include "$SRCDIR\vpc_scripts\source_lib_base.vpc"
+
+$Configuration
+{
+	$Compiler
+	{
+		$AdditionalIncludeDirectories	"$BASE;$SRCDIR\ivp\havana\havok;$SRCDIR\ivp\havana"
+		$PreprocessorDefinitions		"$BASE;VPHYSICS_EXPORTS;HAVANA_CONSTRAINTS;HAVOK_MOPP"
+	}
+    $Compiler [$WIN32]
+    {
+        $EnableEnhancedInstructionSet	"Streaming SIMD Extensions 2 (/arch:SSE2)"
+    }
+}
+
+$Project "hk_math"
+{
+	$Folder	"Source Files"
+	{
+		$File	"dense_vector.cpp"
+		$File	"densematrix.cpp"
+		$File	"densematrix_util.cpp"
+		$File	"eulerangles.cpp"
+		$File	"gauss_elimination\gauss_elimination.cpp"
+		$File	"incr_lu\incr_lu.cpp"
+		$File	"lcp\lcp_solver.cpp"
+		$File	"math.cpp"
+		$File	"matrix3.cpp"
+		$File	"odesolve.cpp"
+		$File	"plane.cpp"
+		$File	"quaternion\quaternion.cpp"
+		$File	"quaternion\quaternion_util.cpp"
+		$File	"rotation.cpp"
+		$File	"spatial_matrix.cpp"
+		$File	"spatial_vector.cpp"
+		$File	"transform.cpp"
+		$File	"vecmath.cpp"
+		$File	"vector3\vector3.cpp"
+		$File	"vector3\vector3_util.cpp"
+		$File	"vector4.cpp"
+	}
+
+	$Folder	"Header Files"
+	{
+		$File	"dense_vector.h"
+		$File	"densematrix.h"
+		$File	"densematrix_util.h"
+		$File	"diagonal_matrix.h"
+		$File	"eulerangles.h"
+		$File	"gauss_elimination\gauss_elimination.h"
+		$File	"incr_lu\incr_lu.h"
+		$File	"interval.h"
+		$File	"lcp\lcp_solver.h"
+		$File	"math.h"
+		$File	"matrix\matrix_inverter.h"
+		$File	"matrix3.h"
+		$File	"odesolve.h"
+		$File	"plane.h"
+		$File	"qtransform.h"
+		$File	"quaternion\quaternion.h"
+		$File	"quaternion\quaternion_util.h"
+		$File	"ray.h"
+		$File	"real_array_util.h"
+		$File	"rotation.h"
+		$File	"spatial_matrix.h"
+		$File	"spatial_vector.h"
+		$File	"transform.h"
+		$File	"types.h"
+		$File	"vecmath.h"
+		$File	"vector3\vector3.h"
+		$File	"vector3\vector3_util.h"
+		$File	"vector4.h"
+		$File	"vector_fpu\vector_fpu.h"
+	}
+}
