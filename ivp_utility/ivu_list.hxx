@@ -54,7 +54,7 @@ public:
    next
    */
 
-template<class T> class P_Simple_List {
+/* template<class T> class P_Simple_List {
 public:
     T *first;
     
@@ -71,7 +71,7 @@ public:
 	    h->prev = e->prev;
 	}
     }
-};
+}; */
 
 #endif
 
