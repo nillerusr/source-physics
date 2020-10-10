@@ -24,9 +24,9 @@ class hk_Pre_Allocated_Array : public hk_Array<T>
 
 		inline ~hk_Pre_Allocated_Array()
 		{
-			if ( get_elems() == (T*)(this+1))
+			if ( this->get_elems() == (T*)(this+1))
 			{
-				m_elems = 0;
+				this->m_elems = 0;
 			}
 			
 		}
