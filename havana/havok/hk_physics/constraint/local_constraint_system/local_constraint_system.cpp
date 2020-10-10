@@ -1,5 +1,5 @@
 #include <hk_physics/physics.h>
-#include <hk_physics/simunit/sim_manager.h>
+#include <ivp_environment.hxx>
 #include <hk_physics/simunit/psi_info.h>
 #include <hk_physics/constraint/constraint.h>
 #include <hk_physics/constraint/local_constraint_system/local_constraint_system.h>
@@ -19,10 +19,15 @@ hk_Local_Constraint_System::~hk_Local_Constraint_System()
 	}
 
 	//XXX hack for havok
-	if(m_environment)
-	{
-		m_environment->get_sim_mgr()->remove_link_effector( this );
-	}
+//	if(m_environment)
+//	{
+//		m_environment->get_sim_mgr()->remove_link_effector( this );
+//	}
+
+    if( m_is_active )
+    {
+        deactivate();
+    }
 }
 
 
@@ -73,10 +78,168 @@ void hk_Local_Constraint_System::add_constraint( hk_Constraint * constraint, int
 
 void hk_Local_Constraint_System::activate()
 {
-	if ( m_bodies.length() ){
-		m_environment->get_sim_mgr()->add_link_effector( this, HK_PRIORITY_LOCAL_CONSTRAINT_SYSTEM );
+	if ( !m_is_active && m_bodies.length() ){
+	    // Ghidra output:     _ZN22IVP_Controller_Manager34announce_controller_to_environmentEP24IVP_Controller_Dependent
+        //              (*(IVP_Controller_Dependent **)&((this->super_hk_Link_EF).m_environment)->field_0x94);
+        // Simplified: IVP_Controller_Manager.announce_controller_to_environment( &(this->super_hk_Link_EF.m_environment) + 0x94) ;
+        // todo(melvyn2) make sure this does what it's supposed to, doesn't make much sense
+		m_environment->get_controller_manager()->announce_controller_to_environment(this);
+		this->m_is_active = true;
 	}
 }
+
+void hk_Local_Constraint_System::deactivate()
+{
+    // todo(melvyn2) idk enough c++ to know if I can even access actuator_controlled_cores (part of parent), so check
+    if ( m_is_active && (this->actuator_controlled_cores.len() != 0) ){
+        m_environment->get_controller_manager()->remove_controller_from_environment(this, IVP_FALSE);
+        this->m_is_active = false;
+    }
+}
+
+void hk_Local_Constraint_System::deactivate_silently()
+{
+    if ( m_is_active && (this->actuator_controlled_cores.len() != 0) ){
+        m_environment->get_controller_manager()->remove_controller_from_environment(this, IVP_TRUE);
+        this->m_is_active = false;
+    }
+}
+
+void hk_Local_Constraint_System::write_to_blueprint( hk_Local_Constraint_System_BP *bpOut )
+{
+    // damp/tau values extracted with ghidra
+    bpOut->m_damp = 0x3f800000;
+    bpOut->m_tau = 0x3f800000;
+    bpOut->m_n_iterations = m_n_iterations;
+    bpOut->m_minErrorTicks = m_minErrorTicks;
+    bpOut->m_errorTolerance = m_errorTolerance;
+    bpOut->m_active = m_is_active;
+}
+
+// todo(melvyn2) the 4 following funcs couldn't be found in the static archives, and I guessed how they worked
+// they're probably in vphysics.so, but I have no idea how I'd locate them (no dwarf info)
+// they almost certainly won't work as they should
+void hk_Local_Constraint_System::set_error_ticks( int error_ticks )
+{
+    m_minErrorTicks = error_ticks;
+}
+
+void hk_Local_Constraint_System::set_error_tolerance(float tolerance)
+{
+    m_errorTolerance = tolerance;
+}
+
+bool hk_Local_Constraint_System::has_error()
+{
+    return m_errorCount > m_errorTolerance;
+}
+
+void hk_Local_Constraint_System::clear_error()
+{
+    m_errorCount =  0;
+    m_errorThisTick = 0;
+}
+
+// fixme(melvyn2) I literally copy-pasted decompiler output, FIX THIS
+void hk_Local_Constraint_System::solve_penetration( IVP_Real_Object * pivp0, IVP_Real_Object * pivp1 )
+{
+    int penCount;
+    IVP_Real_Object *pIVar1;
+    short num_elems;
+    int iVar2;
+    short sVar3;
+
+    penCount = this->m_penetrationCount;
+    if (penCount < 4) {
+        unsigned int _num_elems = (unsigned int)m_bodies.length() - 1;   // todo(melvyn2) check if this is even needed
+        num_elems = (short)m_bodies.length() - 1;
+        if (num_elems == -1) {
+            num_elems = -1;
+            *(short *) (m_environment + penCount + 0xc) = 0xffff;
+        }
+        else {
+            pIVar1 = m_bodies.get_element(_num_elems);
+            iVar2 = _num_elems;
+            sVar3 = num_elems;
+            while (pivp0 != pIVar1) {
+                iVar2 = iVar2 + -1;
+                sVar3 = (short)iVar2;
+                if (iVar2 == -1) {
+                    sVar3 = -1;
+                    break;
+                }
+                pIVar1 = m_bodies.get_element(iVar2);
+            }
+            *(short *)(m_environment + penCount + 0xc) = sVar3;
+            pIVar1 = m_bodies.get_element(_num_elems);
+            while (pivp1 != pIVar1) {
+                _num_elems = _num_elems + -1;
+                num_elems = (short)_num_elems;
+                if (_num_elems == -1) break;
+                pIVar1 = m_bodies.get_element(_num_elems);
+            }
+        }
+        sVar3 = *(short *)(m_environment + penCount + 0xc);
+        *(short *)((int)m_environment + (penCount + 0xc) * 4 + 2) = num_elems;
+        if ((-1 < sVar3) && (-1 < num_elems)) {
+            this->m_penetrationCount = penCount + 1;
+        }
+    }
+    return;
+}
+
+/* this is the ghidra output, for reference:
+void __thiscall solve_penetration(hk_Local_Constraint_System *this,IVP_Real_Object *pipv0,IVP_Real_Object *pipv1)
+{
+  int penCount;
+  char *bodiesArray;
+  IVP_Real_Object *pIVar1;
+  short num_elems;
+  int iVar2;
+  short sVar3;
+
+  penCount = this->m_penetrationCount;
+  if (penCount < 4) {
+    _num_elems = (uint)(this->m_bodies).super_hk_Array_Base.m_n_elems - 1;
+    num_elems = (short)_num_elems;
+    if (_num_elems == -1) {
+      num_elems = -1;
+      *(undefined2 *)(&(this->super_hk_Link_EF).m_environment + penCount + 0xc) = 0xffff;
+    }
+    else {
+      bodiesArray = (this->m_bodies).super_hk_Array_Base.m_elems;
+      pIVar1 = *(IVP_Real_Object **)(bodiesArray + _num_elems * 4);
+      iVar2 = _num_elems;
+      sVar3 = num_elems;
+      while (pipv0 != pIVar1) {
+        iVar2 = iVar2 + -1;
+        sVar3 = (short)iVar2;
+        if (iVar2 == -1) {
+          sVar3 = -1;
+          break;
+        }
+        pIVar1 = *(IVP_Real_Object **)(bodiesArray + iVar2 * 4);
+      }
+      *(short *)(&(this->super_hk_Link_EF).m_environment + penCount + 0xc) = sVar3;
+      pIVar1 = *(IVP_Real_Object **)(bodiesArray + _num_elems * 4);
+      while (pipv1 != pIVar1) {
+        _num_elems = _num_elems + -1;
+        num_elems = (short)_num_elems;
+        if (_num_elems == -1) break;
+        pIVar1 = *(IVP_Real_Object **)(bodiesArray + _num_elems * 4);
+      }
+    }
+    sVar3 = *(short *)(&(this->super_hk_Link_EF).m_environment + penCount + 0xc);
+    *(short *)((int)&(this->super_hk_Link_EF).m_environment + (penCount + 0xc) * 4 + 2) = num_elems;
+    if ((-1 < sVar3) && (-1 < num_elems)) {
+      this->m_penetrationCount = penCount + 1;
+    }
+  }
+  return;
+}
+ */
+
+
 
 void hk_Local_Constraint_System::get_effected_entities(hk_Array<hk_Entity*> &ent_out)
 {

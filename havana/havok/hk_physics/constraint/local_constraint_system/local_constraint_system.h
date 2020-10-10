@@ -1,9 +1,14 @@
 #ifndef HK_PHYSICS_LOCAL_CONSTRAINT_SYSTEM_H
 #define HK_PHYSICS_LOCAL_CONSTRAINT_SYSTEM_H
 
-class hk_Local_Constraint_System_BP;
+#include <hk_physics/constraint/local_constraint_system/local_constraint_system_bp.h>
 
 // IVP_EXPORT_PUBLIC
+
+struct penetratepair_t {
+    short   obj0;
+    short   obj1;
+};
 
 class hk_Local_Constraint_System : public hk_Link_EF
 {
@@ -15,7 +20,23 @@ public:
 	void activate();
 	//: activates the constraint
 
+	void deactivate();
+	void deactivate_silently();
+
 	virtual ~hk_Local_Constraint_System();
+
+    void write_to_blueprint( hk_Local_Constraint_System_BP * );
+
+    void set_error_ticks( int );
+    void set_error_tolerance( float );
+    bool has_error();
+    void clear_error();
+
+    void solve_penetration( IVP_Real_Object * pivp0, IVP_Real_Object * pivp1 );
+
+    inline void set_client_data( void *client_data ) { m_client_data = client_data; }
+
+    inline bool is_active() { return m_is_active; }
 
 //	inline hk_Environment *get_environment() const;
 public:	// internal
@@ -45,10 +66,32 @@ protected:
 
 
 	void recalc_storage_size();
-	int							m_n_iterations;
-	int							m_size_of_all_vmq_storages;
-	hk_Array<hk_Constraint *> 	m_constraints;
-	hk_Array<hk_Rigid_Body*>	m_bodies;
+
+	// Commented out in favor of those below
+
+//	int							m_n_iterations;
+//	bool                        m_active;
+//	int							m_size_of_all_vmq_storages;
+//	hk_Array<hk_Constraint *> 	m_constraints;
+//	hk_Array<hk_Rigid_Body*>	m_bodies;
+
+
+	// Extracted from DWARF using ghidra:
+//    struct hk_Link_EF super_hk_Link_EF; // parent class
+    int m_n_iterations;
+    int m_size_of_all_vmq_storages;
+    struct hk_Array<hk_Constraint*> m_constraints;
+    struct hk_Array<hk_Rigid_Body*> m_bodies;
+    int m_minErrorTicks;
+    int m_errorCount;
+    int m_penetrationCount;
+    struct penetratepair_t m_penetrationPairs[4];
+    float m_errorTolerance;
+    bool m_is_active;
+    bool m_errorThisTick;
+    bool m_needsSort;
+//    undefined field_0x4b; // probably dwarf artifact
+    void * m_client_data;
 };
 
 //#include <hk_physics/constraint/local_constraint_system/local_constraint_system.inl>
