@@ -1,0 +1,76 @@
+//-----------------------------------------------------------------------------
+//	IVP_PHYSICS.VPC
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$macro SRCDIR		"..\.."
+$include "$SRCDIR\vpc_scripts\source_lib_base.vpc"
+
+$Configuration
+{
+	$Compiler
+	{
+		$AdditionalIncludeDirectories	"$BASE;$SRCDIR\ivp\ivp_intern;$SRCDIR\ivp\ivp_collision;$SRCDIR\ivp\ivp_physics;$SRCDIR\ivp\ivp_surface_manager;$SRCDIR\ivp\ivp_utility;$SRCDIR\ivp\ivp_controller;$SRCDIR\ivp\ivp_compact_builder;$SRCDIR\ivp\havana\havok;$SRCDIR\ivp\havana"
+		$PreprocessorDefinitions		"$BASE;VPHYSICS_EXPORTS;HAVANA_CONSTRAINTS;HAVOK_MOPP"
+	}
+    $Compiler [$WIN32]
+    {
+        $EnableEnhancedInstructionSet	"Streaming SIMD Extensions 2 (/arch:SSE2)"
+    }
+}
+
+$Project "ivp_physics"
+{
+	$Folder	"Source Files"
+	{
+		$File	"ivp_anomaly_manager.cxx"
+		$File	"ivp_betterdebugmanager.cxx"
+		$File	"ivp_betterstatisticsmanager.cxx"
+		$File	"ivp_cache_object.cxx"
+		$File	"ivp_liquid_surface_descript.cxx"
+		$File	"ivp_material.cxx"
+		$File	"ivp_performancecounter.cxx"
+		$File	"ivp_stat_manager_cback_con.cxx"
+		$File	"ivp_surface_manager.cxx"
+		$File	"ivp_templates.cxx"
+	}
+
+	$Folder	"Header Files"
+	{
+		$File	"ive_graphics.hxx"   // Not a typo
+		$File	"ivp_anomaly_manager.hxx"
+		$File	"ivp_authenticity.hxx"
+		$File	"ivp_ball.hxx"
+		$File	"ivp_betterdebugmanager.hxx"
+		$File	"ivp_betterstatisticsmanager.hxx"
+		$File	"ivp_cache_object.hxx"
+		$File	"ivp_contact_situation.hxx"
+		$File	"ivp_core.hxx"
+		$File	"ivp_core_macros.hxx"
+		$File	"ivp_debug.hxx"
+		$File	"ivp_debug_manager.hxx"
+		$File	"ivp_environment.hxx"
+		$File	"ivp_great_matrix.hxx"
+		$File	"ivp_hull_manager.hxx"
+		$File	"ivp_liquid_surface_descript.hxx"
+		$File	"ivp_listener_hull.hxx"
+		$File	"ivp_listener_object.hxx"
+		$File	"ivp_listener_psi.hxx"
+		$File	"ivp_material.hxx"
+		$File	"ivp_object.hxx"
+		$File	"ivp_object_attach.hxx"
+		$File	"ivp_performancecounter.hxx"
+		$File	"ivp_phantom.hxx"
+		$File	"ivp_physics.hxx"
+		$File	"ivp_polygon.hxx"
+		$File	"ivp_radar.hxx"
+		$File	"ivp_radar_appl.hxx"
+		$File	"ivp_real_object.hxx"
+		$File	"ivp_solver_core_reaction.hxx"
+		$File	"ivp_stat_manager_cback_con.hxx"
+		$File	"ivp_surface_manager.hxx"
+		$File	"ivp_templates.hxx"
+		$File	"ivp_time.hxx"
+	}
+}
