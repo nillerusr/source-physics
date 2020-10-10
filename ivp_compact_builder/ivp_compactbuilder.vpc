@@ -1,0 +1,110 @@
+//-----------------------------------------------------------------------------
+//	IVP_COMPACTBUILDER.VPC
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$macro SRCDIR		"..\.."
+$include "$SRCDIR\vpc_scripts\source_lib_base.vpc"
+
+$Configuration
+{
+	$Compiler
+	{
+		$AdditionalIncludeDirectories	"$BASE;$SRCDIR\ivp\ivp_intern;$SRCDIR\ivp\ivp_collision;$SRCDIR\ivp\ivp_physics;$SRCDIR\ivp\ivp_surface_manager;$SRCDIR\ivp\ivp_utility;$SRCDIR\ivp\ivp_controller;$SRCDIR\ivp\ivp_compact_builder;$SRCDIR\ivp\havana\havok;$SRCDIR\ivp\havana"
+		$PreprocessorDefinitions		"$BASE;VPHYSICS_EXPORTS;HAVANA_CONSTRAINTS;HAVOK_MOPP"
+	}
+    $Compiler [$WIN32]
+    {
+        $EnableEnhancedInstructionSet	"Streaming SIMD Extensions 2 (/arch:SSE2)"
+    }
+}
+
+$Project "ivp_compactbuilder"
+{
+	$Folder	"Source Files"
+	{
+//		$File	"3dsimport_co.cxx"
+//		$File	"3dsimport_load.cxx"
+//		$File	"3dsimport_out.cxx"
+		$File	"geompack_cutfac.cxx"
+		$File	"geompack_cvdec3.cxx"
+		$File	"geompack_drdec3.cxx"
+		$File	"geompack_dsphdc.cxx"
+		$File	"geompack_edght.cxx"
+		$File	"geompack_initcb.cxx"
+		$File	"geompack_insed3.cxx"
+		$File	"geompack_insfac.cxx"
+		$File	"geompack_insvr3.cxx"
+		$File	"geompack_prime.cxx"
+		$File	"geompack_ptpolg.cxx"
+		$File	"geompack_resedg.cxx"
+		$File	"ivp_compact_ledge_gen.cxx"
+		$File	"ivp_compact_modify.cxx"
+		$File	"ivp_compact_recursive.cxx"
+		$File	"ivp_convex_decompositor.cxx"
+		$File	"ivp_halfspacesoup.cxx"
+		$File	"ivp_i_fpoint_vhash.cxx"
+		$File	"ivp_i_point_vhash.cxx"
+		$File	"ivp_object_polygon_tetra.cxx"
+		$File	"ivp_rot_inertia_solver.cxx"
+		$File	"ivp_surbuild_halfspacesoup.cxx"
+		$File	"ivp_surbuild_ledge_soup.cxx"
+		$File	"ivp_surbuild_pointsoup.cxx"
+		$File	"ivp_surbuild_polygon_convex.cxx"
+		$File	"ivp_surbuild_polyhdrn_cncv.cxx"
+		$File	"ivp_surbuild_q12.cxx"
+		$File	"ivp_templates_intern.cxx"
+		$File	"ivp_tetra_intrude.cxx"
+		$File	"ivv_cluster_min_hash.cxx"
+		$File	"qhull.cxx"
+		$File	"qhull_geom.cxx"
+		$File	"qhull_geom2.cxx"
+		$File	"qhull_global.cxx"
+		$File	"qhull_io.cxx"
+		$File	"qhull_mem.cxx"
+		$File	"qhull_merge.cxx"
+		$File	"qhull_poly.cxx"
+		$File	"qhull_poly2.cxx"
+		$File	"qhull_qset.cxx"
+		$File	"qhull_stat.cxx"
+		$File	"qhull_user.cxx"
+	}
+
+	$Folder	"Header Files"
+	{
+//		$File	"3dsimport_load.hxx"
+		$File	"geompack.hxx"
+		$File	"ivp_compact_ledge_gen.hxx"
+		$File	"ivp_compact_modify.hxx"
+		$File	"ivp_compact_recursive.hxx"
+		$File	"ivp_convex_decompositor.hxx"
+		$File	"ivp_halfspacesoup.hxx"
+		$File	"ivp_i_fpoint_vhash.hxx"
+		$File	"ivp_i_point_vhash.hxx"
+		$File	"ivp_object_polygon_tetra.hxx"
+		$File	"ivp_rot_inertia_solver.hxx"
+		$File	"ivp_surbuild_3ds.hxx"
+		$File	"ivp_surbuild_halfspacesoup.hxx"
+		$File	"ivp_surbuild_ledge_soup.hxx"
+		$File	"ivp_surbuild_pointsoup.hxx"
+		$File	"ivp_surbuild_polygon_convex.hxx"
+		$File	"ivp_surbuild_polyhdrn_cncv.hxx"
+		$File	"ivp_surbuild_q12.hxx"
+		$File	"ivp_template_surbuild.hxx"
+		$File	"ivp_templates_intern.hxx"
+		$File	"ivp_tetra_intrude.hxx"
+		$File	"ivp_triangle_gen.hxx"
+		$File	"ivv_cluster_min_hash.hxx"
+		$File	"qhull.hxx"
+		$File	"qhull_a.hxx"
+		$File	"qhull_geom.hxx"
+		$File	"qhull_io.hxx"
+		$File	"qhull_mem.hxx"
+		$File	"qhull_merge.hxx"
+		$File	"qhull_poly.hxx"
+		$File	"qhull_qset.hxx"
+		$File	"qhull_stat.hxx"
+		$File	"qhull_user.hxx"
+	}
+}
