@@ -1,0 +1,55 @@
+//-----------------------------------------------------------------------------
+//	HK_BASE.VPC
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$macro SRCDIR		"..\..\..\.."
+$include "$SRCDIR\vpc_scripts\source_lib_base.vpc"
+
+$Configuration
+{
+	$Compiler
+	{
+		$AdditionalIncludeDirectories	"$BASE;$SRCDIR\ivp\havana\havok;$SRCDIR\ivp\havana"
+		$PreprocessorDefinitions		"$BASE;VPHYSICS_EXPORTS;HAVANA_CONSTRAINTS;HAVOK_MOPP"
+	}
+    $Compiler [$WIN32]
+    {
+        $EnableEnhancedInstructionSet	"Streaming SIMD Extensions 2 (/arch:SSE2)"
+    }
+}
+
+$Project "hk_base"
+{
+	$Folder	"Source Files"
+	{
+		$File	"array\array.cpp"
+		$File	"base_types.cpp"
+		$File	"console.cpp"
+		$File	"hash\hash.cpp"
+		$File	"id_server\id_server.cpp"
+		$File	"memory\memory.cpp"
+		$File	"memory\memory_util.cpp"
+		$File	"stopwatch\stopwatch.cpp"
+		$File	"string\string.cpp"
+	}
+
+	$Folder	"Header Files"
+	{
+		$File	"array\array.h"
+		$File	"array\pre_allocated_array.h"
+		$File	"base.h"
+		$File	"base_types.h"
+		$File	"console.h"
+		$File	"display.h"
+		$File	"hash\hash.h"
+		$File	"id_server\id_server.h"
+		$File	"memory\memory.h"
+		$File	"memory\memory_managed_virtual_class.h"
+		$File	"memory\memory_util.h"
+		$File	"stopwatch\stopwatch.h"
+		$File	"string\string.h"
+		$File	"util.h"
+	}
+}
