@@ -188,19 +188,79 @@ void IVP_SurfaceBuilder_Ledge_Soup::add_ledge_tree_to_convex_hull(class IVP_Comp
   if (node->child_2) add_ledge_tree_to_convex_hull(cr, node->child_2);
 }
 
-
+// todo(melvyn2) recreate using demcompiled version, much has changed
+// IVP_Compact_Ledge IVP_SurfaceBuilder_Ledge_Soup::build_root_convex_hull(){
 void IVP_SurfaceBuilder_Ledge_Soup::build_root_convex_hull(){
     IVV_Sphere *node = this->spheres_cluster[this->spheres_cluster[0].next].sphere;
 
     IVP_Compact_Recursive cr;
     add_ledge_tree_to_convex_hull(cr, node);
-    
+
+    // if( this->parameters->force_convex_hull == NULL ) {
+    // something_1 = IVP_Compact_Recursive::compile();
+    // }
+    // else {
+    // IVP_Compact_Recursive::set_rekursive_convex_hull(); // not a typo
+    // something_1 = this->parameters->force_convex_hull
+    // }
+    // if ( something_1 != NULL ) {
+
+    // }
+    // return something_1;
+
+
     IVP_Compact_Ledge *hull = cr.compile(); 
     c_ledge_vec.add(hull);
     node->compact_ledge = hull;
     rec_spheres.add(node);
 }
+/* decompiled version for references:
+IVP_Compact_Ledge * __thiscall build_root_convex_hull(IVP_SurfaceBuilder_Ledge_Soup *this)
 
+{
+  ushort *puVar1;
+  IVV_Sphere *pIVar2;
+  IVP_Compact_Ledge *pIVar3;
+  ushort uVar4;
+  IVP_Compact_Ledge *local_30;
+  IVP_Compact_Recursive local_28 [8];
+  IVP_Compact_Ledge *local_20;
+
+  pIVar2 = this->spheres_cluster[this->spheres_cluster->next].sphere;
+  _ZN21IVP_Compact_RecursiveC1Ev(local_28);
+  add_ledge_tree_to_convex_hull(this,local_28,(IVV_Sphere *)pIVar2);
+  pIVar3 = this->parameters->force_convex_hull;
+  if (pIVar3 == (IVP_Compact_Ledge *)0x0) {
+    local_30 = (IVP_Compact_Ledge *)_ZN21IVP_Compact_Recursive7compileEv();
+  }
+  else {
+    local_20 = pIVar3;
+    _ZN21IVP_Compact_Recursive25set_rekursive_convex_hullEv();
+    local_30 = local_20;
+  }
+  if (local_30 != (IVP_Compact_Ledge *)0x0) {
+    uVar4 = (this->c_ledge_vec).super_IVP_U_Vector_Base.n_elems;
+    if ((this->c_ledge_vec).super_IVP_U_Vector_Base.memsize <= uVar4) {
+      _ZN17IVP_U_Vector_Base13increment_memEv();
+      uVar4 = (this->c_ledge_vec).super_IVP_U_Vector_Base.n_elems;
+    }
+    *(IVP_Compact_Ledge **)((this->c_ledge_vec).super_IVP_U_Vector_Base.elems + uVar4) = local_30;
+    puVar1 = &(this->c_ledge_vec).super_IVP_U_Vector_Base.n_elems;
+    *puVar1 = *puVar1 + 1;
+    pIVar2->compact_ledge = local_30;
+    uVar4 = (this->rec_spheres).super_IVP_U_Vector_Base.n_elems;
+    if ((this->rec_spheres).super_IVP_U_Vector_Base.memsize <= uVar4) {
+      _ZN17IVP_U_Vector_Base13increment_memEv();
+      uVar4 = (this->rec_spheres).super_IVP_U_Vector_Base.n_elems;
+    }
+    *(IVV_Sphere **)((this->rec_spheres).super_IVP_U_Vector_Base.elems + uVar4) = pIVar2;
+    puVar1 = &(this->rec_spheres).super_IVP_U_Vector_Base.n_elems;
+    *puVar1 = *puVar1 + 1;
+  }
+  _ZN21IVP_Compact_RecursiveD1Ev(local_28);
+  return local_30;
+}
+*/
 
 void IVP_SurfaceBuilder_Ledge_Soup::cleanup()
 {

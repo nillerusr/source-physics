@@ -10,6 +10,13 @@ enum IVP_SURBUILD_LEDGE_SOUP_MERGE_POINT_TYPES {
 class IVP_Template_Surbuild_LedgeSoup {
 public:
     /********************************************************************************
+     *  Parameter:    force_convex_hull
+     *  Default:      NULL
+     *	Description:  todo(melvyn2)
+     *******************************************************************************/
+    IVP_Compact_Ledge force_convex_hull;
+
+    /********************************************************************************
      *  Parameter:    build_root_convex_hull
      *  Default:      IVP_FALSE
      *	Description:  if true than an extra convex hull around the whole object is generated
