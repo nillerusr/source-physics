@@ -49,7 +49,7 @@ public:	// internal
 	}
 
 	void get_effected_entities(hk_Array<hk_Entity*> &ent_out);
-		
+
 	//virtual hk_real get_minimum_simulation_frequency(hk_Array<hk_Entity> *);
 
 	void apply_effector_PSI(	hk_PSI_Info&, hk_Array<hk_Entity*>* );

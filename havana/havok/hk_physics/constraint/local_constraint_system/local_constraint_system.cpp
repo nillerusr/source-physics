@@ -153,7 +153,7 @@ void hk_Local_Constraint_System::solve_penetration( IVP_Real_Object * pivp0, IVP
     if (penCount < 4) {
         unsigned int _num_elems = (unsigned int)m_bodies.length() - 1;   // todo(melvyn2) check if this is even needed
         num_elems = (short)m_bodies.length() - 1;
-        if (num_elems == -1) {
+        if (_num_elems == -1) {  // todo(melvyn2) this doesn't even make sense, _num_elems is uint
             num_elems = -1;
             *(short *) (m_environment + penCount + 0xc) = 0xffff;
         }
