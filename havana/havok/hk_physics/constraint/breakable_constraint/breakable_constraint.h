@@ -29,6 +29,12 @@ class hk_Breakable_Constraint : public hk_Constraint
 		void write_to_blueprint( hk_Breakable_Constraint_BP * );
 		void FireEventIfBroken();
 
+		virtual const char* get_constraint_type()
+		{
+			// todo(crack): figure out actual value for this.
+			return "breakable";
+		}
+
 	protected:
 
 		void init_breakable_constraint(const hk_Breakable_Constraint_BP *);

@@ -19,6 +19,11 @@ class hk_Stiff_Spring_Constraint : public hk_Constraint
 		virtual void init_constraint( const void* );
 		void write_to_blueprint( hk_Stiff_Spring_BP * );
 
+		virtual const char* get_constraint_type()
+		{
+			return "stiff_spring";
+		}
+
 	protected:
 
 		void init_stiff_spring_constraint( const hk_Stiff_Spring_BP * );

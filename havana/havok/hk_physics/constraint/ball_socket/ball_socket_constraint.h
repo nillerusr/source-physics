@@ -27,6 +27,11 @@ class hk_Ball_Socket_Constraint : public hk_Constraint
 
 		void write_to_blueprint( hk_Ball_Socket_BP * );
 
+		virtual const char* get_constraint_type()
+		{
+			return "ball_socket";
+		}
+
 	protected:
 
 		void init_ball_socket_constraint(const hk_Ball_Socket_BP *);

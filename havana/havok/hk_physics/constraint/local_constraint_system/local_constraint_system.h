@@ -38,6 +38,11 @@ public:
 
     inline bool is_active() { return m_is_active; }
 
+		virtual const char* get_constraint_type()
+		{
+			return "sys:constraint";
+		}
+
 //	inline hk_Environment *get_environment() const;
 public:	// internal
 	virtual void entity_deletion_event(hk_Entity *);

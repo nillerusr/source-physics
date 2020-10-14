@@ -29,6 +29,12 @@ class hk_Prismatic_Constraint : public hk_Constraint
 		void write_to_blueprint( hk_Prismatic_BP * );
 		void init_constraint(const void*);
 
+		virtual const char* get_constraint_type()
+		{
+			// todo(crack): figure out actual value for this.
+			return "prismatic";
+		}
+
 	protected:
 
 		void init_prismatic_constraint(const hk_Prismatic_BP*, hk_Local_Constraint_System *sys);

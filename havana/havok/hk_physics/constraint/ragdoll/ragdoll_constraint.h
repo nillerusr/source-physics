@@ -33,6 +33,11 @@ class hk_Ragdoll_Constraint : public hk_Constraint
 
 		void write_to_blueprint( hk_Ragdoll_Constraint_BP * );
 
+		virtual const char* get_constraint_type()
+		{
+			return "ragdoll";
+		}
+
 	protected:
 
 		void apply_angular_part(hk_PSI_Info& pi, hk_Ragdoll_Constraint_Work&,

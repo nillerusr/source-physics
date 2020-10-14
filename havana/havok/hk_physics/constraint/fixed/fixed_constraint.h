@@ -35,6 +35,12 @@ class hk_Fixed_Constraint : public hk_Constraint
 
 		void write_to_blueprint( hk_Fixed_BP * );
 
+		virtual const char* get_constraint_type()
+		{
+			// todo(crack): figure out actual value for this.
+			return "fixed";
+		}
+
 	protected:
 
 		void init_fixed_constraint( const hk_Fixed_BP *bp );
