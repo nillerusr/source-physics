@@ -38,6 +38,11 @@ class hk_Ragdoll_Constraint : public hk_Constraint
 			return "ragdoll";
 		}
 
+		inline hk_Transform get_transform(int x) const
+		{
+			return m_transform_os_ks[x];
+		}
+
 	protected:
 
 		void apply_angular_part(hk_PSI_Info& pi, hk_Ragdoll_Constraint_Work&,

@@ -32,6 +32,11 @@ class hk_Ball_Socket_Constraint : public hk_Constraint
 			return "ball_socket";
 		}
 
+		inline hk_Vector3 get_transform(int x) const
+		{
+			return m_translation_os_ks[x];
+		}
+
 	protected:
 
 		void init_ball_socket_constraint(const hk_Ball_Socket_BP *);
