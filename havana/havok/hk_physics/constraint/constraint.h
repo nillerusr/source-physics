@@ -46,6 +46,18 @@ public:
 	inline void set_client_data( void *client_data ) { m_client_data = client_data; }
 	inline void *get_client_data() const { return m_client_data; }
 
+	virtual const char* get_constraint_type()
+	{
+		/*
+		* 		push    ebp
+		* 		mov     eax, offset 0x80000D1 ; "unknown"
+		* 		mov     ebp, esp
+		* 		pop     ebp
+		* 		retn
+		*/
+		return "unknown";
+	}
+
 	virtual void init_constraint(const void /*blueprint*/ *) = 0;
 		//: Set the constraint parameters from the blueprrint
 };
