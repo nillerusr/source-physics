@@ -342,3 +342,11 @@ void hk_Ragdoll_Constraint::apply_effector_PSI(
 
 // HAVOK DO NOT EDIT
 
+void hk_Ragdoll_Constraint::update_friction(hk_real max_angular_impulse)
+{
+	for (int i = 0; i < 3; i++)
+	{
+		m_limits[i].set_friction(max_angular_impulse);
+		m_inputLimits[i].set_friction(max_angular_impulse);
+	}
+}

@@ -43,6 +43,7 @@ class hk_Ragdoll_Constraint : public hk_Constraint
 			return m_transform_os_ks[x];
 		}
 
+		void update_friction(hk_real max_angular_impulse);
 	protected:
 
 		void apply_angular_part(hk_PSI_Info& pi, hk_Ragdoll_Constraint_Work&,
