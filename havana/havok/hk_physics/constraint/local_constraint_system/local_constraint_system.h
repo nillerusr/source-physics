@@ -36,6 +36,7 @@ public:
 
     inline void set_client_data( void *client_data ) { m_client_data = client_data; }
 
+		inline void* get_client_data() const { return m_client_data; }
     inline bool is_active() { return m_is_active; }
 
 		virtual const char* get_constraint_type()
