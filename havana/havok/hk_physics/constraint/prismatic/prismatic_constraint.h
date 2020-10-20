@@ -31,7 +31,6 @@ class hk_Prismatic_Constraint : public hk_Constraint
 
 		virtual const char* get_constraint_type()
 		{
-			// todo(crack): figure out actual value for this.
 			return "prismatic";
 		}
 
