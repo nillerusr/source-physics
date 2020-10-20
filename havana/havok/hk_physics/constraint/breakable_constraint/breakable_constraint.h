@@ -31,8 +31,8 @@ class hk_Breakable_Constraint : public hk_Constraint
 
 		virtual const char* get_constraint_type()
 		{
-			// todo(crack): figure out actual value for this.
-			return "breakable";
+			// get the real constraint's type
+			return m_real_constraint->get_constraint_type();
 		}
 
 		virtual int get_constraint_dof()
