@@ -58,6 +58,11 @@ public:
 		return "unknown";
 	}
 
+	virtual int get_constraint_dof()
+	{
+		return 0;
+	}
+
 	virtual void init_constraint(const void /*blueprint*/ *) = 0;
 		//: Set the constraint parameters from the blueprrint
 };
