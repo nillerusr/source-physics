@@ -30,13 +30,6 @@ class hk_Pulley_Constraint : public hk_Constraint
 
 		virtual int get_constraint_dof()
 		{
-			/*
-			* 		push    ebp
-			* 		mov     eax, 0x5
-			* 		mov     ebp, esp
-			* 		pop     ebp
-			* 		ret
-			*/
 			return 5;
 		}
 	protected:

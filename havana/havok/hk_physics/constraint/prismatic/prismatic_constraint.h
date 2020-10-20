@@ -36,13 +36,6 @@ class hk_Prismatic_Constraint : public hk_Constraint
 
 		virtual int get_constraint_dof()
 		{
-			/*
-			* 		push    ebp
-			* 		mov     eax, 0x1
-			* 		mov     ebp, esp
-			* 		pop     ebp
-			* 		ret
-			*/
 			return 1;
 		}
 	protected:

@@ -48,13 +48,6 @@ public:
 
 	virtual const char* get_constraint_type()
 	{
-		/*
-		* 		push    ebp
-		* 		mov     eax, offset 0x80000D1 ; "unknown"
-		* 		mov     ebp, esp
-		* 		pop     ebp
-		* 		retn
-		*/
 		return "unknown";
 	}
 

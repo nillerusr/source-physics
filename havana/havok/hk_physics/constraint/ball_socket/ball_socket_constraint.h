@@ -34,13 +34,6 @@ class hk_Ball_Socket_Constraint : public hk_Constraint
 
 		virtual int get_constraint_dof()
 		{
-			/*
-			* 		push    ebp
-			* 		mov     eax, 0x3
-			* 		mov     ebp, esp
-			* 		pop     ebp
-			* 		ret
-			*/
 			return 3;
 		}
 
