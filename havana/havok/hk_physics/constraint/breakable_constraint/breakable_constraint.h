@@ -35,6 +35,12 @@ class hk_Breakable_Constraint : public hk_Constraint
 			return "breakable";
 		}
 
+		virtual int get_constraint_dof()
+		{
+			// get the real constraint's DOF
+			return m_real_constraint->get_constraint_dof();
+		}
+
 	protected:
 
 		void init_breakable_constraint(const hk_Breakable_Constraint_BP *);
