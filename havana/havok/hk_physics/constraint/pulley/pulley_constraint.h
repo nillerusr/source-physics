@@ -28,6 +28,17 @@ class hk_Pulley_Constraint : public hk_Constraint
 			return "pulley";
 		}
 
+		virtual int get_constraint_dof()
+		{
+			/*
+			* 		push    ebp
+			* 		mov     eax, 0x5
+			* 		mov     ebp, esp
+			* 		pop     ebp
+			* 		ret
+			*/
+			return 5;
+		}
 	protected:
 
 		void init_pulley_constraint( const hk_Pulley_BP * );
