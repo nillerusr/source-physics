@@ -7,6 +7,8 @@ enum IVP_SURBUILD_LEDGE_SOUP_MERGE_POINT_TYPES {
     IVP_SLMP_MERGE_NO_REALLOCATE
 };
 
+class IVP_Compact_Ledge;
+
 class IVP_Template_Surbuild_LedgeSoup {
 public:
     /********************************************************************************
@@ -14,7 +16,7 @@ public:
      *  Default:      NULL
      *	Description:  todo(melvyn2)
      *******************************************************************************/
-    IVP_Compact_Ledge force_convex_hull;
+    IVP_Compact_Ledge* force_convex_hull;
 
     /********************************************************************************
      *  Parameter:    build_root_convex_hull
