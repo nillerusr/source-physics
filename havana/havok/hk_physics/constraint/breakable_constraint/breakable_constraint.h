@@ -49,6 +49,7 @@ class hk_Breakable_Constraint : public hk_Constraint
 
 		hk_real m_linear_strength;
 		hk_real m_angular_strength;
+		hk_real m_bodyMassScale[2];
 		bool	m_is_broken;
 };
 

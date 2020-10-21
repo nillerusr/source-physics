@@ -22,6 +22,7 @@ class hk_Breakable_Constraint_BP  //: public hk_Effector_BP
 		hk_Constraint* m_real_constraint;
 		hk_real m_linear_strength;
 		hk_real m_angular_strength;
+		hk_real m_bodyMassScale[2];
 
 	protected:
 

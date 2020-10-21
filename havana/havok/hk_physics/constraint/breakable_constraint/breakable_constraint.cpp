@@ -60,6 +60,8 @@ void hk_Breakable_Constraint::init_breakable_constraint(const hk_Breakable_Const
 	m_linear_strength = bp->m_linear_strength;
 	m_angular_strength = bp->m_angular_strength;
 	m_is_broken = false;
+	m_bodyMassScale[0] = bp->m_bodyMassScale[0];
+	m_bodyMassScale[1] = bp->m_bodyMassScale[1];
 }
 
 void hk_Breakable_Constraint::write_to_blueprint( hk_Breakable_Constraint_BP *pOutBP )
@@ -67,6 +69,8 @@ void hk_Breakable_Constraint::write_to_blueprint( hk_Breakable_Constraint_BP *pO
 	pOutBP->m_real_constraint = m_real_constraint;
 	pOutBP->m_linear_strength = m_linear_strength;
 	pOutBP->m_angular_strength = m_angular_strength;
+	pOutBP->m_bodyMassScale[0] = m_bodyMassScale[0];
+	pOutBP->m_bodyMassScale[1] = m_bodyMassScale[1];
 }
 
 int hk_Breakable_Constraint::get_vmq_storage_size()
@@ -137,6 +141,10 @@ void hk_Breakable_Constraint::FireEventIfBroken()
 
 int	hk_Breakable_Constraint::setup_and_step_constraint( hk_PSI_Info& pi, void *mem, hk_real tau_factor, hk_real damp_factor )
 {
+	/*
+	 * TODO(crack); this is highly outdated and needs to handle linear and angular body mass constraints..
+	 */
+	HK_ASSERT(0 && "Incomplete implementation");
 	m_is_broken = false;
 	BreakableConstraintHelper ss0( get_rigid_body(0) );
 	BreakableConstraintHelper ss1( get_rigid_body(1) );
@@ -158,6 +166,10 @@ int	hk_Breakable_Constraint::setup_and_step_constraint( hk_PSI_Info& pi, void *m
 
 void hk_Breakable_Constraint::step_constraint( hk_PSI_Info& pi, void *mem, hk_real tau_factor, hk_real damp_factor )
 {
+	/*
+	 * TODO(crack); this is highly outdated and needs to handle linear and angular body mass constraints..
+	 */
+	HK_ASSERT(0 && "Incomplete implementation");
 	//if( m_is_broken == false )
 	{
 		BreakableConstraintHelper ss0( get_rigid_body(0) );
