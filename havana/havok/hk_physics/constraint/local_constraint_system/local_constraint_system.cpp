@@ -30,6 +30,15 @@ hk_Local_Constraint_System::~hk_Local_Constraint_System()
     }
 }
 
+void hk_Local_Constraint_System::get_constraints_in_system(hk_Array<hk_Constraint*>& constraints_out)
+{
+  for (hk_Array<hk_Constraint*>::iterator i = m_constraints.start();
+    m_constraints.is_valid(i);
+    i = m_constraints.next(i))
+  {
+    constraints_out.add_element(m_constraints.get_element(i));
+  }
+}
 
 void hk_Local_Constraint_System::entity_deletion_event(hk_Entity *entity)
 {

@@ -44,6 +44,7 @@ public:
 			return "sys:constraint";
 		}
 
+		void get_constraints_in_system(hk_Array<hk_Constraint*>& constraints_out);
 //	inline hk_Environment *get_environment() const;
 public:	// internal
 	virtual void entity_deletion_event(hk_Entity *);
