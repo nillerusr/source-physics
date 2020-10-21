@@ -1,6 +1,11 @@
 #ifndef HK_BASE_BASE_TYPES_H
 #define HK_BASE_BASE_TYPES_H
 
+// TODO(crack): filthy hack to get around keyword bans in macros
+#ifndef _ALLOW_KEYWORD_MACROS
+# define _ALLOW_KEYWORD_MACROS
+#endif // _ALLOW_KEYWORD_MACROS
+
 // some of these are wrong
 #if defined(_DEBUG) && !defined(HK_DEBUG)
 #	define HK_DEBUG
