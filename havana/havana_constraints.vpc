@@ -14,10 +14,6 @@ $Configuration
 		$AdditionalIncludeDirectories	"$BASE;$SRCDIR\ivp\ivp_intern;$SRCDIR\ivp\ivp_collision;$SRCDIR\ivp\ivp_physics;$SRCDIR\ivp\ivp_surface_manager;$SRCDIR\ivp\ivp_utility;$SRCDIR\ivp\ivp_controller;$SRCDIR\ivp\ivp_compact_builder;$SRCDIR\ivp\havana\havok;$SRCDIR\ivp\havana"
 		$PreprocessorDefinitions		"$BASE;VPHYSICS_EXPORTS;HAVANA_CONSTRAINTS;HAVOK_MOPP"
 	}
-    $Compiler [$WIN32]
-    {
-        $EnableEnhancedInstructionSet	"Streaming SIMD Extensions 2 (/arch:SSE2)"
-    }
 }
 
 $Project "havana_constraints"
