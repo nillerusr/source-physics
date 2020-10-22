@@ -44,7 +44,7 @@ void hk_Stiff_Spring_Constraint::init_stiff_spring_constraint( const hk_Stiff_Sp
 	m_stiff_spring_length = bp->m_length;
 	m_translation_os_ks[0]	= bp->m_translation_os_ks[0];
 	m_translation_os_ks[1]	= bp->m_translation_os_ks[1];
-	m_is_rigid = bp->m_is_rigid;
+	m_min_length = bp->m_min_length;
 }
 
 void hk_Stiff_Spring_Constraint::write_to_blueprint( hk_Stiff_Spring_BP *bp )
@@ -54,7 +54,7 @@ void hk_Stiff_Spring_Constraint::write_to_blueprint( hk_Stiff_Spring_BP *bp )
 	bp->m_length = m_stiff_spring_length;
 	bp->m_translation_os_ks[0] = m_translation_os_ks[0];
 	bp->m_translation_os_ks[1] = m_translation_os_ks[1];
-	bp->m_is_rigid = m_is_rigid;
+	bp->m_min_length = m_min_length;
 }
 
 hk_Stiff_Spring_Constraint::hk_Stiff_Spring_Constraint(
@@ -91,6 +91,9 @@ int hk_Stiff_Spring_Constraint::get_vmq_storage_size()
 
 int	hk_Stiff_Spring_Constraint::setup_and_step_constraint( hk_PSI_Info& pi, void *mem, hk_real tau_factor, hk_real damp_factor )
 {
+	// TODO(crack); changes need to be made to complete this. mainly handling of stiff/rigid springs
+	HK_ASSERT(0 && "Incomplete implementation");
+	
 	hk_Stiff_Spring_Work &work = *new (mem) hk_Stiff_Spring_Work;
 	hk_VM_Query_Builder< hk_VMQ_Storage<1> > &query_engine = work.query_engine;
 
@@ -125,7 +128,7 @@ int	hk_Stiff_Spring_Constraint::setup_and_step_constraint( hk_PSI_Info& pi, void
 	mass_matrix(0,0) = 1.0f / mass_matrix(0,0); // invert in place
 
 	{ // step
-		if ( m_is_rigid || work.current_dist >= 0 )
+		if ( /*m_is_rigid || TODO(crack): fix this...*/ work.current_dist >= 0 )
 		{
 			hk_real *approaching_velocity = query_engine.get_vmq_storage().get_velocities();
 			hk_real delta_dist = tau_factor * m_tau * pi.get_inv_delta_time() * work.current_dist - damp_factor * m_strength * approaching_velocity[0];
@@ -142,6 +145,9 @@ int	hk_Stiff_Spring_Constraint::setup_and_step_constraint( hk_PSI_Info& pi, void
 
 void hk_Stiff_Spring_Constraint::step_constraint( hk_PSI_Info& pi, void *mem, hk_real tau_factor, hk_real damp_factor )
 {
+	// TODO(crack); changes need to be made to complete this. mainly handling of stiff/rigid springs
+	HK_ASSERT(0 && "Incomplete implementation");
+	
 	hk_Stiff_Spring_Work &work = *(hk_Stiff_Spring_Work *)mem;
 	hk_VM_Query_Builder< hk_VMQ_Storage<1> > &query_engine = work.query_engine;
 
@@ -154,7 +160,7 @@ void hk_Stiff_Spring_Constraint::step_constraint( hk_PSI_Info& pi, void *mem, hk
 	query_engine.update_velocities(HK_BODY_A, b0);
 	query_engine.update_velocities(HK_BODY_B, b1);
 	
-	if ( m_is_rigid || work.current_dist >= 0 )
+	if ( /*m_is_rigid || TODO(crack): fix this...*/ work.current_dist >= 0 )
 	{
 		hk_real delta_dist = tau_factor * m_tau * pi.get_inv_delta_time() * work.current_dist - damp_factor * m_strength * approaching_velocity[0];
 

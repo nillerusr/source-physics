@@ -14,6 +14,7 @@ class hk_Stiff_Spring_BP  //: public hk_Constraint_BP
 		}
 
 		void set_position_os ( int, hk_Vector3 &position_os);
+		void set_length(hk_real length);
 
 	public: // hack for now
 
@@ -21,7 +22,7 @@ class hk_Stiff_Spring_BP  //: public hk_Constraint_BP
 		hk_real     m_tau;
 		hk_real		m_strength;
 		hk_Vector3	m_translation_os_ks[2];
-		hk_bool		m_is_rigid;
+		hk_bool		m_min_length;
 
 	protected:
 
