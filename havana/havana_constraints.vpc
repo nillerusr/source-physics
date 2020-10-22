@@ -10,19 +10,75 @@ $include "$SRCDIR\vpc_scripts\source_lib_base.vpc"
 
 $Configuration "Debug"
 {
+	$General [$WIN32]
+	{
+		$OutputDirectory					"..\obj\x86_debug\havana_constraints"
+		$IntermediateDirectory				"..\obj\x86_debug\havana_constraints"
+	}
+
+	$General [$WIN64]
+	{
+		$OutputDirectory					"..\obj\x64_debug\havana_constraints"
+		$IntermediateDirectory				"..\obj\x64_debug\havana_constraints"
+	}
+
 	$Compiler
 	{
 		$AdditionalIncludeDirectories	"$BASE;$SRCDIR\ivp\ivp_intern;$SRCDIR\ivp\ivp_collision;$SRCDIR\ivp\ivp_physics;$SRCDIR\ivp\ivp_surface_manager;$SRCDIR\ivp\ivp_utility;$SRCDIR\ivp\ivp_controller;$SRCDIR\ivp\ivp_compact_builder;$SRCDIR\ivp\havana\havok;$SRCDIR\ivp\havana"
 		$PreprocessorDefinitions		"$BASE;VPHYSICS_EXPORTS;HAVANA_CONSTRAINTS;HAVOK_MOPP"
 	}
+
+	$Compiler [$WIN32]
+	{
+		$PrecompiledHeaderFile				"..\..\obj\x86_debug\havana_constraints/havana_constraints.pch"
+		$ASMListLocation					"..\..\obj\x86_debug\havana_constraints/"
+		$ObjectFileName						"..\..\obj\x86_debug\havana_constraints/"
+		$ProgramDatabaseFileName			"..\..\obj\x86_debug\havana_constraints/"
+	}
+
+	$Compiler [$WIN64]
+	{
+		$PrecompiledHeaderFile				"..\..\obj\x64_debug\havana_constraints/havana_constraints.pch"
+		$ASMListLocation					"..\..\obj\x64_debug\havana_constraints/"
+		$ObjectFileName						"..\..\obj\x64_debug\havana_constraints/"
+		$ProgramDatabaseFileName			"..\..\obj\x64_debug\havana_constraints/"
+	}
 }
 
 $Configuration "Release"
 {
+	$General [$WIN32]
+	{
+		$OutputDirectory					"..\obj\x86_release\havana_constraints"
+		$IntermediateDirectory				"..\obj\x86_release\havana_constraints"
+	}
+
+	$General [$WIN64]
+	{
+		$OutputDirectory					"..\obj\x64_release\havana_constraints"
+		$IntermediateDirectory				"..\obj\x64_release\havana_constraints"
+	}
+
 	$Compiler
 	{
 		$AdditionalIncludeDirectories	"$BASE;$SRCDIR\ivp\ivp_intern;$SRCDIR\ivp\ivp_collision;$SRCDIR\ivp\ivp_physics;$SRCDIR\ivp\ivp_surface_manager;$SRCDIR\ivp\ivp_utility;$SRCDIR\ivp\ivp_controller;$SRCDIR\ivp\ivp_compact_builder;$SRCDIR\ivp\havana\havok;$SRCDIR\ivp\havana"
 		$PreprocessorDefinitions		"$BASE;VPHYSICS_EXPORTS;HAVANA_CONSTRAINTS;HAVOK_MOPP"
+	}
+
+	$Compiler [$WIN32]
+	{
+		$PrecompiledHeaderFile				"..\..\obj\x86_release\havana_constraints/havana_constraints.pch"
+		$ASMListLocation					"..\..\obj\x86_release\havana_constraints/"
+		$ObjectFileName						"..\..\obj\x86_release\havana_constraints/"
+		$ProgramDatabaseFileName			"..\..\obj\x86_release\havana_constraints/"
+	}
+
+	$Compiler [$WIN64]
+	{
+		$PrecompiledHeaderFile				"..\..\obj\x64_release\havana_constraints/havana_constraints.pch"
+		$ASMListLocation					"..\..\obj\x64_release\havana_constraints/"
+		$ObjectFileName						"..\..\obj\x64_release\havana_constraints/"
+		$ProgramDatabaseFileName			"..\..\obj\x64_release\havana_constraints/"
 	}
 }
 
