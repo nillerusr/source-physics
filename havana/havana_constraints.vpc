@@ -116,56 +116,127 @@ $Configuration "Release"
 
 $Project "havana_constraints"
 {
-	$Folder	"Source Files"
+	$Folder	"hk_physics (havana)"
 	{
-		$File	"havok/hk_physics/constraint/ball_socket/ball_socket_constraint.cpp"
-		$File	"havok/hk_physics/constraint/breakable_constraint/breakable_constraint.cpp"
-		$File	"havok/hk_physics/constraint/car_wheel/car_wheel_constraint.cpp"
-		$File	"havok/hk_physics/constraint/constraint.cpp"
-		$File	"havok/hk_physics/constraint/fixed/fixed_constraint.cpp"
-		$File	"havok/hk_physics/constraint/hinge/hinge_bp_builder.cpp"
-		$File	"havok/hk_physics/constraint/hinge/hinge_constraint.cpp"
-		$File	"havok/hk_physics/constraint/limited_ball_socket/limited_ball_socket_constraint.cpp"
-		$File	"havok/hk_physics/constraint/local_constraint_system/local_constraint_system.cpp"
-		$File	"havok/hk_physics/constraint/prismatic/prismatic_constraint.cpp"
-		$File	"havok/hk_physics/constraint/pulley/pulley_constraint.cpp"
-		$File	"havok/hk_physics/constraint/ragdoll/ragdoll_constraint.cpp"
-		$File	"havok/hk_physics/constraint/ragdoll/ragdoll_constraint_bp_builder.cpp"
-		$File	"havok/hk_physics/core/rigid_body_core.cpp"
-		$File	"havok/hk_physics/effector/rigid_body_binary_effector.cpp"
-		$File	"havok/hk_physics/constraint/stiff_spring/stiff_spring_constraint.cpp"
+		$Folder	"core"
+		{
+			$Folder	"vm_query_builder"
+			{
+				$File	"$SRCDIR\ivp\havana\havok\hk_physics\core\vm_query_builder\mass_relative_vector3.h"
+				$File	"$SRCDIR\ivp\havana\havok\hk_physics\core\vm_query_builder\vm_query_builder.h"
+			}
+		}
+
+		$Folder	"constraint"
+		{
+			$File	"$SRCDIR\ivp\havana\havok\hk_physics\constraint\constraint.cpp"
+			$File	"$SRCDIR\ivp\havana\havok\hk_physics\constraint\constraint.h"
+			$File	"$SRCDIR\ivp\havana\havok\hk_physics\constraint\constraint_bp.h"
+			$File	"$SRCDIR\ivp\havana\havok\hk_physics\constraint\constraint_limit.h"
+
+			$Folder	"ball_socket"
+			{
+				$File	"$SRCDIR\ivp\havana\havok\hk_physics\constraint\ball_socket\ball_socket_bp.h"
+				$File	"$SRCDIR\ivp\havana\havok\hk_physics\constraint\ball_socket\ball_socket_constraint.cpp"
+				$File	"$SRCDIR\ivp\havana\havok\hk_physics\constraint\ball_socket\ball_socket_constraint.h"
+			}
+
+			$Folder	"limited_ball_socket"
+			{
+				$File	"$SRCDIR\ivp\havana\havok\hk_physics\constraint\limited_ball_socket\limited_ball_socket_bp.h"
+				$File	"$SRCDIR\ivp\havana\havok\hk_physics\constraint\limited_ball_socket\limited_ball_socket_constraint.cpp"
+				$File	"$SRCDIR\ivp\havana\havok\hk_physics\constraint\limited_ball_socket\limited_ball_socket_constraint.h"
+			}
+
+			$Folder	"ragdoll"
+			{
+				$File	"$SRCDIR\ivp\havana\havok\hk_physics\constraint\ragdoll\ragdoll_constraint.cpp"
+				$File	"$SRCDIR\ivp\havana\havok\hk_physics\constraint\ragdoll\ragdoll_constraint.h"
+				$File	"$SRCDIR\ivp\havana\havok\hk_physics\constraint\ragdoll\ragdoll_constraint_bp.h"
+				$File	"$SRCDIR\ivp\havana\havok\hk_physics\constraint\ragdoll\ragdoll_constraint_bp_builder.cpp"
+				$File	"$SRCDIR\ivp\havana\havok\hk_physics\constraint\ragdoll\ragdoll_constraint_bp_builder.h"
+			}
+
+			$Folder	"local_constraint_system"
+			{
+				$File	"$SRCDIR\ivp\havana\havok\hk_physics\constraint\local_constraint_system\local_constraint_system.h"
+				$File	"$SRCDIR\ivp\havana\havok\hk_physics\constraint\local_constraint_system\local_constraint_system_bp.h"
+			}
+
+			$Folder	"util"
+			{
+				$File	"$SRCDIR\ivp\havana\havok\hk_physics\constraint\util\constraint_limit_util.h"
+			}
+
+			$Folder	"hinge"
+			{
+				$File	"$SRCDIR\ivp\havana\havok\hk_physics\constraint\hinge\hinge_bp.h"
+				$File	"$SRCDIR\ivp\havana\havok\hk_physics\constraint\hinge\hinge_bp_builder.cpp"
+				$File	"$SRCDIR\ivp\havana\havok\hk_physics\constraint\hinge\hinge_bp_builder.h"
+				$File	"$SRCDIR\ivp\havana\havok\hk_physics\constraint\hinge\hinge_constraint.cpp"
+				$File	"$SRCDIR\ivp\havana\havok\hk_physics\constraint\hinge\hinge_constraint.h"
+			}
+
+			$Folder	"breakable_constraint"
+			{
+				$File	"$SRCDIR\ivp\havana\havok\hk_physics\constraint\breakable_constraint\breakable_constraint.cpp"
+				$File	"$SRCDIR\ivp\havana\havok\hk_physics\constraint\breakable_constraint\breakable_constraint.h"
+				$File	"$SRCDIR\ivp\havana\havok\hk_physics\constraint\breakable_constraint\breakable_constraint_bp.h"
+			}
+
+			$Folder	"fixed"
+			{
+				$File	"$SRCDIR\ivp\havana\havok\hk_physics\constraint\fixed\fixed_bp.h"
+				$File	"$SRCDIR\ivp\havana\havok\hk_physics\constraint\fixed\fixed_constraint.cpp"
+				$File	"$SRCDIR\ivp\havana\havok\hk_physics\constraint\fixed\fixed_constraint.h"
+			}
+
+			$Folder	"prismatic"
+			{
+				$File	"$SRCDIR\ivp\havana\havok\hk_physics\constraint\prismatic\prismatic_bp.h"
+				$File	"$SRCDIR\ivp\havana\havok\hk_physics\constraint\prismatic\prismatic_constraint.cpp"
+				$File	"$SRCDIR\ivp\havana\havok\hk_physics\constraint\prismatic\prismatic_constraint.h"
+			}
+
+			$Folder	"pulley"
+			{
+				$File	"$SRCDIR\ivp\havana\havok\hk_physics\constraint\pulley\pulley_bp.h"
+				$File	"$SRCDIR\ivp\havana\havok\hk_physics\constraint\pulley\pulley_constraint.cpp"
+				$File	"$SRCDIR\ivp\havana\havok\hk_physics\constraint\pulley\pulley_constraint.h"
+			}
+
+			$Folder	"stiff_spring"
+			{
+				$File	"$SRCDIR\ivp\havana\havok\hk_physics\constraint\stiff_spring\stiff_spring_bp.h"
+				$File	"$SRCDIR\ivp\havana\havok\hk_physics\constraint\stiff_spring\stiff_spring_constraint.cpp"
+				$File	"$SRCDIR\ivp\havana\havok\hk_physics\constraint\stiff_spring\stiff_spring_constraint.h"
+			}
+		}
 	}
 
-	$Folder	"Header Files"
+	$Folder	"hk_physics (ipion)"
 	{
-		$File	"havok/hk_physics/constraint/ball_socket/ball_socket_bp.h"
-		$File	"havok/hk_physics/constraint/ball_socket/ball_socket_constraint.h"
-		$File	"havok/hk_physics/constraint/breakable_constraint/breakable_constraint.h"
-		$File	"havok/hk_physics/constraint/breakable_constraint/breakable_constraint_bp.h"
-		$File	"havok/hk_physics/constraint/car_wheel/car_wheel_bp.h"
-		$File	"havok/hk_physics/constraint/car_wheel/car_wheel_constraint.h"
-		$File	"havok/hk_physics/constraint/constraint.h"
-		$File	"havok/hk_physics/constraint/constraint_bp.h"
-		$File	"havok/hk_physics/constraint/constraint_limit.h"
-		$File	"havok/hk_physics/constraint/fixed/fixed_bp.h"
-		$File	"havok/hk_physics/constraint/fixed/fixed_constraint.h"
-		$File	"havok/hk_physics/constraint/hinge/hinge_bp.h"
-		$File	"havok/hk_physics/constraint/hinge/hinge_bp_builder.h"
-		$File	"havok/hk_physics/constraint/hinge/hinge_constraint.h"
-		$File	"havok/hk_physics/constraint/limited_ball_socket/limited_ball_socket_bp.h"
-		$File	"havok/hk_physics/constraint/limited_ball_socket/limited_ball_socket_constraint.h"
-		$File	"havok/hk_physics/constraint/local_constraint_system/local_constraint_system.h"
-		$File	"havok/hk_physics/constraint/local_constraint_system/local_constraint_system_bp.h"
-		$File	"havok/hk_physics/constraint/prismatic/prismatic_bp.h"
-		$File	"havok/hk_physics/constraint/prismatic/prismatic_constraint.h"
-		$File	"havok/hk_physics/constraint/pulley/pulley_bp.h"
-		$File	"havok/hk_physics/constraint/pulley/pulley_constraint.h"
-		$File	"havok/hk_physics/constraint/ragdoll/ragdoll_constraint.h"
-		$File	"havok/hk_physics/constraint/ragdoll/ragdoll_constraint_bp.h"
-		$File	"havok/hk_physics/constraint/ragdoll/ragdoll_constraint_bp_builder.h"
-		$File	"havok/hk_physics/core/rigid_body_core.h"
-		$File	"havok/hk_physics/constraint/stiff_spring/stiff_spring_bp.h"
-		$File	"havok/hk_physics/constraint/stiff_spring/stiff_spring_constraint.h"
-		$File	"havok/hk_physics/constraint/util/constraint_limit_util.h"
+		$File	"$SRCDIR\ivp\IVP_PHYSICS\hk_physics\physics.h"
+
+		$Folder	"simunit"
+		{
+			$File	"$SRCDIR\ivp\IVP_PHYSICS\hk_physics\simunit\psi_info.h"
+		}
+
+		$Folder	"constraint No. 1"
+		{
+			$File	"$SRCDIR\ivp\IVP_PHYSICS\hk_physics\constraint\local_constraint_system\local_constraint_system.cpp"
+			$File	"$SRCDIR\ivp\IVP_PHYSICS\hk_physics\constraint\local_constraint_system\local_constraint_system.h"
+		}
+
+		$Folder	"core No. 1"
+		{
+			$File	"$SRCDIR\ivp\IVP_PHYSICS\hk_physics\core\rigid_body_core.cpp"
+		}
+
+		$Folder	"effector"
+		{
+			$File	"$SRCDIR\ivp\IVP_PHYSICS\hk_physics\effector\rigid_body_binary_effector.cpp"
+		}
 	}
 }
