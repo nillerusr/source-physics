@@ -22,6 +22,7 @@ public:
 
 	void set_angular_limits( hk_real lower, hk_real upper );
 	const hk_Hinge_BP *get_blueprint(){ return &m_hinge_bp; };
+	void set_axis_perp_os(int body_index, hk_Vector3* axis_os);
 };
 
 #endif /*HK_PHYSICS_HINGE_BP_BUILDER_H*/

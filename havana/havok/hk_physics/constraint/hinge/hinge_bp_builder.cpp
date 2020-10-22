@@ -36,3 +36,9 @@ void hk_Hinge_BP_Builder::set_tau( hk_real tau)
 {
 	m_hinge_bp.m_tau = tau;
 }
+
+void hk_Hinge_BP_Builder::set_axis_perp_os(int body_index, hk_Vector3& axis_os)
+{
+	// TODO(crack); need to implement this...
+	HK_ASSERT(0 && "No implementation");
+}

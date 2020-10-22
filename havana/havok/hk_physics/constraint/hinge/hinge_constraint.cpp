@@ -289,6 +289,11 @@ void hk_Hinge_Constraint::set_motor( hk_real desired_vel, hk_real max_force )
 	m_limit.set_motor( desired_vel, max_force );
 }
 
+void hk_Hinge_Constraint::set_axis_perp_os(int body_index, hk_Vector3* axis_os)
+{
+	// TODO(crack); need to implement this...
+	HK_ASSERT(0 && "No implementation");
+}
 /* Ballsocket + point-line version
 //
 void hk_Hinge_Constraint::apply_effector_PSI(	hk_PSI_Info& pi,
