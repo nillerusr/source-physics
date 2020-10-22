@@ -22,6 +22,9 @@ class hk_Ragdoll_Constraint_BP  //: public hk_Effector_BP
 			m_strength			= 1.0f;
 			m_tau				= 1.0f;
 			m_constrainTranslation = true;
+			m_axisMap[0] = 0;
+			m_axisMap[1] = 1;
+			m_axisMap[2] = 2;
 		}
 
 		void set_position_os ( int, hk_Vector3 &position_os);
@@ -35,6 +38,7 @@ class hk_Ragdoll_Constraint_BP  //: public hk_Effector_BP
 
 		hk_real		m_strength;
 		hk_real     m_tau;
+		hk_uchar	m_axisMap[3];
 		bool		m_constrainTranslation;
 };
 
