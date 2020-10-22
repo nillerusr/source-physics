@@ -350,3 +350,9 @@ void hk_Ragdoll_Constraint::update_friction(hk_real max_angular_impulse)
 		m_inputLimits[i].set_friction(max_angular_impulse);
 	}
 }
+
+void hk_Ragdoll_Constraint::update_transforms(hk_Transform& os_ks_0, hk_Transform& os_ks_1)
+{
+	m_transform_os_ks[0] = os_ks_0;
+	m_transform_os_ks[1] = os_ks_1;
+}
