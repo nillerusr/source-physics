@@ -5,8 +5,8 @@
 //-----------------------------------------------------------------------------
 
 $macro SRCDIR		"..\.."
-$include "$SRCDIR\vpc_scripts\source_lib_base.vpc"
 $Macro OUTLIBDIR	"$LIBCOMMON"
+$include "$SRCDIR\vpc_scripts\source_lib_base.vpc"
 
 $Configuration
 {
