@@ -26,6 +26,24 @@ $Configuration "Release"
 	}
 }
 
+$Configuration "Debug - No Havok MOPP"
+{
+	$Compiler
+	{
+		$AdditionalIncludeDirectories	"$BASE;$SRCDIR\ivp\ivp_intern;$SRCDIR\ivp\ivp_collision;$SRCDIR\ivp\ivp_physics;$SRCDIR\ivp\ivp_surface_manager;$SRCDIR\ivp\ivp_utility;$SRCDIR\ivp\ivp_controller;$SRCDIR\ivp\ivp_compact_builder;$SRCDIR\ivp\havana\havok;$SRCDIR\ivp\havana"
+		$PreprocessorDefinitions		"$BASE;VPHYSICS_EXPORTS;HAVANA_CONSTRAINTS"
+	}
+}
+
+$Configuration "Release - No Havok MOPP"
+{
+	$Compiler
+	{
+		$AdditionalIncludeDirectories	"$BASE;$SRCDIR\ivp\ivp_intern;$SRCDIR\ivp\ivp_collision;$SRCDIR\ivp\ivp_physics;$SRCDIR\ivp\ivp_surface_manager;$SRCDIR\ivp\ivp_utility;$SRCDIR\ivp\ivp_controller;$SRCDIR\ivp\ivp_compact_builder;$SRCDIR\ivp\havana\havok;$SRCDIR\ivp\havana"
+		$PreprocessorDefinitions		"$BASE;VPHYSICS_EXPORTS;HAVANA_CONSTRAINTS"
+	}
+}
+
 $Project "havana_constraints"
 {
 	$Folder	"Source Files"
