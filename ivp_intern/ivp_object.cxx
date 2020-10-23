@@ -155,6 +155,11 @@ void IVP_Real_Object::recompile_material_changed() {
     this->get_core()->values_changed_recalc_redundants();
 }
 
+void IVP_Real_Object::force_grow_friction_system()
+{
+  IVP_ASSERT(0 & "Not implemented");
+}
+
 void IVP_Real_Object::enable_collision_detection(IVP_BOOL enable){
     if (enable){
 	if (!this->flags.collision_detection_enabled ){
