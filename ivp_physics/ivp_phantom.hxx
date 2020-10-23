@@ -68,6 +68,8 @@ public:
    *********************************************************************/
   IVP_FLOAT exit_policy_extra_time;   // def 0.5f[s]
   
+  IVP_BOOL manage_sleeping_cores;
+
   IVP_Template_Phantom();
 };
 
