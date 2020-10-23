@@ -160,7 +160,7 @@ void IVP_Car_System_Real_Wheels::do_steering_wheel(IVP_POS_WHEEL wheel_pos, IVP_
     target_mat->vv.set(&old_translation);
 }
 
-void IVP_Car_System_Real_Wheels::do_steering(IVP_FLOAT s_angle)
+void IVP_Car_System_Real_Wheels::do_steering(IVP_FLOAT s_angle, bool bAnalog)
 {
     // tell constraint system new steering positions of wheels
     if (  steering_angle == s_angle) return;

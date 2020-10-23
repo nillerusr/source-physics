@@ -593,7 +593,7 @@ IVP_FLOAT IVP_Controller_Raycast_Car::get_booster_delay()
 }
 
 
-void IVP_Controller_Raycast_Car::do_steering(IVP_FLOAT steering_angle_in)
+void IVP_Controller_Raycast_Car::do_steering(IVP_FLOAT steering_angle_in, bool bAnalog)
 {
 
     // tell constraint system new steering positions of wheels
