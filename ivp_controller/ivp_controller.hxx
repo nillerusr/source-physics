@@ -127,6 +127,8 @@ public:
      ********************************************************************************/
     virtual IVP_CONTROLLER_PRIORITY get_controller_priority() = 0;
 
+    virtual const char* get_controller_name() { return "sys:unknown"; }
+
     virtual ~IVP_Controller() { ; };
 };
 
