@@ -534,6 +534,7 @@ public:
     *                   Call at any time.
     ********************************************************************************/
     void values_changed_recalc_redundants();
+    void apply_velocity_limit();
 };
 
 

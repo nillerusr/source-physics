@@ -302,6 +302,11 @@ IVP_DOUBLE IVP_Core::calc_correct_virt_mass(const IVP_U_Float_Point *core_point,
     }
 }
 
+void IVP_Core::apply_velocity_limit()
+{
+  IVP_ASSERT(0 && "Not implemented");
+}
+
 void p_calc_2d_distances_to_axis(const IVP_U_Float_Point *point,const IVP_U_Float_Point *direction, IVP_U_Float_Point *distances){
 /* estimate (2d) distance of straight(point,direction) to 0,0,0
  * after setting all k[0],k[1], k[2] to zero */
