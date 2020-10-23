@@ -261,6 +261,7 @@ public:
     IVP_FLOAT get_friction_factor();
     void set_friction_to_neutral();
     void get_material_info(IVP_Material *mtl[2]);
+    void recompute_friction();
 };
 
 

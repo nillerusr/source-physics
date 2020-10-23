@@ -1168,6 +1168,12 @@ void IVP_Contact_Point::get_material_info(IVP_Material *mtl[2]) {
     }
 }
 
+void IVP_Contact_Point::recompute_friction()
+{
+  // todo(CRACK): implement me
+  IVP_ASSERT(0 && "Not implemented");
+}
+
 void IVP_Impact_Solver::get_cos_sin_for_impact(IVP_FLOAT friction_val,IVP_FLOAT percent_energy_conservation,IVP_FLOAT *cos_val,IVP_FLOAT *sin_val) {
     IVP_DOUBLE impact_fri_fact=friction_val * (1.0f + IVP_Inline_Math::ivp_sqrtf(percent_energy_conservation));
     IVP_DOUBLE fri_angle = IVP_Inline_Math::atand(impact_fri_fact);  // #+# bitter, kill, 
