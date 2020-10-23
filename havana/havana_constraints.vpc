@@ -216,27 +216,27 @@ $Project "havana_constraints"
 
 	$Folder	"hk_physics (ipion)"
 	{
-		$File	"$SRCDIR\ivp\IVP_PHYSICS\hk_physics\physics.h"
+		$File	"$SRCDIR\ivp\ivp_physics\hk_physics\physics.h"
 
 		$Folder	"simunit"
 		{
-			$File	"$SRCDIR\ivp\IVP_PHYSICS\hk_physics\simunit\psi_info.h"
+			$File	"$SRCDIR\ivp\ivp_physics\hk_physics\simunit\psi_info.h"
 		}
 
 		$Folder	"constraint No. 1"
 		{
-			$File	"$SRCDIR\ivp\IVP_PHYSICS\hk_physics\constraint\local_constraint_system\local_constraint_system.cpp"
-			$File	"$SRCDIR\ivp\IVP_PHYSICS\hk_physics\constraint\local_constraint_system\local_constraint_system.h"
+			$File	"$SRCDIR\ivp\ivp_physics\hk_physics\constraint\local_constraint_system\local_constraint_system.cpp"
+			$File	"$SRCDIR\ivp\ivp_physics\hk_physics\constraint\local_constraint_system\local_constraint_system.h"
 		}
 
 		$Folder	"core No. 1"
 		{
-			$File	"$SRCDIR\ivp\IVP_PHYSICS\hk_physics\core\rigid_body_core.cpp"
+			$File	"$SRCDIR\ivp\ivp_physics\hk_physics\core\rigid_body_core.cpp"
 		}
 
 		$Folder	"effector"
 		{
-			$File	"$SRCDIR\ivp\IVP_PHYSICS\hk_physics\effector\rigid_body_binary_effector.cpp"
+			$File	"$SRCDIR\ivp\ivp_physics\hk_physics\effector\rigid_body_binary_effector.cpp"
 		}
 	}
 }
