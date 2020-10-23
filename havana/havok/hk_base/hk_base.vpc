@@ -4,52 +4,198 @@
 //	Project Script
 //-----------------------------------------------------------------------------
 
-$macro SRCDIR		"..\..\..\.."
-$include "$SRCDIR\vpc_scripts\source_lib_base.vpc"
+$Macro SRCDIR		"..\..\..\.."
+$Macro OUTLIBDIR	"$LIBCOMMON"
+$Include "$SRCDIR\vpc_scripts\source_lib_base.vpc"
 
-$Configuration
+$Configuration	"Debug"
 {
+	$General
+	{
+		$CharacterSet						"Use Multi-Byte Character Set"
+	}
+
+	$General [$WIN32]
+	{
+		$OutputDirectory					"$SRCDIR\ivp\obj\x86_debug\hk_base"
+		$IntermediateDirectory				"$SRCDIR\ivp\obj\x86_debug\hk_base"
+	}
+
+	$General [$WIN64]
+	{
+		$OutputDirectory					"$SRCDIR\ivp\obj\x64_debug\hk_base"
+		$IntermediateDirectory				"$SRCDIR\ivp\obj\x64_debug\hk_base"
+	}
+
 	$Compiler
 	{
-		$AdditionalIncludeDirectories	"$BASE;$SRCDIR\ivp\havana\havok;$SRCDIR\ivp\havana"
-		$PreprocessorDefinitions		"$BASE;VPHYSICS_EXPORTS;HAVANA_CONSTRAINTS;HAVOK_MOPP"
+		$AdditionalIncludeDirectories		"$BASE;$SRCDIR\ivp\havana\havok;$SRCDIR\ivp\havana"
+        $PreprocessorDefinitions			"$BASE;VPHYSICS_EXPORTS;HAVANA_CONSTRAINTS;HAVOK_MOPP;WIN32;_DEBUG;_LIB"
 	}
-    $Compiler [$WIN32]
-    {
-        $EnableEnhancedInstructionSet	"Streaming SIMD Extensions 2 (/arch:SSE2)"
-    }
+
+	$Compiler [$WINDOWS]
+	{
+		$Optimization						"Disabled (/Od)"
+		$EnableMinimalRebuild				"Yes (/Gm)"
+		$BasicRuntimeChecks					"Both (/RTC1, equiv. to /RTCsu)"
+		$RuntimeLibrary						"Multi-threaded Debug (/MTd)"
+		$Create/UsePrecompiledHeader		"Use Precompiled Header (/Yu)"
+		$Create/UsePCHThroughFile			"hk_base/base.h"
+		$WarningLevel						"Level 3 (/W3)"
+		$SuppressStartupBanner				"Yes (/NOLOGO)"
+		$DebugInformationFormat				"Program Database for Edit & Continue (/ZI)"
+	}
+
+	$Compiler [$WIN32]
+	{
+		$PrecompiledHeaderFile				"$SRCDIR\ivp\obj\x86_debug\hk_base\hk_base.pch"
+		$ASMListLocation					"$SRCDIR\ivp\obj\x86_debug\hk_base\"
+		$ObjectFileName						"$SRCDIR\ivp\obj\x86_debug\hk_base\"
+		$ProgramDatabaseFileName			"$SRCDIR\ivp\obj\x86_debug\hk_base\"
+	}
+
+	$Compiler [$WIN64]
+	{
+		$PrecompiledHeaderFile				"$SRCDIR\ivp\obj\x64_debug\hk_base.pch"
+		$ASMListLocation					"$SRCDIR\ivp\obj\x64_debug\hk_base\"
+		$ObjectFileName						"$SRCDIR\ivp\obj\x64_debug\hk_base\"
+		$ProgramDatabaseFileName			"$SRCDIR\ivp\obj\x64_debug\hk_base\"
+	}
+
+	$Librarian [$WINDOWS]
+	{
+		$SuppressStartupBanner				"Yes (/NOLOGO)"
+	}
+}
+
+$Configuration	"Release"
+{
+	$General
+	{
+		$CharacterSet						"Use Multi-Byte Character Set"
+	}
+
+	$General [$WIN32]
+	{
+		$OutputDirectory					"$SRCDIR\ivp\obj\x86_release\hk_base"
+		$IntermediateDirectory				"$SRCDIR\ivp\obj\x86_release\hk_base"
+	}
+
+	$General [$WIN64]
+	{
+		$OutputDirectory					"$SRCDIR\ivp\obj\x64_release\hk_base"
+		$IntermediateDirectory				"$SRCDIR\ivp\obj\x64_release\hk_base"
+	}
+
+	$Compiler
+	{
+		$AdditionalIncludeDirectories		"$BASE;$SRCDIR\ivp\havana\havok;$SRCDIR\ivp\havana"
+		$PreprocessorDefinitions			"$BASE;VPHYSICS_EXPORTS;HAVANA_CONSTRAINTS;HAVOK_MOPP;WIN32;NDEBUG;_LIB"
+	}
+
+	$Compiler [$WINDOWS]
+	{
+		$Optimization						"Maximize Speed (/O2)"
+		$InlineFunctionExpansion			"Only __inline (/Ob1)"
+		$EnableStringPooling				"Yes (/GF)"
+		$RuntimeLibrary						"Multi-threaded (/MT)"
+		$EnableFunctionLevelLinking			"Yes (/Gy)"
+		$Create/UsePrecompiledHeader		"Use Precompiled Header (/Yu)"
+		$Create/UsePCHThroughFile			"hk_base/base.h"
+		$WarningLevel						"Level 3 (/W3)"
+		$SuppressStartupBanner				"Yes (/NOLOGO)"
+		$DebugInformationFormat				"Program Database (/Zi)"
+	}
+
+	$Compiler [$WIN32]
+	{
+		$PrecompiledHeaderFile				"$SRCDIR\ivp\obj\x86_release\hk_base\hk_base.pch"
+		$ASMListLocation					"$SRCDIR\ivp\obj\x86_release\hk_base\"
+		$ObjectFileName						"$SRCDIR\ivp\obj\x86_release\hk_base\"
+		$ProgramDatabaseFileName			"$SRCDIR\ivp\obj\x86_release\hk_base\"
+	}
+
+	$Compiler [$WIN64]
+	{
+		$PrecompiledHeaderFile				"$SRCDIR\ivp\obj\x64_release\hk_base\hk_base.pch"
+		$ASMListLocation					"$SRCDIR\ivp\obj\x64_release\hk_base\"
+		$ObjectFileName						"$SRCDIR\ivp\obj\x64_release\hk_base\"
+		$ProgramDatabaseFileName			"$SRCDIR\ivp\obj\x64_release\hk_base\"
+	}
+
+	$Librarian [$WINDOWS]
+	{
+		$SuppressStartupBanner				"Yes (/NOLOGO)"
+	}
 }
 
 $Project "hk_base"
 {
-	$Folder	"Source Files"
+	$Folder	"memory"
 	{
-		$File	"array\array.cpp"
-		$File	"base_types.cpp"
-		$File	"console.cpp"
-		$File	"hash\hash.cpp"
-		$File	"id_server\id_server.cpp"
 		$File	"memory\memory.cpp"
+		$File	"memory\memory.h"
+		$File	"memory\memory.inl"
+		$File	"memory\memory_managed_virtual_class.h"
 		$File	"memory\memory_util.cpp"
-		$File	"stopwatch\stopwatch.cpp"
-		$File	"string\string.cpp"
+		$File	"memory\memory_util.h"
 	}
 
-	$Folder	"Header Files"
+	$Folder	"array"
 	{
+		$File	"array\array.cpp"
 		$File	"array\array.h"
+		$File	"array\array.inl"
 		$File	"array\pre_allocated_array.h"
-		$File	"base.h"
-		$File	"base_types.h"
-		$File	"console.h"
-		$File	"display.h"
-		$File	"hash\hash.h"
-		$File	"id_server\id_server.h"
-		$File	"memory\memory.h"
-		$File	"memory\memory_managed_virtual_class.h"
-		$File	"memory\memory_util.h"
-		$File	"stopwatch\stopwatch.h"
-		$File	"string\string.h"
-		$File	"util.h"
 	}
+
+	$Folder	"hash"
+	{
+		$File	"hash\hash.cpp"
+		$File	"hash\hash.h"
+		$File	"hash\hash.inl"
+	}
+
+	$Folder	"stopwatch"
+	{
+		$File	"stopwatch\stopwatch.cpp"
+		$File	"stopwatch\stopwatch.h"
+		$File	"stopwatch\stopwatch_qpt.inl"
+	}
+
+	$Folder	"string"
+	{
+		$File	"string\string.cpp"
+		$File	"string\string.h"
+	}
+
+	$Folder	"id_server"
+	{
+		$File	"id_server\id_server.cpp"
+		$File	"id_server\id_server.h"
+		$File	"id_server\id_server.inl"
+	}
+
+	$File	"base.h"
+	$File	"base_types.cpp"
+	{
+		$Configuration	"Debug"
+		{
+			$Compiler
+			{
+				$Create/UsePrecompiledHeader		"Create Precompiled Header (/Yc)"
+			}
+		}
+		$Configuration	"Release"
+		{
+			$Compiler
+			{
+				$Create/UsePrecompiledHeader		"Create Precompiled Header (/Yc)"
+			}
+		}
+	}
+
+	$File	"base_types.h"
+	$File	"console.cpp"
+	$File	"console.h"
 }
