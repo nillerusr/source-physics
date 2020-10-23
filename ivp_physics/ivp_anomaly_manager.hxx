@@ -23,7 +23,9 @@ public:
     IVP_FLOAT max_velocity;
     int       max_collisions_per_psi;
     IVP_FLOAT max_angular_velocity_per_psi;
-
+    int       max_collision_checks_per_psi;
+    IVP_FLOAT min_friction_mass;
+    IVP_FLOAT max_friction_mass;
     /********************************************************************************
      *	Name:	       	IVP_Anomaly_Manager
      *	Description:	used to identify and solve special situations occuring during
@@ -32,6 +34,7 @@ public:
     inline IVP_FLOAT get_max_velocity() const { return max_velocity; }; // [m/s]**2
     inline IVP_FLOAT get_max_angular_velocity_per_psi() const { return max_angular_velocity_per_psi; }; // [radians/psi]**2
     inline int get_max_collisions_per_psi(){ return max_collisions_per_psi; };  // per core
+    inline int get_max_collision_checks_per_psi() { return max_collision_checks_per_psi; };
 
     virtual void environment_will_be_deleted(IVP_Environment *);
 
