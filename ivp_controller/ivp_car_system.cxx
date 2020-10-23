@@ -160,6 +160,11 @@ void IVP_Car_System_Real_Wheels::do_steering_wheel(IVP_POS_WHEEL wheel_pos, IVP_
     target_mat->vv.set(&old_translation);
 }
 
+void set_powerslide(IVP_FLOAT front_accel, IVP_FLOAT rear_accel)
+{
+  IVP_ASSERT(0 & "Not implemented");
+}
+
 void IVP_Car_System_Real_Wheels::do_steering(IVP_FLOAT s_angle, bool bAnalog)
 {
     // tell constraint system new steering positions of wheels

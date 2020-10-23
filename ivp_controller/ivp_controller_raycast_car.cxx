@@ -667,6 +667,17 @@ void IVP_Controller_Raycast_Car::get_skid_info( IVP_Wheel_Skid_Info *array_of_sk
 	}
 }
 
+void IVP_Controller_Raycast_Car::set_powerslide(IVP_FLOAT front_accel, IVP_FLOAT rear_accel)
+{
+  IVP_ASSERT(0 & "Not implemented");
+}
+
+IVP_FLOAT IVP_Controller_Raycast_Car::get_booster_time_to_go()
+{
+  IVP_ASSERT(0 & "Not implemented");
+  return 0;
+}
+
 //-----------------------------------------------------------------------------
 // Purpose: (Ipion) Create a raycast car controller.
 //   Input: pEnvironment - the physics environment the car is to reside in
