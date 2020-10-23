@@ -108,7 +108,7 @@ $Configuration	"Release"
 	{
 		$PrecompiledHeaderFile				"..\obj\x86_release\ivp_compactbuilder\ivp_compactbuilder_lib.pch"
 		$ASMListLocation					"..\obj\x86_release\ivp_compactbuilder\"
-		$ObjectFileName						"..\obj\x86_release\ivp_physics\"
+		$ObjectFileName						"..\obj\x86_release\ivp_compactbuilder\"
 		$ProgramDatabaseFileName			"..\obj\x86_release\ivp_compactbuilder\"
 	}
 
