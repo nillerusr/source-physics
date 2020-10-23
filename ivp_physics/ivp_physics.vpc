@@ -30,7 +30,8 @@ $Configuration	"Debug"
 	$Compiler
 	{
 		$AdditionalIncludeDirectories	"$BASE;$SRCDIR\ivp\ivp_intern;$SRCDIR\ivp\ivp_collision;$SRCDIR\ivp\ivp_physics;$SRCDIR\ivp\ivp_surface_manager;$SRCDIR\ivp\ivp_utility;$SRCDIR\ivp\ivp_controller;$SRCDIR\ivp\ivp_compact_builder;$SRCDIR\ivp\havana\havok;$SRCDIR\ivp\havana"
-		$PreprocessorDefinitions		"$BASE;DEBUG;VPHYSICS_EXPORTS;HAVANA_CONSTRAINTS;HAVOK_MOPP;IVP_VERSION_SDK;_LIB;"
+		$PreprocessorDefinitions		"$BASE;DEBUG;VPHYSICS_EXPORTS;HAVANA_CONSTRAINTS;HAVOK_MOPP;IVP_VERSION_SDK"
+		$GCC_ExtraCompilerFlags			"-fpermissive"
 	}
 
 	$Compiler [$WINDOWS]
@@ -88,7 +89,10 @@ $Configuration	"Release"
 	$Compiler
 	{
 		$AdditionalIncludeDirectories		"$BASE;$SRCDIR\ivp\ivp_intern;$SRCDIR\ivp\ivp_collision;$SRCDIR\ivp\ivp_physics;$SRCDIR\ivp\ivp_surface_manager;$SRCDIR\ivp\ivp_utility;$SRCDIR\ivp\ivp_controller;$SRCDIR\ivp\ivp_compact_builder;$SRCDIR\ivp\havana\havok;$SRCDIR\ivp\havana"
-		$PreprocessorDefinitions			"$BASE;NDEBUG;_LIB;WIN32;VPHYSICS_EXPORTS;IVP_VERSION_SDK;HAVANA_CONSTRAINTS;HAVOK_MOPP"
+		$PreprocessorDefinitions			"$BASE;VPHYSICS_EXPORTS;IVP_VERSION_SDK;HAVANA_CONSTRAINTS;HAVOK_MOPP"
+		$Create/UsePrecompiledHeader		"Use Precompiled Header (/Yu)"
+		$Create/UsePCHThroughFile			"ivp_physics.hxx"
+		$GCC_ExtraCompilerFlags				"-fpermissive"
 	}
 
 	$Compiler [$WINDOWS]
@@ -98,8 +102,6 @@ $Configuration	"Release"
 		$EnableStringPooling				"Yes (/GF)"
 		$RuntimeLibrary						"Multi-threaded (/MT)"
 		$EnableFunctionLevelLinking			"Yes (/Gy)"
-		$Create/UsePrecompiledHeader		"Use Precompiled Header (/Yu)"
-		$Create/UsePCHThroughFile			"ivp_physics.hxx"
 		$WarningLevel						"Level 3 (/W3)"
 		$SuppressStartupBanner				"Yes (/NOLOGO)"
 	}

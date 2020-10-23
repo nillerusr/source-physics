@@ -31,6 +31,8 @@ $Configuration	"Debug"
 	{
 		$AdditionalIncludeDirectories		"$BASE;$SRCDIR\ivp\havana\havok;$SRCDIR\ivp\havana"
         $PreprocessorDefinitions			"$BASE;VPHYSICS_EXPORTS;HAVANA_CONSTRAINTS;HAVOK_MOPP;_DEBUG;_LIB;HK_DEBUG"
+		$Create/UsePrecompiledHeader		"Use Precompiled Header (/Yu)"
+		$Create/UsePCHThroughFile			"hk_math/vecmath.h"
 	}
 
 	$Compiler [$WINDOWS]
@@ -39,8 +41,6 @@ $Configuration	"Debug"
 		$EnableMinimalRebuild				"Yes (/Gm)"
 		$BasicRuntimeChecks					"Both (/RTC1, equiv. to /RTCsu)"
 		$RuntimeLibrary						"Multi-threaded Debug (/MTd)"
-		$Create/UsePrecompiledHeader		"Use Precompiled Header (/Yu)"
-		$Create/UsePCHThroughFile			"hk_math/vecmath.h"
 		$WarningLevel						"Level 3 (/W3)"
 		$SuppressStartupBanner				"Yes (/NOLOGO)"
 		$DebugInformationFormat				"Program Database for Edit & Continue (/ZI)"
@@ -91,6 +91,8 @@ $Configuration	"Release"
 	{
 		$AdditionalIncludeDirectories		"$BASE;$SRCDIR\ivp\havana\havok;$SRCDIR\ivp\havana"
 		$PreprocessorDefinitions			"$BASE;VPHYSICS_EXPORTS;HAVANA_CONSTRAINTS;HAVOK_MOPP;WIN32;NDEBUG;_LIB"
+		$Create/UsePrecompiledHeader		"Use Precompiled Header (/Yu)"
+		$Create/UsePCHThroughFile			"hk_math/vecmath.h"
 	}
 
 	$Compiler [$WINDOWS]
@@ -100,8 +102,6 @@ $Configuration	"Release"
 		$EnableStringPooling				"Yes (/GF)"
 		$RuntimeLibrary						"Multi-threaded (/MT)"
 		$EnableFunctionLevelLinking			"Yes (/Gy)"
-		$Create/UsePrecompiledHeader		"Use Precompiled Header (/Yu)"
-		$Create/UsePCHThroughFile			"hk_math/vecmath.h"
 		$WarningLevel						"Level 3 (/W3)"
 		$SuppressStartupBanner				"Yes (/NOLOGO)"
 		$DebugInformationFormat				"Program Database (/Zi)"
@@ -178,6 +178,8 @@ $Project "hk_math"
 		$File	"vector_fpu\vector_fpu.h"
 		$File	"vector_fpu\vector_fpu.inl"
 	}
+
+	$File 	"stdafx.h"
 
 	$File	"dense_vector.h"
 	$File	"dense_vector.inl"

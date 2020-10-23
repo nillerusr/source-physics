@@ -5,9 +5,6 @@
 #include <ivp_physics.hxx>
 #include <ivp_performancecounter.hxx>
 
-#include <ivp_debug_manager.hxx>
-#include <ivp_debug.hxx>
-
 #ifndef WIN32
 #pragma implementation "ivp_mindist.hxx"
 #pragma implementation "ivp_mindist_intern.hxx"
@@ -19,6 +16,9 @@
 #include <ivp_mindist_intern.hxx>
 #include <ivp_mindist_event.hxx>
 #include <ivp_mindist_macros.hxx>
+
+#include <ivp_debug_manager.hxx>
+#include <ivp_debug.hxx>
 
 #include <ivp_compact_ledge.hxx>
 #include <ivp_cache_object.hxx>

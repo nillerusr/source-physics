@@ -270,7 +270,7 @@ public:
     /**** Methods: 2nd Level, based on primitives ****/
     /**** Methods: 2nd Level, based on primitives ****/
     virtual void do_steering(IVP_FLOAT steering_angle_in, bool bAnalog = false); // updates this->steering_angle
-    
+
     void set_booster_acceleration(IVP_FLOAT acceleration);
     void activate_booster(IVP_FLOAT thrust, IVP_FLOAT duration, IVP_FLOAT recharge_time);
     void update_booster(IVP_FLOAT delta_time);

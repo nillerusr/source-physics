@@ -30,7 +30,9 @@ $Configuration	"Debug"
 	$Compiler
 	{
 		$AdditionalIncludeDirectories		"$BASE;$SRCDIR\ivp\havana\havok;$SRCDIR\ivp\havana"
-        $PreprocessorDefinitions			"$BASE;VPHYSICS_EXPORTS;HAVANA_CONSTRAINTS;HAVOK_MOPP;WIN32;_DEBUG;_LIB"
+        $PreprocessorDefinitions			"$BASE;VPHYSICS_EXPORTS;HAVANA_CONSTRAINTS;HAVOK_MOPP"
+		$Create/UsePrecompiledHeader		"Use Precompiled Header (/Yu)"
+		$Create/UsePCHThroughFile			"hk_base/base.h"
 	}
 
 	$Compiler [$WINDOWS]
@@ -39,8 +41,6 @@ $Configuration	"Debug"
 		$EnableMinimalRebuild				"Yes (/Gm)"
 		$BasicRuntimeChecks					"Both (/RTC1, equiv. to /RTCsu)"
 		$RuntimeLibrary						"Multi-threaded Debug (/MTd)"
-		$Create/UsePrecompiledHeader		"Use Precompiled Header (/Yu)"
-		$Create/UsePCHThroughFile			"hk_base/base.h"
 		$WarningLevel						"Level 3 (/W3)"
 		$SuppressStartupBanner				"Yes (/NOLOGO)"
 		$DebugInformationFormat				"Program Database for Edit & Continue (/ZI)"
@@ -90,7 +90,9 @@ $Configuration	"Release"
 	$Compiler
 	{
 		$AdditionalIncludeDirectories		"$BASE;$SRCDIR\ivp\havana\havok;$SRCDIR\ivp\havana"
-		$PreprocessorDefinitions			"$BASE;VPHYSICS_EXPORTS;HAVANA_CONSTRAINTS;HAVOK_MOPP;WIN32;NDEBUG;_LIB"
+		$PreprocessorDefinitions			"$BASE;VPHYSICS_EXPORTS;HAVANA_CONSTRAINTS;HAVOK_MOPP"
+		$Create/UsePrecompiledHeader		"Use Precompiled Header (/Yu)"
+		$Create/UsePCHThroughFile			"hk_base/base.h"
 	}
 
 	$Compiler [$WINDOWS]
@@ -100,8 +102,6 @@ $Configuration	"Release"
 		$EnableStringPooling				"Yes (/GF)"
 		$RuntimeLibrary						"Multi-threaded (/MT)"
 		$EnableFunctionLevelLinking			"Yes (/Gy)"
-		$Create/UsePrecompiledHeader		"Use Precompiled Header (/Yu)"
-		$Create/UsePCHThroughFile			"hk_base/base.h"
 		$WarningLevel						"Level 3 (/W3)"
 		$SuppressStartupBanner				"Yes (/NOLOGO)"
 		$DebugInformationFormat				"Program Database (/Zi)"
@@ -175,6 +175,8 @@ $Project "hk_base"
 		$File	"id_server\id_server.h"
 		$File	"id_server\id_server.inl"
 	}
+
+	$File	"stdafx.h"
 
 	$File	"base.h"
 	$File	"base_types.cpp"

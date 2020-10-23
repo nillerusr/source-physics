@@ -26,6 +26,7 @@ $Configuration "Debug"
 	{
 		$AdditionalIncludeDirectories	"$BASE;$SRCDIR\ivp\ivp_intern;$SRCDIR\ivp\ivp_collision;$SRCDIR\ivp\ivp_physics;$SRCDIR\ivp\ivp_surface_manager;$SRCDIR\ivp\ivp_utility;$SRCDIR\ivp\ivp_controller;$SRCDIR\ivp\ivp_compact_builder;$SRCDIR\ivp\havana\havok;$SRCDIR\ivp\havana"
 		$PreprocessorDefinitions		"$BASE;VPHYSICS_EXPORTS;HAVANA_CONSTRAINTS;HAVOK_MOPP;IVP_VERSION_SDK"
+		$GCC_ExtraCompilerFlags			"-fpermissive"
 	}
 
 	$Compiler [$WINDOWS]
@@ -79,6 +80,7 @@ $Configuration "Release"
 	{
 		$AdditionalIncludeDirectories	"$BASE;$SRCDIR\ivp\ivp_intern;$SRCDIR\ivp\ivp_collision;$SRCDIR\ivp\ivp_physics;$SRCDIR\ivp\ivp_surface_manager;$SRCDIR\ivp\ivp_utility;$SRCDIR\ivp\ivp_controller;$SRCDIR\ivp\ivp_compact_builder;$SRCDIR\ivp\havana\havok;$SRCDIR\ivp\havana"
 		$PreprocessorDefinitions		"$BASE;VPHYSICS_EXPORTS;HAVANA_CONSTRAINTS;HAVOK_MOPP;IVP_VERSION_SDK"
+		$GCC_ExtraCompilerFlags			"-fpermissive"
 	}
 
 	$Compiler [$WINDOWS]
@@ -221,12 +223,6 @@ $Project "havana_constraints"
 		$Folder	"simunit"
 		{
 			$File	"$SRCDIR\ivp\ivp_physics\hk_physics\simunit\psi_info.h"
-		}
-
-		$Folder	"constraint No. 1"
-		{
-			$File	"$SRCDIR\ivp\ivp_physics\hk_physics\constraint\local_constraint_system\local_constraint_system.cpp"
-			$File	"$SRCDIR\ivp\ivp_physics\hk_physics\constraint\local_constraint_system\local_constraint_system.h"
 		}
 
 		$Folder	"core No. 1"

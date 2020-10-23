@@ -4,9 +4,9 @@
 #include <ivp_physics.hxx>
 #include <ivu_geometry.hxx>
 
-#include <ivp_debug.hxx>
 #include <ivp_mindist_intern.hxx>
 #include <ivp_mindist_minimize.hxx>
+#include <ivp_debug.hxx>
 
 
 #include <ivp_compact_ledge.hxx>

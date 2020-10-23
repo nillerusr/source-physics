@@ -30,7 +30,7 @@ $Configuration	"Debug"
 	$Compiler
 	{
 		$AdditionalIncludeDirectories		"$BASE;$SRCDIR\ivp\ivp_intern;$SRCDIR\ivp\ivp_collision;$SRCDIR\ivp\ivp_physics;$SRCDIR\ivp\ivp_surface_manager;$SRCDIR\ivp\ivp_utility;$SRCDIR\ivp\ivp_controller;$SRCDIR\ivp\ivp_compact_builder;$SRCDIR\ivp\havana\havok;$SRCDIR\ivp\havana"
-		$PreprocessorDefinitions			"$BASE;DEBUG;_LIB;IVP_VERSION_SDK;HAVOK_MOPP"
+		$PreprocessorDefinitions			"$BASE;IVP_VERSION_SDK;HAVOK_MOPP"
 	}
 	
 	$Compiler [$WINDOWS]
@@ -88,7 +88,7 @@ $Configuration	"Release"
 	$Compiler
 	{
 		$AdditionalIncludeDirectories		"$BASE;$SRCDIR\ivp\ivp_intern;$SRCDIR\ivp\ivp_collision;$SRCDIR\ivp\ivp_physics;$SRCDIR\ivp\ivp_surface_manager;$SRCDIR\ivp\ivp_utility;$SRCDIR\ivp\ivp_controller;$SRCDIR\ivp\ivp_compact_builder;$SRCDIR\ivp\havana\havok;$SRCDIR\ivp\havana"
-		$PreprocessorDefinitions			"$BASE;NDEBUG;_LIB;IVP_VERSION_SDK;HAVOK_MOPP"
+		$PreprocessorDefinitions			"$BASE;IVP_VERSION_SDK;HAVOK_MOPP"
 	}
 
 	$Compiler [$WINDOWS]

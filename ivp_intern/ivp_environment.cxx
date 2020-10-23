@@ -19,6 +19,10 @@
 #define NULL 0
 #endif
 
+#include <ivp_mindist_intern.hxx>
+#include <ivp_mindist_minimize.hxx>
+#include <ivp_mindist_event.hxx>
+
 #include <ivp_debug.hxx>
 #include <ivp_debug_manager.hxx>
 #include <ivp_physic_private.hxx>
@@ -42,9 +46,6 @@
 #include <ivp_great_matrix.hxx>
 #include <ivp_constraint_local.hxx>
 
-#include <ivp_mindist_intern.hxx>
-#include <ivp_mindist_minimize.hxx>
-#include <ivp_mindist_event.hxx>
 #include <ivp_friction.hxx>
 
 #include <ivp_listener_collision.hxx>
