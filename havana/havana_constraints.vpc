@@ -41,18 +41,18 @@ $Configuration "Debug"
 
 	$Compiler [$WIN32]
 	{
-		$PrecompiledHeaderFile				"..\obj\x86_debug\havana_constraints/havana_constraints.pch"
-		$ASMListLocation					"..\obj\x86_debug\havana_constraints/"
-		$ObjectFileName						"..\obj\x86_debug\havana_constraints/"
-		$ProgramDatabaseFileName			"..\obj\x86_debug\havana_constraints/"
+		$PrecompiledHeaderFile				"..\obj\x86_debug\havana_constraints\havana_constraints.pch"
+		$ASMListLocation					"..\obj\x86_debug\havana_constraints\"
+		$ObjectFileName						"..\obj\x86_debug\havana_constraints\"
+		$ProgramDatabaseFileName			"..\obj\x86_debug\havana_constraints\"
 	}
 
 	$Compiler [$WIN64]
 	{
-		$PrecompiledHeaderFile				"..\obj\x64_debug\havana_constraints/havana_constraints.pch"
-		$ASMListLocation					"..\obj\x64_debug\havana_constraints/"
-		$ObjectFileName						"..\obj\x64_debug\havana_constraints/"
-		$ProgramDatabaseFileName			"..\obj\x64_debug\havana_constraints/"
+		$PrecompiledHeaderFile				"..\obj\x64_debug\havana_constraints\havana_constraints.pch"
+		$ASMListLocation					"..\obj\x64_debug\havana_constraints\"
+		$ObjectFileName						"..\obj\x64_debug\havana_constraints\"
+		$ProgramDatabaseFileName			"..\obj\x64_debug\havana_constraints\"
 	}
 
 	$Librarian [$WINDOWS]
@@ -94,18 +94,18 @@ $Configuration "Release"
 
 	$Compiler [$WIN32]
 	{
-		$PrecompiledHeaderFile				"..\obj\x86_release\havana_constraints/havana_constraints.pch"
-		$ASMListLocation					"..\obj\x86_release\havana_constraints/"
-		$ObjectFileName						"..\obj\x86_release\havana_constraints/"
-		$ProgramDatabaseFileName			"..\obj\x86_release\havana_constraints/"
+		$PrecompiledHeaderFile				"..\obj\x86_release\havana_constraints\havana_constraints.pch"
+		$ASMListLocation					"..\obj\x86_release\havana_constraints\"
+		$ObjectFileName						"..\obj\x86_release\havana_constraints\"
+		$ProgramDatabaseFileName			"..\obj\x86_release\havana_constraints\"
 	}
 
 	$Compiler [$WIN64]
 	{
-		$PrecompiledHeaderFile				"..\obj\x64_release\havana_constraints/havana_constraints.pch"
-		$ASMListLocation					"..\obj\x64_release\havana_constraints/"
-		$ObjectFileName						"..\obj\x64_release\havana_constraints/"
-		$ProgramDatabaseFileName			"..\obj\x64_release\havana_constraints/"
+		$PrecompiledHeaderFile				"..\obj\x64_release\havana_constraints\havana_constraints.pch"
+		$ASMListLocation					"..\obj\x64_release\havana_constraints\"
+		$ObjectFileName						"..\obj\x64_release\havana_constraints\"
+		$ProgramDatabaseFileName			"..\obj\x64_release\havana_constraints\"
 	}
 
 	$Librarian [$WINDOWS]

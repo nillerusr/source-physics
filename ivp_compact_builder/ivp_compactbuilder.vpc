@@ -46,18 +46,18 @@ $Configuration	"Debug"
 
 	$Compiler [$WIN32]
 	{
-		$PrecompiledHeaderFile				"..\obj\x86_debug\ivp_compactbuilder/ivp_compactbuilder_lib.pch"
-		$ASMListLocation					"..\obj\x86_debug\ivp_compactbuilder/"
-		$ObjectFileName						"..\obj\x86_debug\ivp_compactbuilder/"
-		$ProgramDatabaseFileName			"..\obj\x86_debug\ivp_compactbuilder/"
+		$PrecompiledHeaderFile				"..\obj\x86_debug\ivp_compactbuilder\ivp_compactbuilder_lib.pch"
+		$ASMListLocation					"..\obj\x86_debug\ivp_compactbuilder\"
+		$ObjectFileName						"..\obj\x86_debug\ivp_compactbuilder\"
+		$ProgramDatabaseFileName			"..\obj\x86_debug\ivp_compactbuilder\"
 	}
 
 	$Compiler [$WIN64]
 	{
-		$PrecompiledHeaderFile				"..\obj\x64_debug\ivp_compactbuilder/ivp_compactbuilder_lib.pch"
-		$ASMListLocation					"..\obj\x64_debug\ivp_compactbuilder/"
-		$ObjectFileName						"..\obj\x64_debug\ivp_compactbuilder/"
-		$ProgramDatabaseFileName			"..\obj\x64_debug\ivp_compactbuilder/"
+		$PrecompiledHeaderFile				"..\obj\x64_debug\ivp_compactbuilder\ivp_compactbuilder_lib.pch"
+		$ASMListLocation					"..\obj\x64_debug\ivp_compactbuilder\"
+		$ObjectFileName						"..\obj\x64_debug\ivp_compactbuilder\"
+		$ProgramDatabaseFileName			"..\obj\x64_debug\ivp_compactbuilder\"
 	}
 
 	$Librarian [$WINDOWS]
@@ -106,18 +106,18 @@ $Configuration	"Release"
 
 	$Compiler [$WIN32]
 	{
-		$PrecompiledHeaderFile				"..\obj\x86_release\ivp_compactbuilder/ivp_compactbuilder_lib.pch"
-		$ASMListLocation					"..\obj\x86_release\ivp_compactbuilder/"
-		$ObjectFileName						"..\obj\x86_release\ivp_physics/"
-		$ProgramDatabaseFileName			"..\obj\x86_release\ivp_compactbuilder/"
+		$PrecompiledHeaderFile				"..\obj\x86_release\ivp_compactbuilder\ivp_compactbuilder_lib.pch"
+		$ASMListLocation					"..\obj\x86_release\ivp_compactbuilder\"
+		$ObjectFileName						"..\obj\x86_release\ivp_physics\"
+		$ProgramDatabaseFileName			"..\obj\x86_release\ivp_compactbuilder\"
 	}
 
 	$Compiler [$WIN64]
 	{
-		$PrecompiledHeaderFile				"..\obj\x64_release\ivp_compactbuilder/ivp_compactbuilder_lib.pch"
-		$ASMListLocation					"..\obj\x64_release\ivp_compactbuilder/"
-		$ObjectFileName						"..\obj\x64_release\ivp_compactbuilder/"
-		$ProgramDatabaseFileName			"..\obj\x64_release\ivp_compactbuilder/"
+		$PrecompiledHeaderFile				"..\obj\x64_release\ivp_compactbuilder\ivp_compactbuilder_lib.pch"
+		$ASMListLocation					"..\obj\x64_release\ivp_compactbuilder\"
+		$ObjectFileName						"..\obj\x64_release\ivp_compactbuilder\"
+		$ProgramDatabaseFileName			"..\obj\x64_release\ivp_compactbuilder\"
 	}
 
 	$Librarian [$WINDOWS]
