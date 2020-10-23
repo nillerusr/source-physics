@@ -340,7 +340,7 @@ public:
     void 	set_delta_PSI_time( IVP_DOUBLE new_delta_PSI_time );		// range: IVP_MIN_DELTA_PSI_TIME - IVP_MAX_DELTA_PSI_TIME
     
     static void set_global_collision_tolerance( IVP_DOUBLE tolerance = 0.01f, IVP_DOUBLE gravity_length = 0.01f);   // set the collision tolerance (try to go for higher values if possible)
-    
+    static IVP_FLOAT get_global_collision_tolerance();
     ////////// world creation
 
     // this is preleminary: allows to define breakable objects.
