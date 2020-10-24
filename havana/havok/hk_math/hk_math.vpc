@@ -61,11 +61,6 @@ $Configuration	"Debug"
 		$ObjectFileName						"$SRCDIR\ivp\obj\x64_debug\hk_math\"
 		$ProgramDatabaseFileName			"$SRCDIR\ivp\obj\x64_debug\hk_math\"
 	}
-
-	$Librarian [$WINDOWS]
-	{
-		$SuppressStartupBanner				"Yes (/NOLOGO)"
-	}
 }
 
 $Configuration	"Release"
@@ -90,21 +85,15 @@ $Configuration	"Release"
 	$Compiler
 	{
 		$AdditionalIncludeDirectories		"$BASE;$SRCDIR\ivp\havana\havok;$SRCDIR\ivp\havana"
-		$PreprocessorDefinitions			"$BASE;VPHYSICS_EXPORTS;HAVANA_CONSTRAINTS;HAVOK_MOPP;WIN32;NDEBUG;_LIB"
+		$PreprocessorDefinitions			"$BASE;VPHYSICS_EXPORTS;HAVANA_CONSTRAINTS;HAVOK_MOPP"
 		$Create/UsePrecompiledHeader		"Use Precompiled Header (/Yu)"
 		$Create/UsePCHThroughFile			"hk_math/vecmath.h"
 	}
 
 	$Compiler [$WINDOWS]
 	{
-		$Optimization						"Maximize Speed (/O2)"
 		$InlineFunctionExpansion			"Only __inline (/Ob1)"
-		$EnableStringPooling				"Yes (/GF)"
-		$RuntimeLibrary						"Multi-threaded (/MT)"
-		$EnableFunctionLevelLinking			"Yes (/Gy)"
 		$WarningLevel						"Level 3 (/W3)"
-		$SuppressStartupBanner				"Yes (/NOLOGO)"
-		$DebugInformationFormat				"Program Database (/Zi)"
 	}
 
 	$Compiler [$WIN32]
@@ -121,11 +110,6 @@ $Configuration	"Release"
 		$ASMListLocation					"$SRCDIR\ivp\obj\x64_release\hk_math\"
 		$ObjectFileName						"$SRCDIR\ivp\obj\x64_release\hk_math\"
 		$ProgramDatabaseFileName			"$SRCDIR\ivp\obj\x64_release\hk_math\"
-	}
-
-	$Librarian [$WINDOWS]
-	{
-		$SuppressStartupBanner				"Yes (/NOLOGO)"
 	}
 }
 

@@ -37,13 +37,8 @@ $Configuration	"Debug"
 
 	$Compiler [$WINDOWS]
 	{
-		$Optimization						"Disabled (/Od)"
-		$EnableMinimalRebuild				"Yes (/Gm)"
 		$BasicRuntimeChecks					"Both (/RTC1, equiv. to /RTCsu)"
-		$RuntimeLibrary						"Multi-threaded Debug (/MTd)"
 		$WarningLevel						"Level 3 (/W3)"
-		$SuppressStartupBanner				"Yes (/NOLOGO)"
-		$DebugInformationFormat				"Program Database for Edit & Continue (/ZI)"
 	}
 
 	$Compiler [$WIN32]
@@ -60,11 +55,6 @@ $Configuration	"Debug"
 		$ASMListLocation					"$SRCDIR\ivp\obj\x64_debug\hk_base\"
 		$ObjectFileName						"$SRCDIR\ivp\obj\x64_debug\hk_base\"
 		$ProgramDatabaseFileName			"$SRCDIR\ivp\obj\x64_debug\hk_base\"
-	}
-
-	$Librarian [$WINDOWS]
-	{
-		$SuppressStartupBanner				"Yes (/NOLOGO)"
 	}
 }
 
@@ -97,14 +87,8 @@ $Configuration	"Release"
 
 	$Compiler [$WINDOWS]
 	{
-		$Optimization						"Maximize Speed (/O2)"
 		$InlineFunctionExpansion			"Only __inline (/Ob1)"
-		$EnableStringPooling				"Yes (/GF)"
-		$RuntimeLibrary						"Multi-threaded (/MT)"
-		$EnableFunctionLevelLinking			"Yes (/Gy)"
 		$WarningLevel						"Level 3 (/W3)"
-		$SuppressStartupBanner				"Yes (/NOLOGO)"
-		$DebugInformationFormat				"Program Database (/Zi)"
 	}
 
 	$Compiler [$WIN32]
@@ -121,11 +105,6 @@ $Configuration	"Release"
 		$ASMListLocation					"$SRCDIR\ivp\obj\x64_release\hk_base\"
 		$ObjectFileName						"$SRCDIR\ivp\obj\x64_release\hk_base\"
 		$ProgramDatabaseFileName			"$SRCDIR\ivp\obj\x64_release\hk_base\"
-	}
-
-	$Librarian [$WINDOWS]
-	{
-		$SuppressStartupBanner				"Yes (/NOLOGO)"
 	}
 }
 

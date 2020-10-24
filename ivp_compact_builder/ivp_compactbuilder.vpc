@@ -35,13 +35,8 @@ $Configuration	"Debug"
 	
 	$Compiler [$WINDOWS]
 	{
-		$Optimization						"Disabled (/Od)"
-		$EnableMinimalRebuild				"Yes (/Gm)"
 		$BasicRuntimeChecks					"Both (/RTC1, equiv. to /RTCsu)"
-		$RuntimeLibrary						"Multi-threaded Debug (/MTd)"
 		$WarningLevel						"Level 3 (/W3)"
-		$SuppressStartupBanner				"Yes (/NOLOGO)"
-		$DebugInformationFormat				"Program Database for Edit & Continue (/ZI)"
 	}
 
 	$Compiler [$WIN32]
@@ -58,11 +53,6 @@ $Configuration	"Debug"
 		$ASMListLocation					"..\obj\x64_debug\ivp_compactbuilder\"
 		$ObjectFileName						"..\obj\x64_debug\ivp_compactbuilder\"
 		$ProgramDatabaseFileName			"..\obj\x64_debug\ivp_compactbuilder\"
-	}
-
-	$Librarian [$WINDOWS]
-	{
-		$SuppressStartupBanner				"Yes (/NOLOGO)"
 	}
 }
 
@@ -93,15 +83,10 @@ $Configuration	"Release"
 
 	$Compiler [$WINDOWS]
 	{
-		$Optimization						"Maximize Speed (/O2)"
 		$InlineFunctionExpansion			"Only __inline (/Ob1)"
-		$EnableStringPooling				"Yes (/GF)"
-		$RuntimeLibrary						"Multi-threaded (/MT)"
-		$EnableFunctionLevelLinking			"Yes (/Gy)"
 		$Create/UsePrecompiledHeader		"Use Precompiled Header (/Yu)"
 		$Create/UsePCHThroughFile			"ivp_physics.hxx"
 		$WarningLevel						"Level 3 (/W3)"
-		$SuppressStartupBanner				"Yes (/NOLOGO)"
 	}
 
 	$Compiler [$WIN32]
@@ -118,11 +103,6 @@ $Configuration	"Release"
 		$ASMListLocation					"..\obj\x64_release\ivp_compactbuilder\"
 		$ObjectFileName						"..\obj\x64_release\ivp_compactbuilder\"
 		$ProgramDatabaseFileName			"..\obj\x64_release\ivp_compactbuilder\"
-	}
-
-	$Librarian [$WINDOWS]
-	{
-		$SuppressStartupBanner				"Yes (/NOLOGO)"
 	}
 }
 

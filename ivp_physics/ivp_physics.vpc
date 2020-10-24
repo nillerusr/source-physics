@@ -97,13 +97,8 @@ $Configuration	"Release"
 
 	$Compiler [$WINDOWS]
 	{
-		$Optimization						"Maximize Speed (/O2)"
 		$InlineFunctionExpansion			"Only __inline (/Ob1)"
-		$EnableStringPooling				"Yes (/GF)"
-		$RuntimeLibrary						"Multi-threaded (/MT)"
-		$EnableFunctionLevelLinking			"Yes (/Gy)"
 		$WarningLevel						"Level 3 (/W3)"
-		$SuppressStartupBanner				"Yes (/NOLOGO)"
 	}
 
 	$Compiler [$WIN32]
@@ -120,11 +115,6 @@ $Configuration	"Release"
 		$ASMListLocation					"..\obj\x64_release\ivp_physics\"
 		$ObjectFileName						"..\obj\x64_release\ivp_physics\"
 		$ProgramDatabaseFileName			"..\obj\x64_release\ivp_physics\"
-	}
-
-	$Librarian
-	{
-		$SuppressStartupBanner				"Yes (/NOLOGO)"
 	}
 }
 

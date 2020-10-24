@@ -31,13 +31,8 @@ $Configuration "Debug"
 
 	$Compiler [$WINDOWS]
 	{
-		$Optimization						"Disabled (/Od)"
 		$WarningLevel						"Level 3 (/W3)"
-		$SuppressStartupBanner				"Yes (/NOLOGO)"
-		$DebugInformationFormat				"Program Database for Edit & Continue (/ZI)"
-		$EnableMinimalRebuild				"Yes (/Gm)"
 		$BasicRuntimeChecks					"Both (/RTC1, equiv. to /RTCsu)"
-		$RuntimeLibrary						"Multi-threaded Debug (/MTd)"
 	}
 
 	$Compiler [$WIN32]
@@ -54,11 +49,6 @@ $Configuration "Debug"
 		$ASMListLocation					"..\obj\x64_debug\havana_constraints\"
 		$ObjectFileName						"..\obj\x64_debug\havana_constraints\"
 		$ProgramDatabaseFileName			"..\obj\x64_debug\havana_constraints\"
-	}
-
-	$Librarian [$WINDOWS]
-	{
-		$SuppressStartupBanner				"Yes (/NOLOGO)"
 	}
 }
 
@@ -85,13 +75,8 @@ $Configuration "Release"
 
 	$Compiler [$WINDOWS]
 	{
-		$Optimization						"Maximize Speed (/O2)"
 		$InlineFunctionExpansion			"Only __inline (/Ob1)"
-		$EnableStringPooling				"Yes (/GF)"
-		$RuntimeLibrary						"Multi-threaded (/MT)"
-		$EnableFunctionLevelLinking			"Yes (/Gy)"
 		$WarningLevel						"Level 3 (/W3)"
-		$SuppressStartupBanner				"Yes (/NOLOGO)"
 	}
 
 	$Compiler [$WIN32]
@@ -108,11 +93,6 @@ $Configuration "Release"
 		$ASMListLocation					"..\obj\x64_release\havana_constraints\"
 		$ObjectFileName						"..\obj\x64_release\havana_constraints\"
 		$ProgramDatabaseFileName			"..\obj\x64_release\havana_constraints\"
-	}
-
-	$Librarian [$WINDOWS]
-	{
-		$SuppressStartupBanner				"Yes (/NOLOGO)"
 	}
 }
 
