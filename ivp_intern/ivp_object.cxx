@@ -157,7 +157,7 @@ void IVP_Real_Object::recompile_material_changed() {
 
 void IVP_Real_Object::force_grow_friction_system()
 {
-  IVP_ASSERT(0 & "Not implemented");
+  IVP_ASSERT(0 && "Not implemented");
 }
 
 void IVP_Real_Object::enable_collision_detection(IVP_BOOL enable){

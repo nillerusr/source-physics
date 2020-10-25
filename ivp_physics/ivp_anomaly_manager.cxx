@@ -112,7 +112,7 @@ void IVP_Anomaly_Manager::inter_penetration(IVP_Mindist *mindist, IVP_Real_Objec
 	my_objects[0]=obj0;
 	my_objects[1]=obj1;
 	int swapped=0;
-	IVP_ASSERT(0 & "Incomplete");
+	IVP_ASSERT(0 && "Incomplete");
 	if( obj1->get_core()->physical_unmoveable ) {
 		swapped=1;
 	}

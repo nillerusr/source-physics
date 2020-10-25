@@ -162,7 +162,7 @@ void IVP_Car_System_Real_Wheels::do_steering_wheel(IVP_POS_WHEEL wheel_pos, IVP_
 
 void set_powerslide(IVP_FLOAT front_accel, IVP_FLOAT rear_accel)
 {
-  IVP_ASSERT(0 & "Not implemented");
+  IVP_ASSERT(0 && "Not implemented");
 }
 
 void IVP_Car_System_Real_Wheels::do_steering(IVP_FLOAT s_angle, bool bAnalog)
@@ -520,7 +520,7 @@ void IVP_Car_System_Real_Wheels::get_skid_info( IVP_Wheel_Skid_Info *array_of_sk
 
 void IVP_Car_System_Real_Wheels::set_powerslide(IVP_FLOAT front_accel, IVP_FLOAT rear_accel)
 {
-  IVP_ASSERT(0 & "Not implemented");
+  IVP_ASSERT(0 && "Not implemented");
 }
 
 // stop wheel completely (e.g. handbrake )

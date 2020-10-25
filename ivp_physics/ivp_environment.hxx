@@ -291,7 +291,7 @@ public:
 
     IVP_FLOAT get_delta_PSI_time() { return delta_PSI_time; }
     IVP_FLOAT get_inv_delta_PSI_time() { return inv_delta_PSI_time; }
-    void force_psi_on_next_simulation() { IVP_ASSERT(0 & "Unimplemented"); }
+    void force_psi_on_next_simulation() { IVP_ASSERT(0 && "Unimplemented"); }
     IVP_Time_CODE get_current_time_code(){ return current_time_code; }
     
     IVP_ENV_STATE get_env_state() { return state; };	// return state;
