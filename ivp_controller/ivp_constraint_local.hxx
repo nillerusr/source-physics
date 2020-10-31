@@ -5,10 +5,6 @@
 #ifndef IVP_CONSTRAINT_LOCAL_INCLUDED
 #define IVP_CONSTRAINT_LOCAL_INCLUDED
 
-#ifndef WIN32
-#	pragma interface
-#endif
-
 // Constraints
 // missing:
 // global constraints

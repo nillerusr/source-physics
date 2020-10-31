@@ -6,10 +6,6 @@
 #ifndef _IVP_TIME_INCLUDED
 #define _IVP_TIME_INCLUDED
 
-#ifndef WIN32
-#	pragma interface
-#endif
-
 class IVP_U_Min_List;
 class IVP_Environment;
 class IVP_Mindist;

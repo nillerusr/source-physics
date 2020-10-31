@@ -5,10 +5,6 @@
 #ifndef _IVP_MINDIST_INCLUDED
 #define _IVP_MINDIST_INCLUDED
 
-#ifndef WIN32
-#	pragma interface
-#endif
-
 
 class IVP_Mindist_Base;
 class IVP_Compact_Edge;

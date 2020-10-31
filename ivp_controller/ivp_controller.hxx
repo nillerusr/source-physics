@@ -5,11 +5,6 @@
 #ifndef IVP_CONTROLLER_INCLUDED
 #define IVP_CONTROLLER_INCLUDED
 
-
-#ifndef WIN32
-#	pragma interface
-#endif
-
 #ifndef _IVP_ENVIRONMENT_INCLUDED
 #   include <ivp_environment.hxx>
 #endif

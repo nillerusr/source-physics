@@ -2,10 +2,6 @@
 
 //IVP_EXPORT_PUBLIC
 
-#ifndef WIN32
-#	pragma interface
-#endif
-
 class IVP_Liquid_Surface_Descriptor {
 public:
     virtual void calc_liquid_surface( IVP_Environment *environment,

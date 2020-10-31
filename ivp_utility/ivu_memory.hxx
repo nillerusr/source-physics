@@ -3,10 +3,6 @@
 #ifndef IVP_MEM_INCLUDED
 #define IVP_MEM_INCLUDED
 
-#ifndef WIN32
-#	pragma interface
-#endif
-
 
 #define IVU_MEM_ALIGN 0x20 //align to chach line data 32Byte
 #define IVU_MEM_MASK 0xffffffe0; 

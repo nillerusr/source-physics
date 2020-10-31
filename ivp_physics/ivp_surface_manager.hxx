@@ -10,10 +10,6 @@
 #ifndef _IVP_SURFACE_MANAGER_INCLUDED
 #define _IVP_SURFACE_MANAGER_INCLUDED
 
-#ifndef WIN32
-#	pragma interface
-#endif
-
 class IVP_Compact_Ledge;
 class IVP_Ray_Solver;
 class IVP_Real_Object;

@@ -5,10 +5,6 @@
 #if !defined( IVP_ACTUATOR_SPRING_INCLUDED )
 #	define IVP_ACTUATOR_SPRING_INCLUDED
 
-#ifndef WIN32
-#	pragma interface
-#endif
-
 
 
 enum IVP_SPRING_FORCE_EXCEED {  // Do not use this enum yet.

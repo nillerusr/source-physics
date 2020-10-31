@@ -4,10 +4,6 @@
 #ifndef _IVP_COLLISION_INCLUDED
 #define _IVP_COLLISION_INCLUDED
 
-#ifndef WIN32
-#	pragma interface
-#endif
-
 class IVP_Compact_Ledge;
 class IVP_Real_Object;
 class IVP_Collision;

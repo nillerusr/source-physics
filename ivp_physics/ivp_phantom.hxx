@@ -5,10 +5,6 @@
 #ifndef _IVP_PHANTOM_INCLUDED
 #define _IVP_PHANTOM_INCLUDED
 
-#ifndef WIN32
-#	pragma interface
-#endif
-
 #ifndef IVP_SET_INCLUDED
 #	include <ivu_set.hxx>
 #endif

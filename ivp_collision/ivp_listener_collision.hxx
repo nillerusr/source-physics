@@ -2,10 +2,6 @@
 
 //IVP_EXPORT_PUBLIC
 
-#ifndef WIN32
-#	pragma interface
-#endif
-
 #ifndef _IVP_CONTACT_SITUATION_INCLUDED
 #	include <ivp_contact_situation.hxx>
 #endif

@@ -12,10 +12,6 @@
 #ifndef _IVP_HALFSPACE_SOUP_INCLUDED
 #define _IVP_HALFSPACE_SOUP_INCLUDED
 
-#ifndef WIN32
-#	pragma interface
-#endif
-
 #define HALFSPACESOUP_TOLERANCE 0.01f * P_MIN_EDGE_LEN
 
 

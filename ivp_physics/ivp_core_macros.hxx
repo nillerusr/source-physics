@@ -7,10 +7,6 @@
  *	Description:	inline functions for object core
  ********************************************************************************/
 
-#ifndef WIN32
-#	pragma interface
-#endif
-
 #ifndef IVP_ANOMALY_MANAGER_INCLUDED
 #	include <ivp_anomaly_manager.hxx>
 #endif

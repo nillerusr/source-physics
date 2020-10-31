@@ -5,10 +5,6 @@
 #ifndef IVP_SET_INCLUDED
 #define IVP_SET_INCLUDED
 
-#ifndef WIN32
-#	pragma interface
-#endif
-
 #ifndef _IVP_VHASH_INCLUDED
 #    include "ivu_vhash.hxx"
 #endif

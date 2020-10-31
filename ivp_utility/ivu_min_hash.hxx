@@ -5,10 +5,6 @@
 #ifndef _IVP_U_MINHASH_INCLUDED
 #define _IVP_U_MINHASH_INCLUDED
 
-#ifndef WIN32
-#	pragma interface
-#endif
-
 //#ifdef DEBUG
 #    define SORT_MINDIST_ELEMENTS
 //#endif

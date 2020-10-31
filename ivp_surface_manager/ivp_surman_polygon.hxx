@@ -13,10 +13,6 @@
 #ifndef _IVP_SURMAN_POLYGON_INCLUDED
 #define _IVP_SURMAN_POLYGON_INCLUDED
 
-#ifndef WIN32
-#	pragma interface
-#endif
-
 class IVP_Compact_Surface;
 class IVP_Compact_Ledgetree_Node;
 

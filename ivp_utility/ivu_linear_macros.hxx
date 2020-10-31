@@ -5,11 +5,6 @@
 #ifndef _IVP_U_LINEAR_MACROS_INCLUDED
 #define _IVP_U_LINEAR_MACROS_INCLUDED
 
-
-#ifndef WIN32
-#	pragma interface
-#endif
-
 #if defined(IVP_USE_PS2_VU0)
 #   include "ivu_linear_ps2.hxx"
 #elif defined(IVP_PIII)

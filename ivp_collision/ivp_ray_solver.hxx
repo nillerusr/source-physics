@@ -5,11 +5,6 @@
 #define IVP_RAY_SOLVER_INCLUDED
 
 
-#ifndef WIN32
-#	pragma interface
-#endif
-
-
 class IVP_Environment;
 class IVP_Real_Object;
 class IVP_Ball;

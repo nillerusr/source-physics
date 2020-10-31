@@ -2,10 +2,6 @@
 
 //IVP_EXPORT_PROTECTED
 
-#ifndef WIN32
-#	pragma interface
-#endif
-
 inline void IVP_U_Float_Point::set_negative(const IVP_U_Float_Point *p_source){
     IVP_IF_PREFETCH_ENABLED(IVP_TRUE){
 	IVP_DOUBLE a = p_source->k[0];

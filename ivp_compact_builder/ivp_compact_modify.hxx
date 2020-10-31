@@ -12,10 +12,6 @@
 #ifndef _IVP_COMPACT_MODIFY_INCLUDED
 #define _IVP_COMPACT_MODIFY_INCLUDED
 
-#ifndef WIN32
-#	pragma interface
-#endif
-
 /********************************************************************************
  *  Name:	    IVP_Compact_Modify	
  *  Description:    A set of static methods to easily modify a compact surface

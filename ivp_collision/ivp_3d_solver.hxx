@@ -6,12 +6,6 @@ class IVP_Rot_z_Solver;
 #define IVP_3D_SOLVER_MIN_T_STEP_DPSI_FACTOR (1.0f/IVP_3D_SOLVER_MAX_STEPS_PER_PSI ) // factor of minimal t st= 1/500 second
 #define IVP_3D_SOLVER_PSIS_PER_SECOND  ((int)(1.0f/IVP_MAX_DELTA_PSI_TIME))
 
-
-
-#ifndef WIN32
-#	pragma interface
-#endif
-
 class IVP_U_Matrix_Cache {
     static int hits;
     static int misses;

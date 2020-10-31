@@ -12,10 +12,6 @@
 #ifndef _IVP_BALL_INCLUDED
 #define _IVP_BALL_INCLUDED
 
-#ifndef WIN32
-#	pragma interface
-#endif
-
 class IVP_Template_Ball;
 
 

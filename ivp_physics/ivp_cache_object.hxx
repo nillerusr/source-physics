@@ -9,10 +9,6 @@
 #ifndef _IVP_CACHE_OBJECT_INCLUDED
 #define _IVP_CACHE_OBJECT_INCLUDED
 
-#ifndef WIN32
-#	pragma interface
-#endif
-
 
 class IVP_Cache_Object {
     friend class IVP_Real_Object;

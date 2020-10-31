@@ -10,10 +10,6 @@
 #ifndef _IVP_LISTENER_HULL_INCLUDED
 #define _IVP_LISTENER_HULL_INCLUDED
 
-#ifndef WIN32
-#	pragma interface
-#endif
-
 
 class IVP_Hull_Manager;
 

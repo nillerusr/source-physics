@@ -1,9 +1,5 @@
 // Copyright (C) Ipion Software GmbH 1999-2000. All rights reserved.
 
-#ifndef WIN32
-#	pragma interface
-#endif
-
 #define IVP_SIM_SLOTS_NUM 100
 
 //#define IVP_DISABLE_FREEZING /* disable freezing of objects */

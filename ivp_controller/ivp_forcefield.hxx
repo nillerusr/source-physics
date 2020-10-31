@@ -10,10 +10,6 @@
 #ifndef IVP_FORCEFIELD_INCLUDED
 #define IVP_FORCEFIELD_INCLUDED
 
-#ifndef WIN32
-#	pragma interface
-#endif
-
 #ifndef IVP_CONTROLLER_INCLUDED
 #include <ivp_controller.hxx>
 #endif

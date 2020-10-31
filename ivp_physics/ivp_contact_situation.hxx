@@ -12,9 +12,6 @@
 
 class IVP_Real_Object;
 class IVP_Material;
-#ifndef WIN32
-#	pragma interface
-#endif
 
 
 /********************************************************************************

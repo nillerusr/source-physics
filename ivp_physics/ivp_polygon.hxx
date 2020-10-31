@@ -10,10 +10,6 @@
 #ifndef _IVP_POLYGON_INCLUDED
 #define _IVP_POLYGON_INCLUDED
 
-#ifndef WIN32
-#	pragma interface
-#endif
-
 
 /********************************************************************************
  *	Name:	   	IVP_Polygon    	

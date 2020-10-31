@@ -3,11 +3,6 @@
 //IVP_EXPORT_PROTECTED
 
 
-#ifndef WIN32
-#	pragma interface
-#endif
-
-
 
 #if 1
 

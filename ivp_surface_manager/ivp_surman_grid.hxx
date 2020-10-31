@@ -13,10 +13,6 @@
 #ifndef _IVP_SURMAN_GRID_INCLUDED
 #define _IVP_SURMAN_GRID_INCLUDED
 
-#ifndef WIN32
-#	pragma interface
-#endif
-
 class IVP_Compact_Grid;
 class IVP_Compact_Triangle;
 

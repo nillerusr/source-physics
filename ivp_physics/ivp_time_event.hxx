@@ -6,10 +6,6 @@
 #ifndef IVP_TIME_EVENT_INCLUDED
 #define IVP_TIME_EVENT_INCLUDED
 
-#ifndef WIN32
-#	pragma interface
-#endif
-
 class IVP_Environment;
 
 class IVP_Time_Event {

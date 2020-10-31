@@ -10,10 +10,6 @@
 #ifndef _IVP_ACTIVE_VALUES_INCLUDED
 #define _IVP_ACTIVE_VALUES_INCLUDED
 
-#ifndef WIN32
-#	pragma interface
-#endif
-
 class IVP_U_Active_Value;
 class IVP_U_String_Hash;
 class IVP_U_Active_Float;

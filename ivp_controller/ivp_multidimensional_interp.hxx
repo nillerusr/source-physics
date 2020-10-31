@@ -2,10 +2,6 @@
 
 // IVP_EXPORT_PUBLIC
 
-#ifndef WIN32
-#	pragma interface
-#endif
-
 
 /**********************************************************************************
  * Name:        IVP_MI_VECTOR_ALLOCA

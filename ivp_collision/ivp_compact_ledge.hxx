@@ -6,10 +6,6 @@
  *                      contains: Triangle and Tri_Edge infos
  ********************************************************************************/
 
-#ifndef WIN32
-#	pragma interface
-#endif
-
 #ifndef _IVP_U_TYPES_INCLUDED
 #	include "ivu_types.hxx"
 #endif

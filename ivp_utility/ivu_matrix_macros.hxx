@@ -1,7 +1,4 @@
 
-#ifndef WIN32
-#	pragma interface
-#endif
 
 void IVP_U_Matrix3::inline_mimult3(const IVP_U_Matrix3 *mb, IVP_U_Matrix3 *m_out) const
 {

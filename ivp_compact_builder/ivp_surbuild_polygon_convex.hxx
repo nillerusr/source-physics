@@ -2,10 +2,6 @@
 
 // IVP_EXPORT_PROTECTED
 
-#ifndef WIN32
-#	pragma interface
-#endif
-
 class IVP_Triangle;
 class IVP_SurfaceManager_Polygon;
 class IVP_Object_Polygon_Tetra;

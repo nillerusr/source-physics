@@ -4,10 +4,6 @@
 #ifndef _IVP_CORE_INCLUDED
 #define _IVP_CORE_INCLUDED
 
-#ifndef WIN32
-#	pragma interface
-#endif
-
 /********************************************************************************
  *	Name:	       	ivp_core.hxx
  *	Description:	the real simulation core of an object

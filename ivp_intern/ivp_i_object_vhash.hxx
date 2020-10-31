@@ -3,10 +3,6 @@
 #ifndef IVP_OBJECT_HASH_INCLUDED
 #define IVP_OBJECT_HASH_INCLUDED
 
-#ifndef WIN32
-#	pragma interface
-#endif
-
 #ifndef _IVP_VHASH_INCLUDED
 #	include  "ivu_vhash.hxx"
 #endif

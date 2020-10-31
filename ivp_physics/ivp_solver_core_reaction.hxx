@@ -6,7 +6,7 @@
 #define IVP_SOLVER_CORE_REACTION_INCLUDED
 
 #ifndef WIN32
-//#	pragma interface
+////#	pragma interface
 #endif
 
 

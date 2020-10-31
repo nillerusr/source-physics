@@ -12,9 +12,6 @@
 #ifdef WIN32
 #	pragma warning( disable : 4244 ) 
 #endif
-#ifndef WIN32
-#	pragma interface
-#endif
 
 class IVP_U_Straight;
 class IVP_U_Hesse;

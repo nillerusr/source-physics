@@ -14,10 +14,6 @@
 #ifndef _IVP_GRIDBUILD_ARRAY_INCLUDED
 #define _IVP_GRIDBUILD_ARRAY_INCLUDED
 
-#ifndef WIN32
-#	pragma interface
-#endif
-
 #define IVP_GRID_MAX_ROWS 257
 #define IVP_GRID_MAX_COLUMNS IVP_GRID_MAX_ROWS
 

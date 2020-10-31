@@ -2,10 +2,6 @@
 
 //IVP_EXPORT_PUBLIC
 
-#ifndef WIN32
-#	pragma interface
-#endif
-
 #ifndef IVP_CONSTRAINT_LOCAL_INCLUDED
 //#	include <ivp_constraint_local.hxx>
 #endif

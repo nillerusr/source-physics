@@ -11,10 +11,6 @@
 #ifndef _IVP_PHYSICS_INCLUDED
 #define _IVP_PHYSICS_INCLUDED
 
-#ifndef WIN32
-#	pragma interface
-#endif
-
 #define IVP_MAX_DELTA_PSI_TIME (1.0f/10.0f)
 #define IVP_MIN_DELTA_PSI_TIME (1.0f/200.0f)
 

@@ -5,10 +5,6 @@
 #if !defined( IVP_CONTROLLER_STIFF_SPRING_INCLUDED )
 #	define IVP_CONTROLLER_STIFF_SPRING_INCLUDED
 
-#ifndef WIN32
-#	pragma interface
-#endif
-
 #if !defined(IVP_ACTUATOR_INCLUDED)
 #	include <ivp_actuator.hxx>
 #endif

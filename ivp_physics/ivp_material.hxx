@@ -5,10 +5,6 @@
 #ifndef IVP_MATERIAL_INCLUDED
 #define IVP_MATERIAL_INCLUDED
 
-#ifndef WIN32
-#	pragma interface
-#endif
-
 class IVP_Real_Object;
 
 #ifndef _IVP_CONTACT_SITUATION_INCLUDED

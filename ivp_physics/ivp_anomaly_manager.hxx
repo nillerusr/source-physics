@@ -5,10 +5,6 @@
 
 //IVP_EXPORT_PUBLIC
 
-#ifndef WIN32
-#	pragma interface
-#endif
-
 class IVP_Mindist;
 
 /********************************************************************************

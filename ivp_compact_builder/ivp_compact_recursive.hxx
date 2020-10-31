@@ -5,10 +5,6 @@
  *	Description:	create rekursive compact ledges
  ********************************************************************************/
 
-#ifndef WIN32
-#	pragma interface
-#endif
-
 
 class IVP_Compact_Recursive {
   IVP_U_Vector<IVP_Compact_Ledge> ledges;

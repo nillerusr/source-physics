@@ -5,11 +5,6 @@
 #ifndef IVP_CONTROLLER_RAYCAST_CAR_INCLUDED
 #define IVP_CONTROLLER_RAYCAST_CAR_INCLUDED
 
-
-#ifndef WIN32
-#	pragma interface
-#endif
-
 #define IVP_RAYCAST_CAR_MAX_WHEELS 12
 
 /********************************************************************************

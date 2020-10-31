@@ -2,9 +2,6 @@
 
 #ifndef _IVP_CACHE_LEDGE_POINT_INCLUDED
 #define _IVP_CACHE_LEDGE_POINT_INCLUDED
-#ifndef WIN32
-#	pragma interface
-#endif
 
 
 class IVP_Compact_Poly_Point;

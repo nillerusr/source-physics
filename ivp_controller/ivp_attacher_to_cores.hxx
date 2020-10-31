@@ -5,10 +5,6 @@
 #ifndef _IVP_ATTACHER_TO_CORES_INCLUDED
 #define _IVP_ATTACHER_TO_CORES_INCLUDED
 
-#ifndef WIN32
-#	pragma interface
-#endif
-
 
 
 #ifndef _IVP_VHASH_INCLUDED

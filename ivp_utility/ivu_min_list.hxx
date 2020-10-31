@@ -2,10 +2,6 @@
 
 #ifndef IVP_U_MINLIST_INCLUDED
 #define IVP_U_MINLIST_INCLUDED
-
-#ifndef WIN32
-#	pragma interface
-#endif
 // IVP_EXPORT_PUBLIC
 
 typedef float IVP_U_MINLIST_FIXED_POINT;

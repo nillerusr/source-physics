@@ -10,10 +10,6 @@
 #ifndef _IVP_REAL_OBJECT_INCLUDED
 #define _IVP_REAL_OBJECT_INCLUDED
 
-#ifndef WIN32
-#	pragma interface
-#endif
-
 #ifndef IVP_U_MINLIST_INCLUDED
 #	include <ivu_min_list.hxx>
 #endif

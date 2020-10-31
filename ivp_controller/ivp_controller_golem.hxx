@@ -2,10 +2,6 @@
 
 //IVP_EXPORT_PUBLIC
 
-#ifndef WIN32
-#	pragma interface
-#endif
-
 #ifndef IVP_CONTROLLER_MOTION_INCLUDED
 #	include <ivp_controller_motion.hxx>
 #endif

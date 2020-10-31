@@ -2,11 +2,6 @@
 
 //IVP_EXPORT_PUBLIC
 
-
-#ifndef WIN32
-#	pragma interface
-#endif
-
 inline void IVP_U_Float_Point::set_to_zero() {
     k[0]=0.0f;
     k[1]=0.0f;

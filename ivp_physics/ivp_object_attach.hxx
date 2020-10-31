@@ -2,10 +2,6 @@
 
 //IVP_EXPORT_PUBLIC
 
-#ifndef WIN32
-#	pragma interface
-#endif
-
 /********************************************************************************
  *	Name:	       	ivp_object_attach.hxx
  *	Description:	simple functions that allow to attach an object to another

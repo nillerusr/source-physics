@@ -2,10 +2,6 @@
 
 //IVP_EXPORT_PUBLIC
 
-#ifndef WIN32
-#	pragma interface
-#endif
-
 #if !defined(IVP_ACTUATOR_INCLUDED)
 #	define IVP_ACTUATOR_INCLUDED
 

@@ -1,9 +1,5 @@
 // Copyright (C) Ipion Software GmbH 1999-2000. All rights reserved.
 
-#ifndef WIN32
-#	pragma interface
-#endif
-
 class IVP_Cluster;
 class IVP_Environment;
 class IVP_Core;

@@ -6,10 +6,6 @@
 #ifndef _IVP_CONTROLLER_BUOYANCY_INCLUDED
 #define _IVP_CONTROLLER_BUOYANCY_INCLUDED
 
-#ifndef WIN32
-#	pragma interface
-#endif
-
 #ifndef _IVP_ATTACHER_TO_CORES_INCLUDED
 #	include <ivp_attacher_to_cores.hxx>
 #endif
