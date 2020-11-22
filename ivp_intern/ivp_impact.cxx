@@ -1170,8 +1170,19 @@ void IVP_Contact_Point::get_material_info(IVP_Material *mtl[2]) {
 
 void IVP_Contact_Point::recompute_friction()
 {
-  // todo(CRACK): implement me
-  IVP_ASSERT(0 && "Not implemented");
+	/*IVP_U_Memory* v2; // ecx
+	bool v3; // zf
+
+	IVP_Environment* env = synapse[0].l_obj->environment;
+	++env->sim_unit_mem->transaction_in_use;
+	recalc_friction_s_vals();
+	v3 = env->sim_unit_mem->transaction_in_use-- == 1;
+	if (v3){
+		v2->free_mem_transaction();
+	}*/
+
+	// todo(CRACK): implement me	
+	IVP_ASSERT(0 && "Not implemented");
 }
 
 void IVP_Impact_Solver::get_cos_sin_for_impact(IVP_FLOAT friction_val,IVP_FLOAT percent_energy_conservation,IVP_FLOAT *cos_val,IVP_FLOAT *sin_val) {

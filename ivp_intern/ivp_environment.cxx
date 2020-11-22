@@ -509,6 +509,24 @@ void IVP_Environment::delete_draw_vector_debug(){
 
 }
 
+void IVP_Environment::force_psi_on_next_simulation()
+{
+    /*IVP_Time_Manager* v2; // esi
+    double v3; // ST0C_8
+    unsigned int* v4; // edi
+    long double v5; // xmm0_8
+
+    v2 = this->time_manager;
+    LODWORD(v3) = LODWORD(this->current_time.get_seconds());
+    v4 = (unsigned int*)v2->psi_event;
+    HIDWORD(v3) = HIDWORD(this->current_time.get_seconds());
+    v5 = v3 - time_manager->base_time.get_seconds();
+    time_manager->min_hash->remove_minlist_elem(v4[1]);
+    v4[1] = time_manager->min_hash->add(v4, v5);*/
+
+    IVP_ASSERT(0 && "Unimplemented");
+}
+
 IVP_Polygon *IVP_Environment::create_polygon(IVP_SurfaceManager *vic, const IVP_Template_Real_Object *templ,
 					     IVP_U_Quat const *rotation, const IVP_U_Point *position)
 {
@@ -1012,5 +1030,6 @@ void IVP_Environment::set_global_collision_tolerance( IVP_DOUBLE tolerance, IVP_
 
 IVP_FLOAT IVP_Environment::get_global_collision_tolerance()
 {
-  return ivp_mindist_settings.real_coll_dist;
+    //return ivp_mindist_settings.real_coll_dist;
+    return ivp_mindist_settings.min_coll_dists;
 }

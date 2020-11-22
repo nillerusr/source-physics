@@ -21,6 +21,9 @@ IVP_Anomaly_Limits::IVP_Anomaly_Limits(IVP_BOOL delete_this_if_env_is_deleted_in
     max_velocity = 2000.0f;
     max_angular_velocity_per_psi = IVP_FLOAT(IVP_PI * 0.5f);
     max_collisions_per_psi = 70000;
+	max_collision_checks_per_psi = 1000;
+	min_friction_mass = 10.0;
+	max_friction_mass = 2500.0;
 }
 
 

@@ -157,7 +157,21 @@ void IVP_Real_Object::recompile_material_changed() {
 
 void IVP_Real_Object::force_grow_friction_system()
 {
-  IVP_ASSERT(0 && "Not implemented");
+   /*char v4; // cl
+    char v6; // bl
+    char v7; // ST0C_1
+
+    v4 = *((_BYTE*)&physical_core->v3->0 + 1);
+    *((_BYTE*)&physical_core->v3->0 + 1) = 33;
+    v6 = (char)flags;
+    v7 = v4;
+    flags = ($B6C9A5724C7916C162A69891E8354370)33;
+    physical_core->environment->mindist_manager->recheck_ov_element(this);
+    *((_BYTE*)&physical_core->v1->physical_core->0 + 1) = v7;
+    flags = ($B6C9A5724C7916C162A69891E8354370)v6;
+    physical_core->grow_friction_system();*/
+
+    IVP_ASSERT(0 && "Not implemented");
 }
 
 void IVP_Real_Object::enable_collision_detection(IVP_BOOL enable){

@@ -37,8 +37,18 @@ void hk_Hinge_BP_Builder::set_tau( hk_real tau)
 	m_hinge_bp.m_tau = tau;
 }
 
-void hk_Hinge_BP_Builder::set_axis_perp_os(int body_index, const hk_Vector3& axis_os)
+void hk_Hinge_BP_Builder::set_axis_perp_os(int body, const hk_Vector3& axis_os)
 {
+	/*int v8; // eax
+
+	hk_Vector3 n_axis = axis_os;
+	n_axis.normalize();
+
+    v8 = 2 * (body + 6);
+    *(&this->m_hinge_bp.m_tau + 2 * v8) = n_axis.x;
+    *(&this->m_hinge_bp.m_strength + 2 * v8) = n_axis.y;
+    *((float*)&this->m_hinge_bp.m_limit.m_limit_is_enabled + 2 * v8) = n_axis.z;*/
+
 	// TODO(crack); need to implement this...
 	HK_ASSERT(0 && "No implementation");
 }

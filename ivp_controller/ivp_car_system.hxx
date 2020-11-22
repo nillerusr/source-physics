@@ -211,6 +211,8 @@ protected:
 
     IVP_Actuator_Force  *car_act_down_force;
     IVP_Actuator_Force  *car_act_extra_gravity;
+    IVP_Actuator_Force  *car_act_powerslide_back;
+    IVP_Actuator_Force  *car_act_powerslide_front;
 
     IVP_Constraint *fix_wheel_constraint[IVP_CAR_SYSTEM_MAX_WHEELS];
 

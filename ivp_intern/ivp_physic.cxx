@@ -12,22 +12,6 @@ void IVP_Statistic_Manager::output_statistic() {
     printf("nr_impacts %d  hard_resc %d  resc_after %d  delayed %d  sys_strt %d sys_imps %d unmov %d  coll_check %d  mindists %d  gen_mindists %d ov %d\n",
 	   impact_counter,impact_hard_rescue_counter,impact_rescue_after_counter,impact_delayed_counter,impact_sys_num,impact_sum_sys,impact_unmov,impact_coll_checks, sum_of_mindists, mindists_generated, range_world_exceeded);
     clear_statistic();
-    IVP_IF(1){
-	IVP_Debug_Manager *deb_man = l_environment->get_debug_manager();
-	if(deb_man->revolve_deb_file) {
-	    fclose(deb_man->out_deb_file);
-	    deb_man->file_nr++;
-	    if(deb_man->file_nr>9) {
-	      deb_man->file_nr=0;
-	    }
-	#ifndef GEKKO
-	    char *next_name=p_make_string("debugout%d",deb_man->file_nr);
-	    deb_man->out_deb_file=fopen(next_name,"w");
-	    printf("just_opened %s\n",next_name);
-	    P_FREE(next_name);
-	#endif
-	}
-    }
 }
 
 void IVP_Statistic_Manager::clear_statistic() {
