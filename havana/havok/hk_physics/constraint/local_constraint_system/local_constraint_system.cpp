@@ -9,6 +9,13 @@ hk_Local_Constraint_System::hk_Local_Constraint_System( hk_Environment *env, hk_
 {
 	m_environment = env;
 	m_size_of_all_vmq_storages = 0;
+    m_minErrorTicks = 0;
+    m_errorCount = 0;
+    m_penetrationCount = 0;
+    m_errorTolerance = 0;
+    m_is_active = 0;
+    m_errorThisTick = 0;
+    m_needsSort = 0;
 }
 
 hk_Local_Constraint_System::~hk_Local_Constraint_System()
