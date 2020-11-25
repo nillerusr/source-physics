@@ -302,9 +302,45 @@ IVP_DOUBLE IVP_Core::calc_correct_virt_mass(const IVP_U_Float_Point *core_point,
     }
 }
 
-void IVP_Core::apply_velocity_limit()
-{
-  IVP_ASSERT(0 && "Not implemented");
+void IVP_Core::apply_velocity_limit() {
+    float unk;
+
+    IVP_Anomaly_Limits* al = environment->get_anomaly_limits();
+    IVP_DOUBLE max_speed = al->get_max_velocity();
+    if (max_speed > 0.0)
+    {
+        IVP_DOUBLE trans_len = speed.real_length();
+        if (trans_len > max_speed)
+        {
+            unk = max_speed / trans_len;
+            speed.mult(unk);
+        }
+
+        IVP_DOUBLE rot_change_len = speed_change.real_length();
+        if (rot_change_len > max_speed)
+        {
+            unk = max_speed / rot_change_len;
+            speed_change.mult(unk);
+        }
+    }
+    IVP_FLOAT max_angular_velocity_per_psi = al->get_max_angular_velocity_per_psi();
+    if (max_angular_velocity_per_psi > 0.0)
+    {
+        IVP_DOUBLE max_rot_speed = environment->get_inv_delta_PSI_time() * max_angular_velocity_per_psi;
+        IVP_DOUBLE rot_len = rot_speed.real_length();
+        if (rot_len > max_rot_speed)
+        {
+            unk = max_rot_speed / rot_len;
+            rot_speed.mult(unk);
+        }
+
+        IVP_DOUBLE rot_change_len = speed_change.real_length();
+        if (rot_change_len > max_rot_speed)
+        {
+            unk = max_rot_speed / rot_change_len;
+            rot_speed_change.mult(unk);
+        }
+    }
 }
 
 void p_calc_2d_distances_to_axis(const IVP_U_Float_Point *point,const IVP_U_Float_Point *direction, IVP_U_Float_Point *distances){

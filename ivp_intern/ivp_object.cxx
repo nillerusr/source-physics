@@ -155,23 +155,21 @@ void IVP_Real_Object::recompile_material_changed() {
     this->get_core()->values_changed_recalc_redundants();
 }
 
-void IVP_Real_Object::force_grow_friction_system()
-{
-   /*char v4; // cl
-    char v6; // bl
-    char v7; // ST0C_1
+void IVP_Real_Object::force_grow_friction_system() {
+    IVP_Movement_Type movement_state_temp;
+    IVP_Movement_Type movement_state_temp2;
 
-    v4 = *((_BYTE*)&physical_core->v3->0 + 1);
-    *((_BYTE*)&physical_core->v3->0 + 1) = 33;
-    v6 = (char)flags;
-    v7 = v4;
-    flags = ($B6C9A5724C7916C162A69891E8354370)33;
+    movement_state_temp = flags.object_movement_state;
+    flags.object_movement_state = IVP_Movement_Type::IVP_MT_GET_MINDIST;
+    movement_state_temp2 = physical_core->movement_state;
+    physical_core->movement_state = IVP_Movement_Type::IVP_MT_GET_MINDIST;
+
     physical_core->environment->mindist_manager->recheck_ov_element(this);
-    *((_BYTE*)&physical_core->v1->physical_core->0 + 1) = v7;
-    flags = ($B6C9A5724C7916C162A69891E8354370)v6;
-    physical_core->grow_friction_system();*/
 
-    IVP_ASSERT(0 && "Not implemented");
+    flags.object_movement_state = movement_state_temp;
+    physical_core->movement_state = movement_state_temp2;
+
+    physical_core->grow_friction_system();
 }
 
 void IVP_Real_Object::enable_collision_detection(IVP_BOOL enable){
