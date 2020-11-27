@@ -34,8 +34,6 @@ hk_result hk_Ragdoll_Constraint_BP_Builder::initialize_from_limited_ball_socket_
 			r.m_axisMap[i] = i;
 		}
 	}
-	//TODO(crack): Everything up to this point has been validated as correct.
-	HK_ASSERT(0 && "Incomplete implementation");
 
 	switch ( number_of_freedom )
 	{

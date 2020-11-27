@@ -14,7 +14,6 @@ void hk_Hinge_BP_Builder::set_axis_ws( hk_Rigid_Body *a, hk_Rigid_Body *b, const
 	n_axis.normalize();
 	m_hinge_bp.m_axis_os[ 0 ].m_direction.set_rotated_inv_dir( a->get_cached_transform(), n_axis );
 	m_hinge_bp.m_axis_os[ 1 ].m_direction.set_rotated_inv_dir( b->get_cached_transform(), n_axis );
-	
 }
 
 void hk_Hinge_BP_Builder::set_angular_motor(hk_real angular_velocity, hk_real max_torque)
@@ -39,16 +38,7 @@ void hk_Hinge_BP_Builder::set_tau( hk_real tau)
 
 void hk_Hinge_BP_Builder::set_axis_perp_os(int body, const hk_Vector3& axis_os)
 {
-	/*int v8; // eax
-
 	hk_Vector3 n_axis = axis_os;
 	n_axis.normalize();
-
-    v8 = 2 * (body + 6);
-    *(&this->m_hinge_bp.m_tau + 2 * v8) = n_axis.x;
-    *(&this->m_hinge_bp.m_strength + 2 * v8) = n_axis.y;
-    *((float*)&this->m_hinge_bp.m_limit.m_limit_is_enabled + 2 * v8) = n_axis.z;*/
-
-	// TODO(crack); need to implement this...
-	HK_ASSERT(0 && "No implementation");
+	m_hinge_bp.m_axis_perp_os[body] = n_axis;
 }
