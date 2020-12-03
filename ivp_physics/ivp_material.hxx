@@ -21,6 +21,7 @@ class IVP_Real_Object;
  ********************************************************************************/
 enum P_MATERIAL_TYPE
 {
+	P_MATERIAL_TYPE_UNINITIALIZED = -1,
     P_MATERIAL_TYPE_TERMINAL,
     P_MATERIAL_TYPE_LAST
 };
@@ -41,7 +42,7 @@ class IVP_Material
 {
     // base class that may be implemented in different ways (e.g. IVP_Material_Simple);
 public:
-    P_MATERIAL_TYPE material_type; // indicates way of implementation
+    P_MATERIAL_TYPE material_type = P_MATERIAL_TYPE_UNINITIALIZED; // indicates way of implementation
     IVP_BOOL        second_friction_x_enabled; // when we want two different friction values (e.g. for Skis) 
   
     virtual IVP_DOUBLE get_friction_factor()=0;
