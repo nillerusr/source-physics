@@ -63,7 +63,7 @@ void hk_Local_Constraint_System::get_constraints_in_system(hk_Array<hk_Constrain
 //@@CB
 void hk_Local_Constraint_System::entity_deletion_event(hk_Entity* entity)
 {
-	hk_Constraint* constraint;
+/*	hk_Constraint* constraint;
 
 	for (hk_Array<hk_Constraint*>::iterator i = m_constraints.start();
 		m_constraints.is_valid(i);
@@ -77,8 +77,8 @@ void hk_Local_Constraint_System::entity_deletion_event(hk_Entity* entity)
 		}
 	}
 
-	m_bodies.search_and_remove_element(entity);
-	actuator_controlled_cores.remove(entity->get_core());
+	m_bodies.search_and_remove_element(entity);*/
+//	actuator_controlled_cores.remove(entity->get_core());
 
 	//	HK_BREAK;
 }
