@@ -110,12 +110,15 @@ void IVP_Anomaly_Manager::solve_inter_penetration_simple( IVP_Real_Object *obj0,
     }
 }
 
+// TODO(nillerusr) in the decompiler output, this function is different, but this should not affect the result
 void IVP_Anomaly_Manager::inter_penetration(IVP_Mindist *mindist, IVP_Real_Object *obj0, IVP_Real_Object *obj1, IVP_DOUBLE speedChange){
+	
 	IVP_Real_Object *my_objects[2];
 	my_objects[0]=obj0;
 	my_objects[1]=obj1;
 	int swapped=0;
-	IVP_ASSERT(0 && "Incomplete");
+	
+	
 	if( obj1->get_core()->physical_unmoveable ) {
 		swapped=1;
 	}
