@@ -110,7 +110,7 @@ inline void BREAKPOINT()
 			if(!(cond)) \
 			{ \
 				::fprintf(stderr, "\nASSERTION FAILURE: %s\nFILE: %s\nLINE: %d\n\n", cond, __FILE__, __LINE__); \
-				raise(SIGINT);
+				raise(SIGINT); \
 			} \
 		}
 #	else
