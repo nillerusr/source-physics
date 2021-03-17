@@ -261,12 +261,12 @@ IVP_Environment::~IVP_Environment(){
       cdr->environment_is_going_to_be_deleted_event(this);
     }
     collision_delegator_roots.clear();
-    
+
     P_DELETE(short_term_mem);
     P_DELETE(sim_unit_mem);
     P_DELETE(cache_object_manager);
-    P_DELETE(auth_costumer_name);
-    
+    P_FREE(auth_costumer_name);
+
     environment_manager->environments.remove(this);
     this->delete_draw_vector_debug();
 } 

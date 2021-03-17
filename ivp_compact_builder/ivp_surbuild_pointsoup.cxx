@@ -598,7 +598,7 @@ IVP_Compact_Ledge *IVP_SurfaceBuilder_Pointsoup::convert_pointsoup_to_compact_le
 	int curlong, totlong;
 	qh_memfreeshort( & curlong, &totlong );
 
-	P_DELETE(points2);
+	P_FREE(points2);
 	P_FREE(skip_list);
 	P_FREE(use_list);
     }
