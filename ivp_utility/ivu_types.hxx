@@ -5,6 +5,9 @@
 #ifndef _IVP_U_TYPES_INCLUDED
 #define _IVP_U_TYPES_INCLUDED
 
+#ifdef _LINUX
+	#include <signal.h>
+#endif
 
 #ifdef WIN32
 //#define IVP_PIII			/* set for P3 specific code */
@@ -100,7 +103,16 @@ inline void BREAKPOINT()
 						sprintf(error, (char*)"\pASSERT FAILURE: \nFILE: %s\nLINE: %d\n\n", __FILE__, __LINE__);  \
 		 			DebugStr((unsigned char *)error); \
 			} \
-		}	
+		}
+#	elif defined (_LINUX)
+#		define IVP_ASSERT(cond) \
+		{ \
+			if(!(cond)) \
+			{ \
+				::fprintf(stderr, "\nASSERTION FAILURE: %s\nFILE: %s\nLINE: %d\n\n", cond, __FILE__, __LINE__); \
+				raise(SIGINT);
+			} \
+		}
 #	else
 #		define IVP_ASSERT(cond) \
 		{ \

@@ -1,6 +1,10 @@
 #ifndef HK_BASE_BASE_TYPES_H
 #define HK_BASE_BASE_TYPES_H
 
+#ifdef _LINUX
+#include <signal.h>
+#endif
+
 // TODO(crack): filthy hack to get around keyword bans in macros
 #ifndef _ALLOW_KEYWORD_MACROS
 # define _ALLOW_KEYWORD_MACROS
@@ -30,7 +34,13 @@
 #endif
 
 #define HK_DECLARE_NONVIRTUAL_CLASS_ALLOCATOR(a,b)
+
+#ifdef _LINUX
+#define HK_BREAKPOINT raise(SIGINT)
+#else
 #define HK_BREAKPOINT() *(int*)0=0
+#endif
+
 
 class hkBaseObject
 {
@@ -63,7 +73,11 @@ typedef size_t 			hk_size_t;  // CK: unsigned long int ..
 typedef unsigned int 	hk_size_t;
 #endif
 
+#ifdef _LINUX
+#define HK_BREAK raise(SIGINT)
+#else
 #define HK_BREAK (*((int *)0)) = 0
+#endif
 
 #define HK_PUBLIC public
 
