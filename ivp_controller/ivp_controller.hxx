@@ -139,6 +139,7 @@ class IVP_Controller_Dependent: public IVP_Controller {
 
 class IVP_Standard_Gravity_Controller : public IVP_Controller_Independent {
 public:
+    IVP_Standard_Gravity_Controller() { ; };
     IVP_U_Float_Point grav_vec;
 
     void set_standard_gravity(IVP_U_Point *new_gravity);

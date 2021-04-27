@@ -20,7 +20,6 @@ def configure(conf):
 	])
 
 def build(bld):
-	print(bld)
 	source = [
 		'../ivp_collision/ivp_3d_solver.cxx',
 		'../ivp_collision/ivp_clustering_longrange.cxx',
