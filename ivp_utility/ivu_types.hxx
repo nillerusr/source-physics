@@ -220,6 +220,9 @@ enum IVP_RETURN_TYPE {
 #define IVP_CDECL       /* set this to whatever you need to satisfy your linker */
 
 #if defined(LINUX)
+#if defined(ANDROID)
+#define __THROW
+#endif
 	extern "C" {
 	    void free(void *) __THROW;
 	    void *memset( void *, int, unsigned int) __THROW;
