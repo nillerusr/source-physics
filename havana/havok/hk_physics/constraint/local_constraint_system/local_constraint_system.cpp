@@ -23,7 +23,7 @@ hk_Local_Constraint_System::hk_Local_Constraint_System(hk_Environment* env, hk_L
 	m_errorCount = 0;
 	m_client_data = NULL;
 	//m_scErrorThisTick = Four_Zeros;
-	m_n_iterations = bp->m_n_iterations;
+	m_n_iterations = bp->m_n_iterations + 2;
 	m_errorTolerance = bp->m_errorTolerance;
 	m_minErrorTicks = bp->m_minErrorTicks;
 	m_needsSort = 0;
@@ -36,17 +36,17 @@ hk_Local_Constraint_System::hk_Local_Constraint_System(hk_Environment* env, hk_L
 
 hk_Local_Constraint_System::~hk_Local_Constraint_System()
 {
-	for (hk_Array<hk_Constraint*>::iterator i = m_constraints.start();
-		m_constraints.is_valid(i);
-		i = m_constraints.next(i))
+	for ( hk_Array<hk_Constraint *>::iterator i = m_constraints.start();
+			m_constraints.is_valid(i);
+			i = m_constraints.next( i ) )
 	{
-		hk_Constraint* constraint = m_constraints.get_element(i);
-		constraint->constraint_system_deleted_event(this);
+		hk_Constraint *constraint = m_constraints.get_element(i);
+		constraint->constraint_system_deleted_event( this );
 	}
 
-	if (m_is_active)
+	if ( m_is_active )
 	{
-		deactivate();
+		m_environment->get_controller_manager()->remove_controller_from_environment(this,IVP_TRUE); //silently    
 	}
 }
 
@@ -63,7 +63,7 @@ void hk_Local_Constraint_System::get_constraints_in_system(hk_Array<hk_Constrain
 //@@CB
 void hk_Local_Constraint_System::entity_deletion_event(hk_Entity* entity)
 {
-/*	hk_Constraint* constraint;
+	hk_Constraint* constraint;
 
 	for (hk_Array<hk_Constraint*>::iterator i = m_constraints.start();
 		m_constraints.is_valid(i);
@@ -77,8 +77,12 @@ void hk_Local_Constraint_System::entity_deletion_event(hk_Entity* entity)
 		}
 	}
 
-	m_bodies.search_and_remove_element(entity);*/
-//	actuator_controlled_cores.remove(entity->get_core());
+	m_bodies.search_and_remove_element(entity);
+
+	if (!entity->get_core()->physical_unmoveable)
+	{
+		actuator_controlled_cores.remove(entity->get_core());
+	}
 
 	//	HK_BREAK;
 }
@@ -130,16 +134,31 @@ void hk_Local_Constraint_System::recalc_storage_size()
 
 void hk_Local_Constraint_System::add_constraint(hk_Constraint* constraint, int storage_size)
 {
+	bool isActive = m_is_active;
+	if ( isActive )
+	{
+		deactivate();
+	}
 	m_constraints.add_element( constraint );
 	
 	int i = 1;
-	do {
+	do 
+	{
 		hk_Rigid_Body *b = constraint->get_rigid_body(i);
-		if ( m_bodies.index_of( b ) <0){
-			m_bodies.add_element(b );
+		if ( m_bodies.index_of( b ) <0)
+		{
+			m_bodies.add_element(b);
+			if ( !b->get_core()->physical_unmoveable )
+			{
+				actuator_controlled_cores.add( b->get_core());
+			}
 		}
 	} while (--i>=0);
 
+	if ( isActive )
+	{
+		activate();
+	}
 	m_size_of_all_vmq_storages += storage_size;	
 }
 
@@ -174,7 +193,7 @@ void hk_Local_Constraint_System::write_to_blueprint(hk_Local_Constraint_System_B
 {
 	bpOut->m_damp = 1.0f;
 	bpOut->m_tau = 1.0f;
-	bpOut->m_n_iterations = m_n_iterations;
+	bpOut->m_n_iterations = m_n_iterations - 2;
 	bpOut->m_minErrorTicks = m_minErrorTicks;
 	bpOut->m_errorTolerance = m_errorTolerance;
 	bpOut->m_active = m_is_active;
@@ -304,6 +323,8 @@ void hk_Local_Constraint_System::apply_effector_PSI(hk_PSI_Info& pi, hk_Array<hk
 			m_constraints.element_at(j)->step_constraint(pi, (void*)vmq_buffers[j], taus[x], damps[x]);
 		}
 	}
+
+	// TODO(Jusic): add penetration processing
 }
 
 hk_real hk_Local_Constraint_System::get_epsilon()

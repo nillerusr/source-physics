@@ -40,6 +40,7 @@ public:
 	void set_error_tolerance(float);
 	bool has_error();
 	void clear_error();
+	void report_square_error(float);
 
 	void solve_penetration(IVP_Real_Object* pivp0, IVP_Real_Object* pivp1);
 	void get_constraints_in_system(hk_Array<hk_Constraint*>& constraints_out);

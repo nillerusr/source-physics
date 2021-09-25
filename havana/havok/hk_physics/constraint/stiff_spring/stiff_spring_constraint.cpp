@@ -12,6 +12,8 @@
 #include <stddef.h> // for size_t
 #endif
 
+#include <tier0/dbg.h>
+
 class hk_Stiff_Spring_Work
 {
 	public:
@@ -92,7 +94,7 @@ int hk_Stiff_Spring_Constraint::get_vmq_storage_size()
 int	hk_Stiff_Spring_Constraint::setup_and_step_constraint( hk_PSI_Info& pi, void *mem, hk_real tau_factor, hk_real damp_factor )
 {
 	// TODO(crack); changes need to be made to complete this. mainly handling of stiff/rigid springs
-	HK_ASSERT(0 && "Incomplete implementation");
+	//HK_ASSERT(0 && "Incomplete implementation");
 	
 	hk_Stiff_Spring_Work &work = *new (mem) hk_Stiff_Spring_Work;
 	hk_VM_Query_Builder< hk_VMQ_Storage<1> > &query_engine = work.query_engine;
@@ -125,7 +127,12 @@ int	hk_Stiff_Spring_Constraint::setup_and_step_constraint( hk_PSI_Info& pi, void
 	query_engine.commit(HK_BODY_B, b1);
 
 	hk_Dense_Matrix& mass_matrix = query_engine.get_vmq_storage().get_dense_matrix();
-	mass_matrix(0,0) = 1.0f / mass_matrix(0,0); // invert in place
+	if (mass_matrix.getRealPointer()[0] == 0) {
+		DevWarning("hk_Stiff_Spring_Constraint::setup_and_step_constraint: zero dense matrix(objs: %s, %s)\n", b0->get_name(), b1->get_name());
+	}
+	else {
+		mass_matrix(0, 0) = 1.0f / mass_matrix(0, 0); // invert in place
+	}
 
 	{ // step
 		if ( /*m_is_rigid || TODO(crack): fix this...*/ work.current_dist >= 0 )
@@ -146,7 +153,7 @@ int	hk_Stiff_Spring_Constraint::setup_and_step_constraint( hk_PSI_Info& pi, void
 void hk_Stiff_Spring_Constraint::step_constraint( hk_PSI_Info& pi, void *mem, hk_real tau_factor, hk_real damp_factor )
 {
 	// TODO(crack); changes need to be made to complete this. mainly handling of stiff/rigid springs
-	HK_ASSERT(0 && "Incomplete implementation");
+	//HK_ASSERT(0 && "Incomplete implementation");
 	
 	hk_Stiff_Spring_Work &work = *(hk_Stiff_Spring_Work *)mem;
 	hk_VM_Query_Builder< hk_VMQ_Storage<1> > &query_engine = work.query_engine;

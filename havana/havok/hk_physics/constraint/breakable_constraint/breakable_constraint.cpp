@@ -144,7 +144,7 @@ int	hk_Breakable_Constraint::setup_and_step_constraint( hk_PSI_Info& pi, void *m
 	/*
 	 * TODO(crack); this is highly outdated and needs to handle linear and angular body mass constraints..
 	 */
-	HK_ASSERT(0 && "Incomplete implementation");
+	//HK_ASSERT(0 && "Incomplete implementation");
 	m_is_broken = false;
 	BreakableConstraintHelper ss0( get_rigid_body(0) );
 	BreakableConstraintHelper ss1( get_rigid_body(1) );
@@ -169,7 +169,7 @@ void hk_Breakable_Constraint::step_constraint( hk_PSI_Info& pi, void *mem, hk_re
 	/*
 	 * TODO(crack); this is highly outdated and needs to handle linear and angular body mass constraints..
 	 */
-	HK_ASSERT(0 && "Incomplete implementation");
+	//HK_ASSERT(0 && "Incomplete implementation");
 	//if( m_is_broken == false )
 	{
 		BreakableConstraintHelper ss0( get_rigid_body(0) );
