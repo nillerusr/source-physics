@@ -46,7 +46,7 @@ hk_Local_Constraint_System::~hk_Local_Constraint_System()
 
 	if ( m_is_active )
 	{
-		m_environment->get_controller_manager()->remove_controller_from_environment(this,IVP_TRUE); //silently    
+		m_environment->get_controller_manager()->remove_controller_from_environment(this,IVP_TRUE); //silently
 	}
 }
 
@@ -63,20 +63,6 @@ void hk_Local_Constraint_System::get_constraints_in_system(hk_Array<hk_Constrain
 //@@CB
 void hk_Local_Constraint_System::entity_deletion_event(hk_Entity* entity)
 {
-	hk_Constraint* constraint;
-
-	for (hk_Array<hk_Constraint*>::iterator i = m_constraints.start();
-		m_constraints.is_valid(i);
-		i = m_constraints.next(i))
-	{
-		constraint = m_constraints.get_element(i);
-
-		if (constraint->get_rigid_body(0) == entity || constraint->get_rigid_body(1) == entity)
-		{
-			delete constraint;
-		}
-	}
-
 	m_bodies.search_and_remove_element(entity);
 
 	if (!entity->get_core()->physical_unmoveable)
