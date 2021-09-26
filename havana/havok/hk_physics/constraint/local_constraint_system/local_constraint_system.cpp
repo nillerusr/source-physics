@@ -12,6 +12,7 @@
 #include <hk_physics/constraint/ragdoll/ragdoll_constraint.h>
 #include <hk_physics/constraint/ragdoll/ragdoll_constraint_bp_builder.h>
 
+#include <tier0/dbg.h>
 
 
 hk_Local_Constraint_System::hk_Local_Constraint_System(hk_Environment* env, hk_Local_Constraint_System_BP* bp)
@@ -209,52 +210,32 @@ void hk_Local_Constraint_System::clear_error()
 	m_errorThisTick = 0;
 }
 
-// fixme(melvyn2) I literally copy-pasted decompiler output, FIX THIS
+void hk_Local_Constraint_System::report_square_error(float errSq)
+{
+	m_errorThisTick = ((m_errorTolerance * m_errorTolerance) < errSq);
+}
+
 void hk_Local_Constraint_System::solve_penetration(IVP_Real_Object* pivp0, IVP_Real_Object* pivp1)
 {
-	int penCount;
-	IVP_Real_Object* pIVar1;
-	short num_elems;
-	int iVar2;
-	short sVar3;
+	if (m_penetrationCount >= 4)
+		return;
 
-	penCount = this->m_penetrationCount;
-	if (penCount < 4) {
-		unsigned int _num_elems = (unsigned int)m_bodies.length() - 1;   // todo(melvyn2) check if this is even needed
-		num_elems = (short)m_bodies.length() - 1;
-		if (_num_elems == -1) {  // todo(melvyn2) this doesn't even make sense, _num_elems is uint
-			num_elems = -1;
-			*(short*)(m_environment + penCount + 0xc) = 0xffff;
-		}
-		else {
-			pIVar1 = m_bodies.get_element(_num_elems);
-			iVar2 = _num_elems;
-			sVar3 = num_elems;
-			while (pivp0 != pIVar1) {
-				iVar2 = iVar2 + -1;
-				sVar3 = (short)iVar2;
-				if (iVar2 == -1) {
-					sVar3 = -1;
-					break;
-				}
-				pIVar1 = m_bodies.get_element(iVar2);
-			}
-			*(short*)(m_environment + penCount + 0xc) = sVar3;
-			pIVar1 = m_bodies.get_element(_num_elems);
-			while (pivp1 != pIVar1) {
-				_num_elems = _num_elems + -1;
-				num_elems = (short)_num_elems;
-				if (_num_elems == -1) break;
-				pIVar1 = m_bodies.get_element(_num_elems);
-			}
-		}
-		sVar3 = *(short*)(m_environment + penCount + 0xc);
-		*(short*)((int)m_environment + (penCount + 0xc) * 4 + 2) = num_elems;
-		if ((-1 < sVar3) && (-1 < num_elems)) {
-			this->m_penetrationCount = penCount + 1;
-		}
+	for (hk_Array<hk_Entity*>::iterator i = m_bodies.start();
+		(m_bodies.is_valid(i) && pivp0 != m_bodies.get_element(i));
+		i = m_bodies.next(i))
+	{
+		m_penetrationPairs[m_penetrationCount].obj0 = i;
 	}
-	return;
+
+	for (hk_Array<hk_Entity*>::iterator i = m_bodies.start();
+		(m_bodies.is_valid(i) && pivp1 != m_bodies.get_element(i));
+		i = m_bodies.next(i))
+	{
+		m_penetrationPairs[m_penetrationCount].obj1 = i;
+	}
+
+	if (m_penetrationPairs[m_penetrationCount].obj0 >= 0 && m_penetrationPairs[m_penetrationCount].obj1 >= 0)
+		m_penetrationCount++;
 }
 
 void hk_Local_Constraint_System::get_effected_entities(hk_Array<hk_Entity*>& ent_out)
@@ -271,8 +252,7 @@ void hk_Local_Constraint_System::get_effected_entities(hk_Array<hk_Entity*>& ent
 
 IVP_FLOAT GetMoveableMass(IVP_Core* pCore)
 {
-	// not sure about movement_state
-	if (pCore->movement_state & 0x12) {
+	if (pCore->movement_state & (IVP_MT_STATIC | IVP_MT_SLOW)) {
 		return pCore->get_rot_inertia()->hesse_val;
 	}
 
@@ -299,18 +279,73 @@ void hk_Local_Constraint_System::apply_effector_PSI(hk_PSI_Info& pi, hk_Array<hk
 		}
 	}
 
-	// do the steps
-	for (int x = 0; x < 2 && taus[x] != 0; x++)
+	for (int i = 0; i < m_n_iterations; i++)
 	{
-		for (int i = m_constraints.length() - 1; i >= 0; i--) {
-			m_constraints.element_at(i)->step_constraint(pi, (void*)vmq_buffers[i], taus[x], damps[x]);
-		}
-		for (int j = 0; j < m_constraints.length(); j++) {
-			m_constraints.element_at(j)->step_constraint(pi, (void*)vmq_buffers[j], taus[x], damps[x]);
+		// do the steps
+		for (int x = 0; x < 2 && taus[x] != 0; x++)
+		{
+			for (int i = m_constraints.length() - 1; i >= 0; i--) {
+				m_constraints.element_at(i)->step_constraint(pi, (void*)vmq_buffers[i], taus[x], damps[x]);
+			}
+			for (int j = 0; j < m_constraints.length(); j++) {
+				m_constraints.element_at(j)->step_constraint(pi, (void*)vmq_buffers[j], taus[x], damps[x]);
+			}
 		}
 	}
 
-	// TODO(Jusic): add penetration processing
+	if (m_penetrationCount)
+	{
+		IVP_DOUBLE d_time = m_environment->get_delta_PSI_time();
+		IVP_DOUBLE grav = m_environment->get_gravity()->real_length();
+		IVP_DOUBLE speed_change = (grav * 2.0f) * d_time;
+		IVP_FLOAT mass = 0;
+
+		for (hk_Array<hk_Entity*>::iterator i = m_bodies.start();
+			m_bodies.is_valid(i);
+			i = m_bodies.next(i))
+		{
+			mass += GetMoveableMass(m_bodies.get_element(i)->get_core());
+		}
+
+		for (int i = 0; i < m_penetrationCount; i++)
+		{
+			IVP_Real_Object* obj0 = m_bodies.element_at(m_penetrationPairs[i].obj0);
+			IVP_Real_Object* obj1 = m_bodies.element_at(m_penetrationPairs[i].obj1);
+
+			IVP_Core* core0 = obj0->get_core();
+			IVP_Core* core1 = obj1->get_core();
+
+			const IVP_U_Matrix* m_world_f_core0 = core0->get_m_world_f_core_PSI();
+			const IVP_U_Matrix* m_world_f_core1 = core1->get_m_world_f_core_PSI();
+
+			IVP_U_Float_Point vec01;
+			vec01.subtract(&m_world_f_core1->vv, &m_world_f_core0->vv);
+			float deltaLength = vec01.real_length_plus_normize();
+			if (deltaLength <= 0.01)
+			{
+				// if the objects are exactly on top of each other just push down X the axis
+				vec01.set(1, 0, 0);
+			}
+
+			if (IVP_MTIS_SIMULATED(core0->movement_state) && !core0->pinned) {
+				IVP_U_Float_Point p0;
+				p0.set_multiple(&vec01, -speed_change * mass);
+				obj0->async_push_object_ws(&m_world_f_core0->vv, &p0);
+				IVP_U_Float_Point rot_speed_object(-d_time, 0, 0);
+				obj0->async_add_rot_speed_object_cs(&rot_speed_object);
+			}
+
+			if (IVP_MTIS_SIMULATED(core1->movement_state) && !core1->pinned) {
+				IVP_U_Float_Point p1;
+				p1.set_multiple(&vec01, speed_change * mass);
+				obj1->async_push_object_ws(&m_world_f_core0->vv, &p1);
+				IVP_U_Float_Point rot_speed_object(d_time, 0, 0);
+				obj1->async_add_rot_speed_object_cs(&rot_speed_object);
+			}
+		}
+
+		m_penetrationCount = 0;
+	}
 }
 
 hk_real hk_Local_Constraint_System::get_epsilon()
