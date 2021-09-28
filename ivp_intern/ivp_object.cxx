@@ -68,6 +68,8 @@ void IVP_Real_Object::set_pinned(IVP_BOOL is_pinned)
 	 */
 	core->inv_rot_inertia.set(0.0f, 0.0f, 0.0f);
 	core->inv_rot_inertia.hesse_val = 0.0f;
+	core->speed_change.set_to_zero();
+	core->rot_speed_change.set_to_zero();
 
 	/**
 	 * Reset collision detection
