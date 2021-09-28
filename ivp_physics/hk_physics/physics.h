@@ -28,6 +28,9 @@ public:
 
 };
 
+#define HK_TRANSFORM_TO_CORE_SPACE(body, vec) body->get_core()->get_m_world_f_core_PSI()->inline_vimult3((IVP_U_Float_Point *)&vec, (IVP_U_Float_Point *)&vec);
+//#define HK_TRANSFORM_TO_CORE_SPACE(body, vec) vec.set_zero();
+
 class hk_Rigid_Body: public IVP_Real_Object
 {
 public:
@@ -39,6 +42,29 @@ public:
 	 **************************************************************************************/
 	inline const hk_Vector3 get_center_of_mass(){
 		 return hk_Vector3(&get_core()->get_position_PSI()->k[0]); 
+	}
+
+	inline hk_Transform get_transform_next_PSI(float deltaTime){
+		hk_Transform t;
+		IVP_U_Matrix next_m_world_f_core;
+		IVP_U_Quat q_core_f_core;
+		IVP_U_Quat q_next_PSI;
+
+		q_core_f_core.set_fast_multiple_with_clip(&get_core()->rot_speed, deltaTime);
+		q_next_PSI.inline_set_mult_quat(&(IVP_U_Quat)this->get_core()->q_world_f_core_next_psi, &q_core_f_core);
+		q_next_PSI.fast_normize_quat();
+		q_next_PSI.set_matrix(&next_m_world_f_core);
+
+		next_m_world_f_core.vv.k[0] = this->get_core()->speed.k[0] * deltaTime + this->get_core()->m_world_f_core_last_psi.vv.k[0];
+		next_m_world_f_core.vv.k[1] = this->get_core()->speed.k[1] * deltaTime + this->get_core()->m_world_f_core_last_psi.vv.k[1];
+		next_m_world_f_core.vv.k[2] = this->get_core()->speed.k[2] * deltaTime + this->get_core()->m_world_f_core_last_psi.vv.k[2];
+
+		if (this->flags.shift_core_f_object_is_zero)
+			next_m_world_f_core.vmult4(&this->shift_core_f_object, &next_m_world_f_core.vv);
+
+		next_m_world_f_core.get_4x4_column_major((hk_real*)&t);
+
+		return t;
 	}
 
 	inline hk_Transform get_cached_transform(){
@@ -66,9 +92,6 @@ public:
 
 	inline float get_mass() { return this->get_core()->get_mass(); }
 };
-
-#define HK_TRANSFORM_TO_CORE_SPACE(body, vec) body->get_core()->get_m_world_f_core_PSI()->inline_vimult3((IVP_U_Float_Point *)&vec, (IVP_U_Float_Point *)&vec);
-//#define HK_TRANSFORM_TO_CORE_SPACE(body, vec) vec.set_zero();
 
 #include <hk_physics/core/vm_query.h>
 class hk_Dense_Matrix;
@@ -207,7 +230,7 @@ public:
 	}
 };
 class hk_Limited_Ball_Socket_BP *ivp_create_limited_ball_socket_bp(IVP_Template_Constraint *tmpl );
-class hk_Constraint *ivp_create_ragdoll_constraint_from_local_constraint_system(class hk_Local_Constraint_System *, IVP_Template_Constraint * );
+class hk_Constraintê *ivp_create_ragdoll_constraint_from_local_constraint_system(class hk_Local_Constraint_System *, IVP_Template_Constraint * );
 
 
 #include <hk_physics/constraint/constraint.h>

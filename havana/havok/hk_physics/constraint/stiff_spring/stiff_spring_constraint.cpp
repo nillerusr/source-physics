@@ -31,6 +31,7 @@ class hk_Stiff_Spring_Work
 
 		hk_VM_Query_Builder< hk_VMQ_Storage<1> > query_engine;
 		hk_real current_dist;
+		hk_bool skip_solve;
 };
 
 void hk_Stiff_Spring_Constraint::init_constraint( const void* vbp )
@@ -96,10 +97,9 @@ int	hk_Stiff_Spring_Constraint::setup_and_step_constraint( hk_PSI_Info& pi, void
 	// TODO(crack); changes need to be made to complete this. mainly handling of stiff/rigid springs
 	//HK_ASSERT(0 && "Incomplete implementation");
 	
-	hk_Stiff_Spring_Work &work = *new (mem) hk_Stiff_Spring_Work;
+	hk_Stiff_Spring_Work& work = *new (mem) hk_Stiff_Spring_Work;
 	hk_VM_Query_Builder< hk_VMQ_Storage<1> > &query_engine = work.query_engine;
 
-	
 	hk_Rigid_Body *b0 = get_rigid_body(0);
 	hk_Rigid_Body *b1 = get_rigid_body(1);
 
@@ -111,10 +111,49 @@ int	hk_Stiff_Spring_Constraint::setup_and_step_constraint( hk_PSI_Info& pi, void
 	hk_Vector3 dir;
 	dir.set_sub( translation_ws_ks[1], translation_ws_ks[0] );
 
-	work.current_dist = dir.normalize_with_length() - this->m_stiff_spring_length;
+	hk_real len = dir.normalize_with_length();
+	if (this->m_min_length <= len)
+	{
+		if (len <= this->m_stiff_spring_length)
+		{
+			work.current_dist = 0;
+		}
+		else
+		{
+			work.current_dist = len - this->m_stiff_spring_length;
+		}
+	}
+	else
+	{
+		work.current_dist = len - this->m_min_length;
+	}
+
+	if (this->m_min_length == this->m_stiff_spring_length || work.current_dist != 0)
+	{
+		work.skip_solve = false;
+	}
+	else
+	{
+		hk_Vector3 translation_ws_ks[2];
+
+		hk_Transform &a1 = b0->get_transform_next_PSI(pi.get_delta_time());
+		hk_Transform &a2 = b1->get_transform_next_PSI(pi.get_delta_time());
+
+		translation_ws_ks[0]._set_transformed_pos(a1, m_translation_os_ks[0]);
+		translation_ws_ks[1]._set_transformed_pos(a2, m_translation_os_ks[1]);
+
+		hk_Vector3 dir;
+		dir.set_sub(translation_ws_ks[1], translation_ws_ks[0]);
+
+		hk_real len = dir.normalize_with_length();
+
+		bool skipSolve = this->m_min_length <= len && (this->m_min_length = this->m_stiff_spring_length, len <= this->m_min_length) || (float)(len - this->m_min_length) == 0.0;
+		work.skip_solve = skipSolve;
+		if (skipSolve)
+			return HK_NEXT_MULTIPLE_OF(16, sizeof(hk_Stiff_Spring_Work));
+	}
 
 	query_engine.begin(1);
-
 	{
 		query_engine.begin_entries(1);
 		{
@@ -135,40 +174,35 @@ int	hk_Stiff_Spring_Constraint::setup_and_step_constraint( hk_PSI_Info& pi, void
 	}
 
 	{ // step
-		if ( /*m_is_rigid || TODO(crack): fix this...*/ work.current_dist >= 0 )
-		{
-			hk_real *approaching_velocity = query_engine.get_vmq_storage().get_velocities();
-			hk_real delta_dist = tau_factor * m_tau * pi.get_inv_delta_time() * work.current_dist - damp_factor * m_strength * approaching_velocity[0];
+		hk_real *approaching_velocity = query_engine.get_vmq_storage().get_velocities();
+		hk_real delta_dist = tau_factor * m_tau * pi.get_inv_delta_time() * work.current_dist - damp_factor * m_strength * approaching_velocity[0];
 
-			hk_Vector3 impulses;
-			impulses(0) = delta_dist * mass_matrix(0,0);
+		hk_Vector3 impulses;
+		impulses(0) = delta_dist * mass_matrix(0,0);
 
-			query_engine.apply_impulses( HK_BODY_A, b0, (hk_real *)&impulses(0) );
-			query_engine.apply_impulses( HK_BODY_B, b1, (hk_real *)&impulses(0) );
-		}
+		query_engine.apply_impulses( HK_BODY_A, b0, (hk_real *)&impulses(0) );
+		query_engine.apply_impulses( HK_BODY_B, b1, (hk_real *)&impulses(0) );
 	}
 	return HK_NEXT_MULTIPLE_OF(16, sizeof(hk_Stiff_Spring_Work));
 }
 
 void hk_Stiff_Spring_Constraint::step_constraint( hk_PSI_Info& pi, void *mem, hk_real tau_factor, hk_real damp_factor )
 {
-	// TODO(crack); changes need to be made to complete this. mainly handling of stiff/rigid springs
-	//HK_ASSERT(0 && "Incomplete implementation");
-	
-	hk_Stiff_Spring_Work &work = *(hk_Stiff_Spring_Work *)mem;
-	hk_VM_Query_Builder< hk_VMQ_Storage<1> > &query_engine = work.query_engine;
+	hk_Stiff_Spring_Work& work = *(hk_Stiff_Spring_Work*)mem;
 
-	hk_real *approaching_velocity = query_engine.get_vmq_storage().get_velocities();
-	approaching_velocity[0] = 0.0f;
-
-	hk_Rigid_Body *b0 = get_rigid_body(0);
-	hk_Rigid_Body *b1 = get_rigid_body(1);
-
-	query_engine.update_velocities(HK_BODY_A, b0);
-	query_engine.update_velocities(HK_BODY_B, b1);
-	
-	if ( /*m_is_rigid || TODO(crack): fix this...*/ work.current_dist >= 0 )
+	if (!work.skip_solve)
 	{
+		hk_VM_Query_Builder< hk_VMQ_Storage<1> > &query_engine = work.query_engine;
+
+		hk_real *approaching_velocity = query_engine.get_vmq_storage().get_velocities();
+		approaching_velocity[0] = 0.0f;
+
+		hk_Rigid_Body *b0 = get_rigid_body(0);
+		hk_Rigid_Body *b1 = get_rigid_body(1);
+
+		query_engine.update_velocities(HK_BODY_A, b0);
+		query_engine.update_velocities(HK_BODY_B, b1);
+	
 		hk_real delta_dist = tau_factor * m_tau * pi.get_inv_delta_time() * work.current_dist - damp_factor * m_strength * approaching_velocity[0];
 
 		hk_Vector3 impulses;
@@ -177,7 +211,7 @@ void hk_Stiff_Spring_Constraint::step_constraint( hk_PSI_Info& pi, void *mem, hk
 
 		query_engine.apply_impulses( HK_BODY_A, b0, (hk_real *)&impulses(0) );
 		query_engine.apply_impulses( HK_BODY_B, b1, (hk_real *)&impulses(0) );
-	}
+	}	
 }
 
 
