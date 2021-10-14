@@ -12,8 +12,6 @@
 #include <stddef.h> // for size_t
 #endif
 
-#include <tier0/dbg.h>
-
 class hk_Stiff_Spring_Work
 {
 	public:
@@ -136,11 +134,8 @@ int	hk_Stiff_Spring_Constraint::setup_and_step_constraint( hk_PSI_Info& pi, void
 	{
 		hk_Vector3 translation_ws_ks[2];
 
-		hk_Transform &a1 = b0->get_transform_next_PSI(pi.get_delta_time());
-		hk_Transform &a2 = b1->get_transform_next_PSI(pi.get_delta_time());
-
-		translation_ws_ks[0]._set_transformed_pos(a1, m_translation_os_ks[0]);
-		translation_ws_ks[1]._set_transformed_pos(a2, m_translation_os_ks[1]);
+		translation_ws_ks[0]._set_transformed_pos(b0->get_transform_next_PSI(pi.get_delta_time()), m_translation_os_ks[0]);
+		translation_ws_ks[1]._set_transformed_pos(b1->get_transform_next_PSI(pi.get_delta_time()), m_translation_os_ks[1]);
 
 		hk_Vector3 dir;
 		dir.set_sub(translation_ws_ks[1], translation_ws_ks[0]);
@@ -167,7 +162,7 @@ int	hk_Stiff_Spring_Constraint::setup_and_step_constraint( hk_PSI_Info& pi, void
 
 	hk_Dense_Matrix& mass_matrix = query_engine.get_vmq_storage().get_dense_matrix();
 	if (mass_matrix.getRealPointer()[0] == 0) {
-		DevWarning("hk_Stiff_Spring_Constraint::setup_and_step_constraint: zero dense matrix(objs: %s, %s)\n", b0->get_name(), b1->get_name());
+		printf("hk_Stiff_Spring_Constraint::setup_and_step_constraint: zero dense matrix(objs: %s, %s)\n", b0->get_name(), b1->get_name());
 	}
 	else {
 		mass_matrix(0, 0) = 1.0f / mass_matrix(0, 0); // invert in place

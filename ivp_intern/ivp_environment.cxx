@@ -62,6 +62,8 @@
 
 #include <ivp_authenticity.hxx>
 
+#include "ivp_polygon.hxx"
+
 #if !defined(IVP_VERSION_SDK) && !defined(IVP_VERSION_EVAL)
 #   pragma error("You have to define IVP_VERSION_SDK or IVP_VERSION_EVAL")
 #endif

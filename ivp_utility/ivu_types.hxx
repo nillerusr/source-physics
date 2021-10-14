@@ -44,6 +44,7 @@
 #endif
 					     
 // typedefs for our special types
+
 #if defined(NDEBUG) + defined(DEBUG) != 1
        Exactly DEBUG or NDEBUG has to be defined, check Makefile
 #endif
@@ -109,7 +110,7 @@ inline void BREAKPOINT()
 		{ \
 			if(!(cond)) \
 			{ \
-				::fprintf(stderr, "\nASSERTION FAILURE: %s\nFILE: %s\nLINE: %d\n\n", cond, __FILE__, __LINE__); \
+				::fprintf(stderr, "\nASSERTION FAILURE: %s\nFILE: %s\nLINE: %d\n\n", ""#cond, __FILE__, __LINE__); \
 				raise(SIGINT); \
 			} \
 		}
@@ -118,7 +119,7 @@ inline void BREAKPOINT()
 		{ \
 			if(!(cond)) \
 			{ \
-				::fprintf(stderr, "\nASSERTION FAILURE: %s\nFILE: %s\nLINE: %d\n\n", cond, __FILE__, __LINE__); \
+				::fprintf(stderr, "\nASSERTION FAILURE: %s\nFILE: %s\nLINE: %d\n\n", ""#cond, __FILE__, __LINE__); \
 				CORE; \
 			} \
 		}

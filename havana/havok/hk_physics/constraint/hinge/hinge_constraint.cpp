@@ -11,8 +11,6 @@
 
 #include <hk_physics/constraint/util/constraint_limit_util.h>
 
-#include <tier0/dbg.h>
-
 // IVP_EXPORT_PUBLIC
 
 #ifdef HK_ARCH_PPC
@@ -229,13 +227,12 @@ int	hk_Hinge_Constraint::setup_and_step_constraint(
 		hk_Dense_Matrix_Util::invert_5x5(mass_matrix, 0.0f);
 	}
 	else {
-		DevWarning("hk_Hinge_Constraint::setup_and_step_constraint: zero dense matrix(objs: %s, %s)\n", b0->get_name(), b1->get_name());
+		printf("hk_Hinge_Constraint::setup_and_step_constraint: zero dense matrix(objs: %s, %s)\n", b0->get_name(), b1->get_name());
 	}
 
 	hk_Fixed_Dense_Vector<5> impulses;
 	hk_Dense_Matrix_Util::mult( mass_matrix, delta, impulses);
 
-		
 	query_engine.apply_impulses( HK_BODY_A, b0, impulses.get_const_real_pointer() );
 	query_engine.apply_impulses( HK_BODY_B, b1, impulses.get_const_real_pointer() );
 

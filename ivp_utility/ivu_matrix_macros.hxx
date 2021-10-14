@@ -1,4 +1,5 @@
-
+#ifndef IVU_MATRIX_MACROS_H
+#define IVU_MATRIX_MACROS_H
 
 void IVP_U_Matrix3::inline_mimult3(const IVP_U_Matrix3 *mb, IVP_U_Matrix3 *m_out) const
 {
@@ -73,3 +74,5 @@ IVP_DOUBLE IVP_U_Quat::inline_estimate_q_diff_to(const IVP_U_Float_Quat *to) con
     IVP_DOUBLE qsin2 = 1 - qcosom2;		// quad sin
     return qsin2 * 2;
 }
+
+#endif

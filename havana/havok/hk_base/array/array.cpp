@@ -17,7 +17,9 @@ void hk_Array_Base::grow_mem( int size )
 
 	char *new_array = hk_allocate( char, new_memsize * size, HK_MEMORY_CLASS_ARRAY );
 
-	memcpy( new_array, m_elems, m_memsize * size );
+	if( m_elems )
+		memcpy( new_array, m_elems, m_memsize * size );
+
 	if ( m_elems && ((char *)m_elems != (char *)(this + 1)))
 	{
 		hk_deallocate( char, m_elems, m_memsize * size, HK_MEMORY_CLASS_ARRAY );

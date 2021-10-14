@@ -68,6 +68,7 @@ def build(bld):
 	includes = [
 		'.',
 		'havok',
+		'../havana/havok',
 		'../ivp_physics',
 		'../ivp_utility',
 		'../ivp_controller',

@@ -1,4 +1,4 @@
-
+\
 #include <hk_physics/physics.h>
 #include <hk_physics/simunit/psi_info.h>
 #include <hk_physics/constraint/ball_socket/ball_socket_constraint.h>
@@ -10,8 +10,6 @@
 #ifdef HK_ARCH_PPC
 #include <stddef.h> // for size_t
 #endif
-
-#include <tier0/dbg.h>
 
 // IVP_EXPORT_PUBLIC
 
@@ -139,7 +137,7 @@ int	hk_Ball_Socket_Constraint::setup_and_step_constraint( hk_PSI_Info& pi, void 
 		hk_Dense_Matrix_Util::invert_3x3_symmetric(mass_matrix, 0.0f);
 	}
 	else {
-		DevWarning("hk_Ball_Socket_Constraint::setup_and_step_constraint: zero dense matrix(objs: %s, %s)\n", b0->get_name(), b1->get_name());
+		printf("hk_Ball_Socket_Constraint::setup_and_step_constraint: zero dense matrix(objs: %s, %s)\n", b0->get_name(), b1->get_name());
 	}
 
 	hk_Vector3 impulses;
