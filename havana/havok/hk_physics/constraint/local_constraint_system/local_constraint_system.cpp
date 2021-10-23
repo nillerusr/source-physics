@@ -12,9 +12,6 @@
 #include <hk_physics/constraint/ragdoll/ragdoll_constraint.h>
 #include <hk_physics/constraint/ragdoll/ragdoll_constraint_bp_builder.h>
 
-#include <tier0/dbg.h>
-
-
 hk_Local_Constraint_System::hk_Local_Constraint_System(hk_Environment* env, hk_Local_Constraint_System_BP* bp)
 	: hk_Link_EF(env)
 {
@@ -269,11 +266,23 @@ void hk_Local_Constraint_System::apply_effector_PSI(hk_PSI_Info& pi, hk_Array<hk
 
 	hk_real taus[] = { 1.0f, 1.0f, 0.8f, 0.6f, 0.4f, 0.4f, 0.4f, 0.4f, 0.4f, 0.0f };
 	hk_real damps[] = { 1.0f, 1.0f, 0.8f, 0.8f, 0.8f, 0.8f, 0.8f, 0.8f, 0.8f, 0.0f };
+
+
+
+
 	//first do the setup
 	{
 		char* p_buffer = &buffer[0];
 		for (int i = 0; i < m_constraints.length(); i++) {
 			vmq_buffers[i] = (void*)p_buffer;
+
+			hk_Rigid_Body *b0 = m_constraints.element_at(i)->get_rigid_body(0);
+			hk_Rigid_Body *b1 = m_constraints.element_at(i)->get_rigid_body(1);
+
+			// HACK(nillerusr): calculate inv mass and inv inertia to avoid crashes, this works, but it shouldn't be calculated here
+			b0->get_core()->calc_calc();
+			b1->get_core()->calc_calc();
+
 			int b_size = m_constraints.element_at(i)->setup_and_step_constraint(pi, (void*)p_buffer, 1.0f, 1.0f);
 			p_buffer += b_size;
 		}
@@ -293,6 +302,8 @@ void hk_Local_Constraint_System::apply_effector_PSI(hk_PSI_Info& pi, hk_Array<hk
 		}
 	}
 
+// FIXME(nillerusr): causes crash
+/*
 	if (m_penetrationCount)
 	{
 		IVP_DOUBLE d_time = m_environment->get_delta_PSI_time();
@@ -345,7 +356,7 @@ void hk_Local_Constraint_System::apply_effector_PSI(hk_PSI_Info& pi, hk_Array<hk
 		}
 
 		m_penetrationCount = 0;
-	}
+	}*/
 }
 
 hk_real hk_Local_Constraint_System::get_epsilon()
