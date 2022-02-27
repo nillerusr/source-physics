@@ -103,7 +103,7 @@ void IVP_Compact_Recursive::set_rekursive_convex_hull(){
       int pi[3];
       // convert points to unique point nums
       for (int i = 0; i<3;i++){
-	int ind = (int)point_hash.find( (char *)p[i]);
+	intp ind = (intp)point_hash.find( (char *)p[i]);
 	if (ind<0){
 	  point_hash.add( (char *)p[i], (void *)n_points_in_hash);
 	  ind = n_points_in_hash++;
@@ -140,7 +140,7 @@ void IVP_Compact_Recursive::set_rekursive_convex_hull(){
       int pi[3];
       // convert points to unique point nums
       for (int i = 0; i<3;i++){
-	int ind = (int)point_hash.find( (char *)p[i]);
+    intp ind = (intp)point_hash.find( (char *)p[i]);
 	pi[i] = ind;
       }
       // find triangle in hash

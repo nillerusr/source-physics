@@ -128,7 +128,8 @@ IVP_Tri_Edge *IVP_Tri_Edge::other_side()
     if(!this->triangle->other_side) return NULL;
     IVP_Tri_Edge *e = &this->triangle->other_side->three_edges[0];
     for(i=2; i>=0; i--){
-	if(e->next->start_point == this->start_point) return e;
+    // MoeMod : prevent NPE
+	if(e->next && e->next->start_point == this->start_point) return e;
 	e++;
     }
     return NULL;
@@ -994,7 +995,7 @@ IVP_ERROR_STRING IVP_Object_Polygon_Tetra::make_triangles()
     
     n_edges = 0;
     num_of_edges = 6 * (templ->n_points-2); // accurately calculated
-    hash = new IVP_Hash(num_of_edges/*size*/, 8 /*keylen*/, 0/*notfound*/);
+    hash = new IVP_Hash(num_of_edges/*size*/, sizeof(void *) * 2 /*keylen*/, 0/*notfound*/);
     {
 	int i;    
 	IVP_Tri_Edge *edge;
