@@ -132,7 +132,7 @@ void *ivp_malloc_aligned(int size, int alignment){
     IVP_Aligned_Memory *data = (IVP_Aligned_Memory*)p_malloc( (unsigned int) size);
     data->magic_number = IVP_MEMORY_MAGIC;
     
-    void *ret = (void *)((((long)data) + alignment + sizeof(IVP_Aligned_Memory) - 1) & (-alignment));
+    void *ret = (void *)((((intp)data) + alignment + sizeof(IVP_Aligned_Memory) - 1) & (-alignment));
     ((void **)ret)[-1] = (void *)data;
     return ret;
 #endif    
