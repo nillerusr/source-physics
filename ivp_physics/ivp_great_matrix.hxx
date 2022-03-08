@@ -28,11 +28,19 @@
 	#	define IVP_VECFPU_MEMSHIFT 3 //8 Bytes per Floating Point Number
 	#endif
     #else
-	#define IVP_VECFPU_SIZE 1  
-	#define IVP_VECFPU_LD 0
-	#define IVP_VECFPU_MASK 0xffffffff 
-	#define IVP_VECFPU_MEM_MASK 0xfffffff8 //8Byte per Block
-	#define IVP_VECFPU_MEMSHIFT 3 //8 Bytes per Floating Point Number
+    #ifdef PLATFORM_64BITS
+    #	define IVP_VECFPU_SIZE 4 // taken from vphysics retail
+    //#	define IVP_VECFPU_LD 0 //unused
+    #	define IVP_VECFPU_MASK 0xfffffffc // taken from vphysics retail
+    #	define IVP_VECFPU_MEM_MASK 0xfffffffffffffff0 // taken from vphysics retail
+    #	define IVP_VECFPU_MEMSHIFT 2 // taken from vphysics retail
+    #else
+    #	define IVP_VECFPU_SIZE 1
+    #	define IVP_VECFPU_LD 0
+    #	define IVP_VECFPU_MASK 0xffffffff
+    #	define IVP_VECFPU_MEM_MASK 0xfffffff8 //8Byte per Block
+    #	define IVP_VECFPU_MEMSHIFT 3 //8 Bytes per Floating Point Number
+    #endif
     #endif
 #endif
 
