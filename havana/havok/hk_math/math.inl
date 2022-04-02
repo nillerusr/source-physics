@@ -3,29 +3,30 @@
 #else	//HK_PS2
 
 #ifdef _WIN32
-inline hk_double hk_Math::fabsd( hk_double r ) { return hk_double(::fabs(r)); }
+inline hk_double hk_Math::fabsd( hk_double r ) { return hk_double(hk_Math::fabs(r)); }
 
-inline hk_real hk_Math::sqrt( hk_real r) { return hk_real(::sqrt(r)); }
-inline hk_real hk_Math::sqrt_inv( hk_real r) { return 1.0f / hk_real(::sqrt(r)); }
+inline hk_real hk_Math::sqrt( hk_real r) { return hk_real(hk_Math::sqrt(r)); }
+inline hk_real hk_Math::sqrt_inv( hk_real r) { return 1.0f / hk_real(hk_Math::sqrt(r)); }
 
-inline hk_real hk_Math::fast_sqrt( hk_real r) { return hk_real(::sqrt(r)); }
-inline hk_real hk_Math::fast_sqrt_inv( hk_real r) { return 1.0f / hk_real(::sqrt(r)); }
+inline hk_real hk_Math::fast_sqrt( hk_real r) { return hk_real(hk_Math::sqrt(r)); }
+inline hk_real hk_Math::fast_sqrt_inv( hk_real r) { return 1.0f / hk_real(hk_Math::sqrt(r)); }
 
-inline hk_real hk_Math::fabs( hk_real r) { return hk_real(::fabs(r)); }
-inline hk_real hk_Math::tan( hk_real r) { return hk_real(::tan(r)); }
-inline hk_real hk_Math::sin( hk_real r) { return hk_real(::sin(r)); }
-inline hk_real hk_Math::cos( hk_real r) { return hk_real(::cos(r)); }
-inline hk_real hk_Math::atan2( hk_real a, hk_real b)  { return hk_real(::atan2(a,b)); }
-inline hk_real hk_Math::asin( hk_real r) { return hk_real(::asin(r)); }
-inline hk_real hk_Math::acos( hk_real r) { return hk_real(::acos(r)); }
+inline hk_real hk_Math::fabs( hk_real r) { return hk_real(hk_Math::fabs(r)); }
+inline hk_real hk_Math::tan( hk_real r) { return hk_real(hk_Math::tan(r)); }
+inline hk_real hk_Math::sin( hk_real r) { return hk_real(hk_Math::sin(r)); }
+inline hk_real hk_Math::cos( hk_real r) { return hk_real(hk_Math::cos(r)); }
+inline hk_real hk_Math::atan2( hk_real a, hk_real b)  { return hk_real(hk_Math::atan2(a,b)); }
+inline hk_real hk_Math::asin( hk_real r) { return hk_real(hk_Math::asin(r)); }
+inline hk_real hk_Math::acos( hk_real r) { return hk_real(hk_Math::acos(r)); }
 inline hk_real hk_Math::max( hk_real a, hk_real b) { return a>b ? a : b; }
 inline hk_real hk_Math::min( hk_real a, hk_real b) { return a<b ? a : b; }
 
-inline hk_real hk_Math::exp( hk_real e) { return hk_real(::exp(e)); }
+inline hk_real hk_Math::exp( hk_real e) { return hk_real(hk_Math::exp(e)); }
 
-inline hk_real hk_Math::floor( hk_real r ) { return hk_real(::floor(r)); }
-inline hk_real hk_Math::ceil( hk_real r) { return hk_real(::ceil(r)); }
-inline hk_real hk_Math::pow( hk_real r, hk_real p) { return hk_real(::pow(r,p)); }
+inline hk_real hk_Math::floor( hk_real r ) { return hk_real(hk_Math::floor(r)); }
+inline hk_real hk_Math::ceil( hk_real r) { return hk_real(hk_Math::ceil(r)); }
+inline hk_real hk_Math::pow( hk_real r, hk_real p) { return hk_real(hk_Math::pow(r,p)); }
+
 
 #elif _LINUX
 
