@@ -35,8 +35,8 @@ def build(bld):
 		'havok/hk_physics/constraint/prismatic/prismatic_constraint.cpp',
 		'havok/hk_physics/constraint/pulley/pulley_constraint.cpp',
 		'havok/hk_physics/constraint/stiff_spring/stiff_spring_constraint.cpp',
-		'../ivp_physics/hk_physics/core/rigid_body_core.cpp',
-		'../ivp_physics/hk_physics/effector/rigid_body_binary_effector.cpp'
+		'havok/hk_physics/core/rigid_body_core.cpp',
+		'havok/hk_physics/effector/rigid_body_binary_effector.cpp'
 	]
 
 	includes = [
