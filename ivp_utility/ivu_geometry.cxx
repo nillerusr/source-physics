@@ -84,15 +84,15 @@ IVP_RETURN_TYPE IVP_U_Plain::calc_intersect_with(const IVP_U_Hesse *plane2,
 {
     // if exists: intersection line between two planes
     // ATT: check return flag!
-    
+
     if(this->is_parallel(plane2, P_EPS_PARALLEL)){
 	return IVP_FAULT;
     }
-    
+
     // calc direction of straight
     straight_out->vec.calc_cross_product(this, plane2);
     straight_out->vec.normize();
-    
+
     /** calc startpoint of straight **/
     IVP_U_Point hp;
     plane2->proj_on_plane(&start_point, &hp);
@@ -107,11 +107,7 @@ IVP_RETURN_TYPE IVP_U_Plain::calc_intersect_with(const IVP_U_Hesse *plane2,
     straight.vec.normize();
 
     // calc intersection of straight with plane2
-    if(plane2->calc_intersect_with(&straight, &straight_out->start_point) == IVP_FAULT){
-	printf("Merkwuerden.\n");
-	CORE;
-    }
-    return IVP_OK;
+    return plane2->calc_intersect_with(&straight, &straight_out->start_point);
 }
 
 IVP_RETURN_TYPE IVP_U_Hesse::calc_intersect_with(const IVP_U_Straight *straight,
@@ -125,7 +121,7 @@ IVP_RETURN_TYPE IVP_U_Hesse::calc_intersect_with(const IVP_U_Straight *straight,
     IVP_U_Point hp = straight->start_point;
     hp.add(&straight->vec);
     IVP_DOUBLE dist2 = this->get_dist(&hp);
-    
+
     IVP_DOUBLE delta_dist = dist2 - dist1;
     if(IVP_Inline_Math::fabsd(delta_dist) < P_DOUBLE_EPS){
 	if(dist1 >= P_DOUBLE_EPS){
@@ -136,7 +132,7 @@ IVP_RETURN_TYPE IVP_U_Hesse::calc_intersect_with(const IVP_U_Straight *straight,
 	    return IVP_OK;
 	}
     }
-    
+
     IVP_DOUBLE factor = dist1 / delta_dist;
 
     point_out->add_multiple(&straight->start_point, &straight->vec, -factor);

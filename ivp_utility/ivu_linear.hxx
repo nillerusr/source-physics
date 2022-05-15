@@ -275,10 +275,14 @@ public:
 						    const IVP_DOUBLE a2_in, const IVP_DOUBLE b2_in,
 						    IVP_DOUBLE *i_a1_out, IVP_DOUBLE *i_b1_out,
 						    IVP_DOUBLE *i_a2_out, IVP_DOUBLE *i_b2_out);
+
+    static inline IVP_FLOAT clamp( IVP_FLOAT r, IVP_FLOAT mn, IVP_FLOAT mx) {
+        return ((r<mn) ? mn : ((r>mx) ? mx : r));
+    }
+
     static inline IVP_FLOAT approx5_sin(IVP_FLOAT angle);  // fifth order approximation
     static inline IVP_FLOAT approx5_cos(IVP_FLOAT angle);  // fifth order approximation of cos
 
-    
     static inline IVP_FLOAT save_acosf(IVP_FLOAT x);	// slow and save acos
 
     static inline IVP_FLOAT fast_asin(IVP_FLOAT x);          // for documentation see ivu_linear_macros.hxx

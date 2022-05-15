@@ -490,7 +490,9 @@ void IVP_Core::damp_object(IVP_DOUBLE delta_time_, const IVP_U_Float_Point *rota
 }
 
 void IVP_Core::set_rotation_inertia( const IVP_U_Float_Point *r){
-    rot_inertia.set(r);
+    rot_inertia.set(IVP_Inline_Math::clamp(-P_FLOAT_MAX, r->k[0], P_FLOAT_MAX),
+	IVP_Inline_Math::clamp(-P_FLOAT_MAX, r->k[1], P_FLOAT_MAX),
+	IVP_Inline_Math::clamp(-P_FLOAT_MAX, r->k[2], P_FLOAT_MAX));
     this->calc_calc();
 }
 
