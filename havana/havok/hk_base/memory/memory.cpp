@@ -1,5 +1,5 @@
 #include <hk_base/base.h>
-#include <malloc.h>
+#include <cstdlib>
 
 
 class hk_Memory_With_Size {

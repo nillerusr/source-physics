@@ -293,7 +293,7 @@ fclose(fp);
 	    }
 	    int j;
 	    for (j=0; j<subpart_work->offsets.len(); j++) {
-		int offset = (int)subpart_work->offsets.element_at(j)-1;
+        intp offset = (intp)subpart_work->offsets.element_at(j)-1;
 		IVP_U_Point *point = new IVP_U_Point();
 		point->k[0] = vcl_out[(offset*3)+0];
 		point->k[1] = vcl_out[(offset*3)+1];

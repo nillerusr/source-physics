@@ -406,8 +406,8 @@ void IVP_Great_Matrix_Many_Zero::copy_matrix(IVP_Great_Matrix_Many_Zero *orig_ma
 
 
 void IVP_Great_Matrix_Many_Zero::align_matrix_values() {
-    long adress,result_adress;
-    adress=(long)matrix_values;
+    intp adress,result_adress;
+    adress=(intp)matrix_values;
     int maximal_shift=(IVP_VECFPU_SIZE-1)<<IVP_VECFPU_MEMSHIFT;
     result_adress=(adress+maximal_shift) & IVP_VECFPU_MEM_MASK;
     matrix_values=(IVP_DOUBLE*)result_adress;

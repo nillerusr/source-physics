@@ -20,7 +20,7 @@ class hk_Stiff_Spring_Work
 			return addr;
 		}
 #else
-		static inline void *operator new (unsigned int size, void *addr){
+		static inline void *operator new (size_t size, void *addr){
 			return addr;
 		}
 

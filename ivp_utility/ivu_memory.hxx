@@ -3,10 +3,15 @@
 #ifndef IVP_MEM_INCLUDED
 #define IVP_MEM_INCLUDED
 
-
+#ifdef PLATFORM_64BITS
+#define IVU_MEM_ALIGN 0x50 //align to chach line data 32Byte
+#define IVU_MEM_MASK 0xffffffffffffffe0;
+#define IVU_MEMORY_BLOCK_SIZE 0x7fe0	// size of block loaded by
+#else
 #define IVU_MEM_ALIGN 0x20 //align to chach line data 32Byte
 #define IVU_MEM_MASK 0xffffffe0; 
 #define IVU_MEMORY_BLOCK_SIZE (0x8000-IVU_MEM_ALIGN)	// size of block loaded by 
+#endif
 
 struct p_Memory_Elem {
     struct p_Memory_Elem *next;
@@ -78,7 +83,7 @@ void IVP_U_Memory::end_memory_transaction()
 
 //warning: dependency with function neuer_sp_block
 inline void *IVP_U_Memory::align_to_next_adress(void *p) {
-    long adress=(long)p;
+    intp adress=(intp)p;
     adress += IVU_MEM_ALIGN-1;
     adress  =adress & IVU_MEM_MASK;
     return (void*)adress;
@@ -105,7 +110,7 @@ inline void    *IVP_U_Memory::get_mem(unsigned int groesse)
 	    return ((void *) this->neuer_sp_block(groesse));
 	} else {
 	    speicherbeginn = p;
-		IVP_IF( ((int)op > 0x780000 ) && ((int)op < 0x792f48)) {
+		IVP_IF( ((intp)op > 0x780000 ) && ((intp)op < 0x792f48)) {
 			op++;
 			op--;
 		}

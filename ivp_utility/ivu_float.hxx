@@ -19,7 +19,7 @@
     #define IVP_EXP_FOR_ONE 0x7f
     inline int PFM_LD(float a){ return ((p_float_ieee *)&(a))->ln.exp - IVP_EXP_FOR_ONE; };
 #else
-#	if defined(LINUX) || defined(WIN32)
+#	if defined(LINUX) || defined(WIN32) || defined(OSX)
 
 union p_double_ieee {
 	IVP_DOUBLE val;

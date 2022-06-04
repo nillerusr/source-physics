@@ -297,7 +297,7 @@ public:
 class IVP_MM_CMP {
 public:
     static inline int calc_hash_index( IVP_MM_CMP_Key * o){
-	int x = (int)o->ledge[0] ^ ( int(o->ledge[1])* 75 );
+	int x = (intp)o->ledge[0] ^ ( intp(o->ledge[1])* 75 );
 	return x + 1023 * (x>>8);
     }
 
@@ -305,7 +305,7 @@ public:
     static inline int calc_hash_index( IVP_Collision *c, IVP_MM_CMP_Key * /*ref_key*/){
 	const IVP_Compact_Ledge *ledge[2];
 	c->get_ledges(ledge);
-	int x = (int)ledge[0] ^ ( int(ledge[1])* 75 );
+    intp x = (intp)ledge[0] ^ ( intp(ledge[1])* 75 );
 	return x + 1023 * (x>>8);
     }
 
@@ -614,7 +614,7 @@ void IVP_Mindist_Manager::insert_and_recalc_phantom_mindist( IVP_Mindist *new_mi
 class IVP_OO_CMP {
 public:
     static inline int calc_hash_index( IVP_Real_Object * o){
-	int x = (int)o;
+    intp x = (intp)o;
 	return x + 1023 * (x>>8);
     }
 
@@ -622,7 +622,7 @@ public:
     static inline int calc_hash_index( IVP_Collision *c, IVP_Real_Object * con){
 	IVP_Real_Object *objects[2];
 	c->get_objects(objects);
-	int x = int(objects[0]) ^ int(objects[1]) ^ int(con);  // take other object (trick to avoid if)
+    intp x = intp(objects[0]) ^ intp(objects[1]) ^ intp(con);  // take other object (trick to avoid if)
 	IVP_ASSERT( objects[0] == con || objects[1] == con );
 	return x + 1023 * (x>>8);
     }
