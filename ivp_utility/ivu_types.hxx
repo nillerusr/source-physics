@@ -228,15 +228,6 @@ enum IVP_RETURN_TYPE {
 
 #define IVP_CDECL       /* set this to whatever you need to satisfy your linker */
 
-#if defined(LINUX)
-#if defined(ANDROID)
-#define __THROW
-#endif
-	extern "C" {
-	    void free(void *) __THROW;
-	    void *memset( void *, int, unsigned int) __THROW;
-	};
-#else
 #if !defined(__MWERKS__) || !defined(__POWERPC__)
 #   ifdef OSX
 #       include <malloc/malloc.h>
@@ -244,9 +235,10 @@ enum IVP_RETURN_TYPE {
 #       include <malloc.h>
 #   endif
 #endif
-#	include <string.h>
-#endif
-	
+
+#include <string.h>
+
+
 	char * IVP_CDECL p_calloc(int nelem,int size);
 	void * IVP_CDECL p_realloc(void* memblock, int size);
 	void * IVP_CDECL p_malloc(unsigned int size);
