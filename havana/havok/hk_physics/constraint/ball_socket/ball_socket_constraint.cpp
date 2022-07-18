@@ -133,16 +133,10 @@ int	hk_Ball_Socket_Constraint::setup_and_step_constraint( hk_PSI_Info& pi, void 
 	delta_dist_3.add_mul( -1.0f * m_strength * damp_factor, *(const hk_Vector3 *)approaching_velocity );
 
 	hk_Fixed_Dense_Matrix<3>& mass_matrix = query_engine.get_vmq_storage().get_fixed_dense_matrix();
-	if (mass_matrix.get_elems()[0] != 0) {
-		hk_Dense_Matrix_Util::invert_3x3_symmetric(mass_matrix, 0.0f);
-	}
-	else {
-		printf("hk_Ball_Socket_Constraint::setup_and_step_constraint: zero dense matrix(objs: %s, %s)\n", b0->get_name(), b1->get_name());
-	}
+	hk_Dense_Matrix_Util::invert_3x3_symmetric(mass_matrix, 0.0f);
 
 	hk_Vector3 impulses;
 	hk_Dense_Matrix_Util::mult_3_symmetric( mass_matrix, delta_dist_3, impulses);
-
 
 	query_engine.apply_impulses( HK_BODY_A, b0, (hk_real *)&impulses(0) );
 	query_engine.apply_impulses( HK_BODY_B, b1, (hk_real *)&impulses(0) );

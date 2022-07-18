@@ -97,7 +97,7 @@ int IVP_Compact_Ledge_Generator::prepare_compact_ledge(IVP_U_Vector<IVP_Triangle
 		c_edge->set_start_point_index(edge->start_point->tmp.compact_index);
 
 		IVP_ASSERT(edge_hash->find((char *)&edge) == (void *)-1);
-		edge_hash->add((char *)&edge, (void *)(i * 4 + j + 1));	// for opposites
+		edge_hash->add((char *)&edge, (void *)(intp)(i * 4 + j + 1));	// for opposites
 		edge_cnt++;
 	    }
 	}

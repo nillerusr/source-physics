@@ -62,7 +62,7 @@ public:
      *  Description:    Use this method to add a new point offset to the list.
      *	Note:		This method will drop any duplicate offsets.
      *****************************************************************************/
-    void add_offset(int offset);
+    void add_offset(intp offset);
 
     ~IVP_Concave_Polyhedron_Face();
 };
