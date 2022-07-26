@@ -197,21 +197,21 @@ $Project "havana_constraints"
 
 	$Folder	"hk_physics (ipion)"
 	{
-		$File	"$SRCDIR\ivp\ivp_physics\hk_physics\physics.h"
+		$File	"$SRCDIR\ivp\havana\havok\hk_physics\physics.h"
 
 		$Folder	"simunit"
 		{
-			$File	"$SRCDIR\ivp\ivp_physics\hk_physics\simunit\psi_info.h"
+			$File	"$SRCDIR\ivp\havana\havok\hk_physics\simunit\psi_info.h"
 		}
 
 		$Folder	"core No. 1"
 		{
-			$File	"$SRCDIR\ivp\ivp_physics\hk_physics\core\rigid_body_core.cpp"
+			$File	"$SRCDIR\ivp\havana\havok\hk_physics\core\rigid_body_core.cpp"
 		}
 
 		$Folder	"effector"
 		{
-			$File	"$SRCDIR\ivp\ivp_physics\hk_physics\effector\rigid_body_binary_effector.cpp"
+			$File	"$SRCDIR\ivp\havana\havok\hk_physics\effector\rigid_body_binary_effector.cpp"
 		}
 	}
 }
