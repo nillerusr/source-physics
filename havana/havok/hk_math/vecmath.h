@@ -25,7 +25,7 @@ class hk_Diagonal_Matrix;
 #include <hk_base/base.h>
 
 #include <hk_math/types.h>
-#include <hk_math/math.h>
+#include <hk_math/base_math.h>
 
 #include <hk_math/vector3/vector3.h>
 #include <hk_math/vector4.h>
