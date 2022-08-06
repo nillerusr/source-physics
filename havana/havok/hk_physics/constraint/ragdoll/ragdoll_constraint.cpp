@@ -112,6 +112,7 @@ void hk_Ragdoll_Constraint::write_to_blueprint( hk_Ragdoll_Constraint_BP *bp )
 	bp->m_limits[2] = m_inputLimits[2];
 	bp->m_strength = m_strength;
 	bp->m_tau = m_tau;
+	bp->m_constrainTranslation = m_constrainTranslation;
 }
 
 
@@ -183,8 +184,6 @@ int	hk_Ragdoll_Constraint::setup_and_step_constraint(
 		hk_PSI_Info& pi, void *mem,
 		hk_real tau_factor, hk_real strength_factor )
 {
-	// TODO(crack); this is highly outdated and needs to handle linear and angular body mass constraints..
-
 	hk_Ragdoll_Constraint_Work& work = *new (mem) hk_Ragdoll_Constraint_Work;
 	hk_Rigid_Body* b0 = get_rigid_body(0);
 	hk_Rigid_Body* b1 = get_rigid_body(1);
@@ -299,8 +298,6 @@ int	hk_Ragdoll_Constraint::setup_and_step_constraint(
 
 void hk_Ragdoll_Constraint::step_constraint( hk_PSI_Info& pi, void *mem, hk_real tau_factor, hk_real strength_factor )
 {
-  // TODO(crack); this is highly outdated and needs to handle linear and angular body mass constraints..
-
 	hk_Rigid_Body *b0 = get_rigid_body(0);
 	hk_Rigid_Body *b1 = get_rigid_body(1);
 	hk_Ragdoll_Constraint_Work& work = *(hk_Ragdoll_Constraint_Work*)mem;
