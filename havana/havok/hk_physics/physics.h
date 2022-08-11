@@ -55,13 +55,15 @@ public:
 		q_next_PSI.inline_set_mult_quat( (IVP_U_Quat*)&this->get_core()->q_world_f_core_next_psi, &q_core_f_core);
 		q_next_PSI.fast_normize_quat();
 		q_next_PSI.set_matrix(&next_m_world_f_core);
-
+/*
 		next_m_world_f_core.vv.k[0] = this->get_core()->speed.k[0] * deltaTime + this->get_core()->m_world_f_core_last_psi.vv.k[0];
 		next_m_world_f_core.vv.k[1] = this->get_core()->speed.k[1] * deltaTime + this->get_core()->m_world_f_core_last_psi.vv.k[1];
 		next_m_world_f_core.vv.k[2] = this->get_core()->speed.k[2] * deltaTime + this->get_core()->m_world_f_core_last_psi.vv.k[2];
+*/
+		next_m_world_f_core.vv.add_multiple( get_core()->m_world_f_core_last_psi.get_position(), &get_core()->speed, deltaTime );
 
-		if (this->flags.shift_core_f_object_is_zero)
-			next_m_world_f_core.vmult4(&this->shift_core_f_object, &next_m_world_f_core.vv);
+		if ( !this->flags.shift_core_f_object_is_zero)
+			next_m_world_f_core.vmult4(get_shift_core_f_object(), &next_m_world_f_core.vv);
 
 		next_m_world_f_core.get_4x4_column_major((hk_real*)&t);
 
