@@ -8,7 +8,7 @@ class IVP_Cache_Ball;
 class IVP_Cache_Ledge_Point;
 
   // set IVP_LOOP_LIST_SIZE if you want to use a linear list for loop check instead of a HASH
-#define IVP_LOOP_LIST_SIZE 256
+// #define IVP_LOOP_LIST_SIZE 256
 
 #if defined(IVP_LOOP_LIST_SIZE)
     struct IVP_MM_Loop_Hash_Struct {
@@ -115,8 +115,10 @@ public:
 #if !defined(IVP_LOOP_LIST_SIZE)
 	loop_hash = NULL;
 #else
+	memset(loop_hash, 0, sizeof(IVP_MM_Loop_Hash_Struct));
 	loop_hash_size = 0;
 #endif
+
 	P_Finish_Counter = IVP_MAX_MINIMIZE_BEFORE_HASH_CHECK;
 #ifdef DEBUG
 	termination_len = P_DOUBLE_MAX;

@@ -1065,9 +1065,8 @@ IVP_FLOAT IVP_Contact_Point_API::get_vert_force(IVP_Contact_Point *friction_hand
 
 
 void IVP_Contact_Point_API::get_surface_normal_ws(IVP_Contact_Point* friction_handle, IVP_U_Float_Point* normal){
-	normal = &friction_handle->tmp_contact_info->surf_normal;
+	*normal = friction_handle->tmp_contact_info->surf_normal;
 }
-
 
 void IVP_Friction_Info_For_Core::friction_info_insert_friction_dist(IVP_Contact_Point *dist)
 {
