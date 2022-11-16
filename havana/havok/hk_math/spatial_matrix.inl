@@ -1,10 +1,4 @@
 
-hk_Spatial_Matrix::hk_Spatial_Matrix()
-{
-}
-
-
-
 // not very quick.  could probably do some whacked direct memory access.
 //!me todo: whacked memory access for better performance
 hk_real hk_Spatial_Matrix::operator() (int r, int c) const

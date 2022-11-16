@@ -19,7 +19,7 @@ class hk_VMQ_Storage
 {
 	public:
 
-		inline hk_VMQ_Storage() { }
+		inline hk_VMQ_Storage() = default;
 		inline ~hk_VMQ_Storage(){ }
 
 		inline void initialize()
@@ -87,7 +87,7 @@ class hk_VM_Query_Builder
 {
 	public:
 
-		inline hk_VM_Query_Builder(){}
+		inline hk_VM_Query_Builder() = default;
 
 		void begin(int size)
 		{

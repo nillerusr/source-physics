@@ -1,9 +1,4 @@
-
-hk_Vector4::hk_Vector4()
-{
-}
-
- hk_Vector4::hk_Vector4(hk_real a, hk_real b, hk_real c, hk_real d)
+hk_Vector4::hk_Vector4(hk_real a, hk_real b, hk_real c, hk_real d)
 {
 	x = a;
 	y = b;

@@ -9,7 +9,7 @@ class hk_Vector4 : public hk_Vector3
 {
 	public:
 
-		inline hk_Vector4();
+		inline hk_Vector4() = default;
 		inline hk_Vector4(hk_real a, hk_real b, hk_real c, hk_real d);
 
 		inline void operator=  (const hk_Vector4& v);

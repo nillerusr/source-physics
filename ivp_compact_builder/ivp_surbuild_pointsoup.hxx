@@ -59,7 +59,7 @@ class IVP_Compact_Surface;
 
 class IVP_SurMan_PS_Plane : public IVP_U_Point {
 public:
-    IVP_SurMan_PS_Plane() { };
+    IVP_SurMan_PS_Plane() = default;
     IVP_U_Vector<IVP_U_Point> points;
     IVP_DOUBLE get_area_size();
     IVP_DOUBLE get_qlen_of_all_edges();

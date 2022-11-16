@@ -133,7 +133,7 @@ public:
     struct ivp_triangle_tmp{
 	struct ivp_triangle_gen{
 	    IVP_U_Hesse hesse;			// normized hesse
-		ivp_triangle_gen(){;};
+		ivp_triangle_gen() = default;
 	} gen;
 	ivp_triangle_tmp(){;};
     } tmp;    

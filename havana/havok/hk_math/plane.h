@@ -8,7 +8,7 @@ class hk_Plane
 
 		HK_DECLARE_NONVIRTUAL_CLASS_ALLOCATOR(HK_MEMORY_CLASS_CONSTRAINT, hk_Plane)
 
-		inline hk_Plane();
+		inline hk_Plane() = default;
 			//: Empty default constructor.
 
 		inline hk_Plane(const hk_Vector3& normal, hk_real distance);

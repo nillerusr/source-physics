@@ -149,7 +149,7 @@ public:
     void operator-=(const IVP_Time b) { this->seconds -= b.seconds; }
     IVP_Time operator+(double val) const { IVP_Time result; result.seconds = this->seconds + val; return result;}
 
-    IVP_Time(){;};
+    IVP_Time() = default;
     IVP_Time(double time){ seconds = time; };
 };
 

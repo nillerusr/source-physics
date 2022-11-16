@@ -10,7 +10,7 @@ class hk_Quaternion : public hk_Vector4
 {
 	public:
 
-		inline hk_Quaternion();
+		inline hk_Quaternion() = default;
 			//: Empty constructor
 
 		inline hk_Quaternion(hk_real x, hk_real y, hk_real z, hk_real w);

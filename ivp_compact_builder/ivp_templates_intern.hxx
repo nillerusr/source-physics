@@ -83,7 +83,7 @@ public:
 class IVP_Template_Triangle {
 public:
     IVP_Template_Point tri_points[3]; // array of all 3 points of triangle
-    IVP_Template_Triangle(){ ; }; // used by graph_lib
+    IVP_Template_Triangle() = default; // used by graph_lib
 };
 
 

@@ -28,7 +28,7 @@ struct IVP_Contact_Situation
 	IVP_Real_Object* objects[2];		// 8bytes: link to involved objects
 	const class IVP_Compact_Edge* compact_edges[2]; // 8bytes: link to involved Edges (needs source code license for more info
 	IVP_Material* materials[2];	        // 8bytes: materials (might be virtual materials for point and edge cases)
-	IVP_Contact_Situation() {;};
+	IVP_Contact_Situation() = default;
 };
 
 #endif

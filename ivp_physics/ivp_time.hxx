@@ -19,7 +19,7 @@ class IVP_Mindist;
 class IVP_Time_Event_PSI : public IVP_Time_Event
 {
 public:
-    IVP_Time_Event_PSI(){;};
+    IVP_Time_Event_PSI() = default;
     void simulate_time_event(IVP_Environment *env);
 };
 

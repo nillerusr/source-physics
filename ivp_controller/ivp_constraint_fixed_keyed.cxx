@@ -13,10 +13,6 @@
 
 #include <ivp_constraint_fixed_keyed.hxx>
 
-IVP_Template_Constraint_Fixed_Keyframed::IVP_Template_Constraint_Fixed_Keyframed(){
-}
-
-    
 IVP_Constraint_Fixed_Keyframed::~IVP_Constraint_Fixed_Keyframed(){
 	IVP_Controller_Manager::remove_controller_from_environment(this,IVP_TRUE); //delete silently
 }

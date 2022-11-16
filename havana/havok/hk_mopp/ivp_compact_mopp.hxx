@@ -78,7 +78,7 @@ public:
 
 private: 
 
-    IVP_Compact_Mopp() {;};
+    IVP_Compact_Mopp() = default;
 
 };
 

@@ -1,8 +1,3 @@
-
-hk_Quaternion::hk_Quaternion()
-{
-}
-
 hk_Quaternion::hk_Quaternion(const hk_Rotation& r)
 {
 	this->set(r);

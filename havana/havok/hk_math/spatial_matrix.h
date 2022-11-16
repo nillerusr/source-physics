@@ -9,7 +9,7 @@ class hk_Spatial_Matrix
 {
 	public:
 
-		inline hk_Spatial_Matrix();
+		inline hk_Spatial_Matrix() = default;
 			//: construct an uninitialized spatial matrix
 
 		void set_spatial_inertia_tensor( const hk_Matrix3& inertia_tensor, const hk_real mass );

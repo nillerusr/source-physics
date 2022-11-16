@@ -52,7 +52,7 @@ public:
      *****************************************************************************/
     IVP_Halfspacesoup(const IVP_Compact_Ledge *ledge);
 
-    IVP_Halfspacesoup();
+    IVP_Halfspacesoup() = default;
     ~IVP_Halfspacesoup();
 
 };

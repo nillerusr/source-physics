@@ -16,7 +16,7 @@ public:
     IVP_U_Point vec;	// vec is used NORMIZED ONLY!!
     IVP_U_Point start_point;	// a point on the straight
 
-    inline IVP_U_Straight(){ ; }; // compiler demand
+    inline IVP_U_Straight() = default; // compiler demand
     IVP_U_Straight(const IVP_U_Point *i_start_point, const IVP_U_Point *i_vec);
     void set(const IVP_U_Point *i_start_point, const IVP_U_Point *i_vec);
     void set(const IVP_U_Float_Point *i_start_point, const IVP_U_Float_Point *i_vec);
