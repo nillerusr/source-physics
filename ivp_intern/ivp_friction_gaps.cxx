@@ -14,7 +14,7 @@
 #include <ivp_friction_solver.hxx>
 #include <ivp_debug_manager.hxx> // bvecause of debug psi_synchrone
 
-#if !defined(WIN32) && !defined(PSXII) && !defined(GEKKO)
+#if !defined(WIN32) && !defined(PSXII) && !defined(GEKKO) && !defined(BSD)
 #	include <alloca.h>
 #endif
 
