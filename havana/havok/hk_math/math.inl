@@ -27,7 +27,7 @@ inline hk_real hk_Math::floor( hk_real r ) { return hk_real(::floor(r)); }
 inline hk_real hk_Math::ceil( hk_real r) { return hk_real(::ceil(r)); }
 inline hk_real hk_Math::pow( hk_real r, hk_real p) { return hk_real(::pow(r,p)); }
 
-#elif _LINUX || __APPLE__
+#elif _LINUX || __APPLE__ || BSD
 
 namespace c_math
 {
