@@ -44,7 +44,8 @@ def build(bld):
 
 	includes = [
 		'.',
-		'../'
+		'../',
+		'../../../ivp_utility/'
 	]
 
 	defines = []

@@ -171,7 +171,7 @@ void IVP_Time_Manager::event_loop(IVP_Environment *env, IVP_Time time) {
   * FPU mode
   ************************************************/
   //doesnt work with threads !!
-#ifdef WIN32
+#if defined WIN32 && !defined(PLATFORM_64BITS)
   WORD tmpflag;
   __asm FSTCW tmpflag;
 
@@ -189,7 +189,7 @@ void IVP_Time_Manager::event_loop(IVP_Environment *env, IVP_Time time) {
 	env->get_performancecounter()->stop_pcount();
 #endif
 
-#ifdef WIN32
+#if defined WIN32 && !defined(PLATFORM_64BITS)
   __asm FLDCW tmpflag;
 #endif
 }
@@ -199,7 +199,7 @@ void IVP_Time_Manager::simulate_variable_time_step(IVP_Environment *env, IVP_FLO
   * FPU mode
   ************************************************/
   //doesnt work with threads !!
-#ifdef WIN32
+#if defined WIN32 && !defined(PLATFORM_64BITS)
   WORD tmpflag;
   __asm FSTCW tmpflag;
 
@@ -223,7 +223,7 @@ void IVP_Time_Manager::simulate_variable_time_step(IVP_Environment *env, IVP_FLO
 	env->get_performancecounter()->stop_pcount();
 #endif
 
-#ifdef WIN32
+#if defined WIN32 && !defined(PLATFORM_64BITS)
   __asm FLDCW tmpflag;
 #endif
 }
