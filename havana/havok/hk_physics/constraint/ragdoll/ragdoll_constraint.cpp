@@ -55,7 +55,7 @@ class hk_Ragdoll_Constraint_Work
 
 		inline hk_real get_twist_axis_length(){
 			return twist_axis_ws.w;
-		}	
+		}
 };
 
 
@@ -77,6 +77,10 @@ void hk_Ragdoll_Constraint::init_ragdoll_constraint(const hk_Ragdoll_Constraint_
 	m_tau					= bp->m_tau;
 	m_strength				= bp->m_strength;
 	m_constrainTranslation  = bp->m_constrainTranslation;
+
+	m_axisMap[0] = bp->m_axisMap[0];
+	m_axisMap[1] = bp->m_axisMap[1];
+	m_axisMap[2] = bp->m_axisMap[2];
 
 	const hk_real factor = (sys) ? sys->get_epsilon() : 1.0f;
 	for(int i=0; i<3; i++)
@@ -113,6 +117,10 @@ void hk_Ragdoll_Constraint::write_to_blueprint( hk_Ragdoll_Constraint_BP *bp )
 	bp->m_strength = m_strength;
 	bp->m_tau = m_tau;
 	bp->m_constrainTranslation = m_constrainTranslation;
+	bp->m_axisMap[0] = m_axisMap[0];
+	bp->m_axisMap[1] = m_axisMap[1];
+	bp->m_axisMap[2] = m_axisMap[2];
+
 }
 
 
@@ -235,23 +243,11 @@ int	hk_Ragdoll_Constraint::setup_and_step_constraint(
 
 		hk_Vector3 &dir = work.dir;
 		dir.set_sub( position_ws[1], position_ws[0] );
-#if 0
 
-		// UNDONE: store per joint rescue teleport distance squared?
-		// UNDONE: Then enable this to fix stretchy ragdolls?
-		if ( dir.length_squared() > 0.01 )
-		{
-			IVP_U_Quat rot;
-			IVP_U_Point position;
-			b0->get_quat_world_f_object_AT( &rot, &position );
-			position.k[0] = position_ws[1].x;
-			position.k[1] = position_ws[1].y;
-			position.k[2] = position_ws[1].z;
-			b0->beam_object_to_new_position( &rot, &position, IVP_FALSE );
-			position_ws[0] = position_ws[1];
-			dir.set_sub( position_ws[1], position_ws[0] );
-		}
-#endif
+		hk_Local_Constraint_System *lcs = get_constraint_system();
+
+		if( lcs )
+			lcs->report_square_error(dir.length_squared());
 
 		query_engine.begin(3);
 		{
@@ -278,7 +274,7 @@ int	hk_Ragdoll_Constraint::setup_and_step_constraint(
 
 		hk_Vector3 delta_dist_3;
 		delta_dist_3.set_mul( tau_factor * m_tau * pi.get_inv_delta_time(), dir );
-		delta_dist_3.add_mul( -1.0f * m_strength * strength_factor, *(const hk_Vector3 *)approaching_velocity );
+		delta_dist_3.add_mul( -0.0f * m_strength * strength_factor, *(const hk_Vector3 *)approaching_velocity );
 
 		hk_Fixed_Dense_Matrix<3>& mass_matrix = query_engine.get_vmq_storage().get_fixed_dense_matrix();
 

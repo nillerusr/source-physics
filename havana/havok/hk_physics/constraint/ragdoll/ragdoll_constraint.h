@@ -64,6 +64,7 @@ class hk_Ragdoll_Constraint : public hk_Constraint
 
 		hk_real m_strength;
 		hk_real m_tau;
+		unsigned char              m_axisMap[3];
 		bool m_constrainTranslation;
 
 };

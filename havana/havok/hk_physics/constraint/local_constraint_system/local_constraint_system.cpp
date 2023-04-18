@@ -1,4 +1,4 @@
-#include <ivp_physics.hxx>
+	#include <ivp_physics.hxx>
 #include <ivp_template_constraint.hxx>
 
 #include <hk_physics/physics.h>
@@ -28,6 +28,7 @@ hk_Local_Constraint_System::hk_Local_Constraint_System(hk_Environment* env, hk_L
 	m_penetrationCount = 0;
 	m_size_of_all_vmq_storages = 0;
 	m_is_active = false;
+	m_errorThisTick = 0;
 
 	clear_error();
 }
@@ -183,9 +184,6 @@ void hk_Local_Constraint_System::write_to_blueprint(hk_Local_Constraint_System_B
 	bpOut->m_active = m_is_active;
 }
 
-// todo(melvyn2) the 4 following funcs couldn't be found in the static archives, and I guessed how they worked
-// they're probably in vphysics.so, but I have no idea how I'd locate them (no dwarf info)
-// they almost certainly won't work as they should
 void hk_Local_Constraint_System::set_error_ticks(int error_ticks)
 {
 	m_minErrorTicks = error_ticks;
@@ -198,17 +196,17 @@ void hk_Local_Constraint_System::set_error_tolerance(float tolerance)
 
 bool hk_Local_Constraint_System::has_error()
 {
-	return m_errorCount > m_errorTolerance;
+	return m_errorCount >= m_minErrorTicks;
 }
 
 void hk_Local_Constraint_System::clear_error()
 {
 	m_errorCount = 0;
-	m_errorThisTick = 0;
 }
 
 void hk_Local_Constraint_System::report_square_error(float errSq)
 {
+
 	m_errorThisTick = ((m_errorTolerance * m_errorTolerance) < errSq);
 }
 
@@ -217,21 +215,13 @@ void hk_Local_Constraint_System::solve_penetration(IVP_Real_Object* pivp0, IVP_R
 	if (m_penetrationCount >= 4)
 		return;
 
-	for (hk_Array<hk_Entity*>::iterator i = m_bodies.start();
-		(m_bodies.is_valid(i) && pivp0 != m_bodies.get_element(i));
-		i = m_bodies.next(i))
-	{
-		m_penetrationPairs[m_penetrationCount].obj0 = i;
-	}
+	hk_Rigid_Body *b0 = (hk_Rigid_Body*)pivp0;
+	hk_Rigid_Body *b1 = (hk_Rigid_Body*)pivp1;
 
-	for (hk_Array<hk_Entity*>::iterator i = m_bodies.start();
-		(m_bodies.is_valid(i) && pivp1 != m_bodies.get_element(i));
-		i = m_bodies.next(i))
-	{
-		m_penetrationPairs[m_penetrationCount].obj1 = i;
-	}
+	m_penetrationPairs[m_penetrationCount].obj0 = m_bodies.index_of(b0);
+	m_penetrationPairs[m_penetrationCount].obj1 = m_bodies.index_of(b1);
 
-	if (m_penetrationPairs[m_penetrationCount].obj0 >= 0 && m_penetrationPairs[m_penetrationCount].obj1 >= 0)
+	if (m_penetrationPairs[m_penetrationCount].obj0 != NULL && m_penetrationPairs[m_penetrationCount].obj1 != NULL)
 		m_penetrationCount++;
 }
 
@@ -264,6 +254,8 @@ void hk_Local_Constraint_System::apply_effector_PSI(hk_PSI_Info& pi, hk_Array<hk
 	char buffer[buffer_size];
 	HK_ASSERT(m_size_of_all_vmq_storages < buffer_size);
 
+	m_errorThisTick = 0;
+
 	hk_real taus[] = { 1.0f, 1.0f, 0.8f, 0.6f, 0.4f, 0.4f, 0.4f, 0.4f, 0.4f, 0.0f };
 	hk_real damps[] = { 1.0f, 1.0f, 0.8f, 0.8f, 0.8f, 0.8f, 0.8f, 0.8f, 0.8f, 0.0f };
 
@@ -295,8 +287,6 @@ void hk_Local_Constraint_System::apply_effector_PSI(hk_PSI_Info& pi, hk_Array<hk
 		}
 	}
 
-// FIXME(nillerusr): causes crash
-/*
 	if (m_penetrationCount)
 	{
 		IVP_DOUBLE d_time = m_environment->get_delta_PSI_time();
@@ -328,28 +318,37 @@ void hk_Local_Constraint_System::apply_effector_PSI(hk_PSI_Info& pi, hk_Array<hk
 			if (deltaLength <= 0.01)
 			{
 				// if the objects are exactly on top of each other just push down X the axis
-				vec01.set(1, 0, 0);
+				vec01.set(1.0, 0.0, 0.0);
 			}
 
-			if (IVP_MTIS_SIMULATED(core0->movement_state) && !core0->pinned) {
-				IVP_U_Float_Point p0;
-				p0.set_multiple(&vec01, -speed_change * mass);
+			IVP_U_Float_Point p0;
+			p0.set_multiple(&vec01, -speed_change * mass);
+
+			if (IVP_MTIS_SIMULATED(core0->movement_state) && !core0->pinned)
+			{
 				obj0->async_push_object_ws(&m_world_f_core0->vv, &p0);
 				IVP_U_Float_Point rot_speed_object(-d_time, 0, 0);
 				obj0->async_add_rot_speed_object_cs(&rot_speed_object);
 			}
 
-			if (IVP_MTIS_SIMULATED(core1->movement_state) && !core1->pinned) {
-				IVP_U_Float_Point p1;
-				p1.set_multiple(&vec01, speed_change * mass);
-				obj1->async_push_object_ws(&m_world_f_core0->vv, &p1);
+			if (IVP_MTIS_SIMULATED(core1->movement_state) && !core1->pinned)
+			{
+				obj1->async_push_object_ws(&m_world_f_core0->vv, &p0);
 				IVP_U_Float_Point rot_speed_object(d_time, 0, 0);
 				obj1->async_add_rot_speed_object_cs(&rot_speed_object);
 			}
 		}
-
 		m_penetrationCount = 0;
-	}*/
+	}
+
+	if( !m_errorThisTick )
+	{
+		m_errorCount = 0;
+		return;
+	}
+
+	if( m_errorCount <= m_minErrorTicks )
+		m_errorCount++;
 }
 
 hk_real hk_Local_Constraint_System::get_epsilon()
