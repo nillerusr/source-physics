@@ -348,8 +348,14 @@ void hk_Ragdoll_Constraint::update_friction(hk_real max_angular_impulse)
 	}
 }
 
-void hk_Ragdoll_Constraint::update_transforms(hk_Transform& os_ks_0, hk_Transform& os_ks_1)
+void hk_Ragdoll_Constraint::update_transforms(const hk_Transform& os_ks_0, const hk_Transform& os_ks_1)
 {
-	m_transform_os_ks[0] = os_ks_0;
-	m_transform_os_ks[1] = os_ks_1;
+	m_transform_os_ks[0].get_column(0) = os_ks_0.get_column(m_axisMap[0]);
+	m_transform_os_ks[1].get_column(0) = os_ks_1.get_column(m_axisMap[0]);
+
+	m_transform_os_ks[0].get_column(1) = os_ks_0.get_column(m_axisMap[2]);
+	m_transform_os_ks[1].get_column(1) = os_ks_1.get_column(m_axisMap[2]);
+
+	m_transform_os_ks[0].get_column(2) = os_ks_0.get_column(m_axisMap[1]);
+	m_transform_os_ks[1].get_column(2) = os_ks_1.get_column(m_axisMap[1]);
 }

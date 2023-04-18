@@ -48,7 +48,7 @@ class hk_Ragdoll_Constraint : public hk_Constraint
 			return m_transform_os_ks[x];
 		}
 
-		void update_transforms(hk_Transform& os_ks_0, hk_Transform& os_ks_1);
+		void update_transforms(const hk_Transform& os_ks_0, const hk_Transform& os_ks_1);
 
 		void update_friction(hk_real max_angular_impulse);
 	protected:
