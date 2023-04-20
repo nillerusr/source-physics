@@ -1759,7 +1759,7 @@ void IVP_Mutual_Energizer::destroy_percent_energy(IVP_DOUBLE percent_energy_to_d
 {
     IVP_DOUBLE rot_impulse=calc_impulse_to_reduce_energy_level(rot_speed_potential,inv_rot_inertia[0],inv_rot_inertia[1],percent_energy_to_destroy*rot_energy_potential);
     IVP_DOUBLE trans_impulse=calc_impulse_to_reduce_energy_level(trans_speed_potential,inv_trans_inertia[0],inv_trans_inertia[1],percent_energy_to_destroy*trans_energy_potential);
-    if(!core[0]->physical_unmoveable) {
+    if(!core[0]->physical_unmoveable && !core[0]->pinned) {
 	core[0]->speed_change.add_multiple(&trans_vec_world,inv_trans_inertia[0]*trans_impulse);
 	core[0]->rot_speed_change.add_multiple(&rot_vec_obj[0],inv_rot_inertia[0]*rot_impulse);
     }

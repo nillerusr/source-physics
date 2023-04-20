@@ -227,15 +227,15 @@ void IVP_Actuator_Spring::do_simulation_controller(IVP_Event_Sim *es,IVP_U_Vecto
 			force_vector_ws.add_multiple(&relative_world_speed,manhattan_factor); //manhattan damping
 		}
 
-		if (pc1->movement_state<IVP_MT_NOT_SIM)
-		{ 
+		if (pc1->movement_state<IVP_MT_NOT_SIM && !pc1->pinned)
+		{
 			pc1->async_push_core_ws(&pos1_ws,&force_vector_ws);
-      	}   
-		if (pc0->movement_state<IVP_MT_NOT_SIM)
+		}
+		if (pc0->movement_state<IVP_MT_NOT_SIM && !pc0->pinned)
 		{ 
 			force_vector_ws.mult(-1);
 			pc0->async_push_core_ws(&pos0_ws,&force_vector_ws);
-      	}	
+      		}
 	}
 }
 
