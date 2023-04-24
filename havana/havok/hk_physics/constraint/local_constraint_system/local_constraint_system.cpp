@@ -221,7 +221,7 @@ void hk_Local_Constraint_System::solve_penetration(IVP_Real_Object* pivp0, IVP_R
 	m_penetrationPairs[m_penetrationCount].obj0 = m_bodies.index_of(b0);
 	m_penetrationPairs[m_penetrationCount].obj1 = m_bodies.index_of(b1);
 
-	if (m_penetrationPairs[m_penetrationCount].obj0 != NULL && m_penetrationPairs[m_penetrationCount].obj1 != NULL)
+	if (m_penetrationPairs[m_penetrationCount].obj0 != 0 && m_penetrationPairs[m_penetrationCount].obj1 != 0)
 		m_penetrationCount++;
 }
 
