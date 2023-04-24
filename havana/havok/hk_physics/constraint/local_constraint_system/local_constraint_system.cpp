@@ -98,7 +98,7 @@ void hk_Local_Constraint_System::core_is_going_to_be_deleted_event(IVP_Core* my_
 void hk_Local_Constraint_System::constraint_deletion_event(hk_Constraint* constraint)
 {
 	m_constraints.search_and_remove_element_sorted(constraint);
-	if (m_constraints.length() != 0)
+	if (m_constraints.length())
 	{
 		recalc_storage_size();
 	}
@@ -206,12 +206,12 @@ void hk_Local_Constraint_System::clear_error()
 
 void hk_Local_Constraint_System::report_square_error(float errSq)
 {
-
-	m_errorThisTick = ((m_errorTolerance * m_errorTolerance) < errSq);
+//	m_errorThisTick = ((m_errorTolerance * m_errorTolerance) < errSq);
 }
 
 void hk_Local_Constraint_System::solve_penetration(IVP_Real_Object* pivp0, IVP_Real_Object* pivp1)
 {
+#if 0
 	if (m_penetrationCount >= 4)
 		return;
 
@@ -221,8 +221,9 @@ void hk_Local_Constraint_System::solve_penetration(IVP_Real_Object* pivp0, IVP_R
 	m_penetrationPairs[m_penetrationCount].obj0 = m_bodies.index_of(b0);
 	m_penetrationPairs[m_penetrationCount].obj1 = m_bodies.index_of(b1);
 
-	if (m_penetrationPairs[m_penetrationCount].obj0 != NULL && m_penetrationPairs[m_penetrationCount].obj1 != NULL)
+	if (m_penetrationPairs[m_penetrationCount].obj0 && m_penetrationPairs[m_penetrationCount].obj1)
 		m_penetrationCount++;
+#endif
 }
 
 void hk_Local_Constraint_System::get_effected_entities(hk_Array<hk_Entity*>& ent_out)
@@ -287,6 +288,7 @@ void hk_Local_Constraint_System::apply_effector_PSI(hk_PSI_Info& pi, hk_Array<hk
 		}
 	}
 
+#if 0
 	if (m_penetrationCount)
 	{
 		IVP_DOUBLE d_time = m_environment->get_delta_PSI_time();
@@ -349,6 +351,7 @@ void hk_Local_Constraint_System::apply_effector_PSI(hk_PSI_Info& pi, hk_Array<hk
 
 	if( m_errorCount <= m_minErrorTicks )
 		m_errorCount++;
+#endif
 }
 
 hk_real hk_Local_Constraint_System::get_epsilon()
