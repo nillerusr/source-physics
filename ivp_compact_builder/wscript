@@ -18,7 +18,6 @@ def configure(conf):
 	])
 
 def build(bld):
-	print(bld)
 	source = [
 		'ivp_compact_ledge_gen.cxx',
 		'ivp_compact_modify.cxx',
