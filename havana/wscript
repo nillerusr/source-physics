@@ -20,7 +20,6 @@ def configure(conf):
 	])
 
 def build(bld):
-	print(bld)
 	source = [
 		'havok/hk_physics/constraint/constraint.cpp',
 		'havok/hk_physics/constraint/ball_socket/ball_socket_constraint.cpp',

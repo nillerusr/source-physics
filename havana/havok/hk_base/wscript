@@ -19,7 +19,6 @@ def configure(conf):
 	])
 
 def build(bld):
-	print(bld)
 	source = [
 		'memory/memory.cpp',
 		'memory/memory_util.cpp',

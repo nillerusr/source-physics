@@ -1,4 +1,4 @@
-
+#! /usr/bin/env python
 # encoding: utf-8
 
 from waflib import Utils
@@ -20,7 +20,6 @@ def configure(conf):
 	])
 
 def build(bld):
-	print(bld)
 	source = [
 		'lcp/lcp_solver.cpp',
 		'incr_lu/incr_lu.cpp',
