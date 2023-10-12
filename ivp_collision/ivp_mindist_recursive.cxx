@@ -75,10 +75,14 @@ void IVP_Mindist_Recursive::do_impact(){
 		// search smaller radius	    
 		const IVP_Compact_Ledge *l0 = syn0->get_edge()->get_triangle()->get_compact_ledge();
 		const IVP_Compact_Ledge *l1 = syn1->get_edge()->get_triangle()->get_compact_ledge();
-		
+
 		const IVP_Compact_Ledgetree_Node *n0 = l0->get_ledgetree_node();
 		const IVP_Compact_Ledgetree_Node *n1 = l1->get_ledgetree_node();
-		if ( n0->radius > n1->radius){
+
+		IVP_DOUBLE rad0 = n0 ? n0->radius : P_FLOAT_MAX;
+		IVP_DOUBLE rad1 = n1 ? n1->radius : P_FLOAT_MAX;
+
+		if ( rad0 > rad1 ){
 		    recursive_status = IVP_MR_FIRST_SYNAPSE_RECURSIVE;
 		}else{
 		    recursive_status = IVP_MR_SECOND_SYNAPSE_RECURSIVE;
@@ -139,11 +143,15 @@ void IVP_Mindist_Recursive::exact_mindist_went_invalid(IVP_Mindist_Manager *mm){
     }else{
 	const IVP_Compact_Ledgetree_Node *n0 = l0->get_ledgetree_node();
 	const IVP_Compact_Ledgetree_Node *n1 = l1->get_ledgetree_node();
-	if ( n0->radius > n1->radius){
+
+	IVP_DOUBLE rad0 = n0 ? n0->radius : P_FLOAT_MAX;
+	IVP_DOUBLE rad1 = n1 ? n1->radius : P_FLOAT_MAX;
+
+	if ( rad0 > rad1 ){
 	    recursive_status = IVP_MR_FIRST_SYNAPSE_RECURSIVE;
 	}else{
 	    recursive_status = IVP_MR_SECOND_SYNAPSE_RECURSIVE;
-        }    
+        }
     }
     mm->remove_exact_mindist(this);
     //mindists.ensure_capacity(16);
