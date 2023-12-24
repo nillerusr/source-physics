@@ -513,20 +513,12 @@ void IVP_Environment::delete_draw_vector_debug(){
 
 void IVP_Environment::force_psi_on_next_simulation()
 {
-    /*IVP_Time_Manager* v2; // esi
-    double v3; // ST0C_8
-    unsigned int* v4; // edi
-    long double v5; // xmm0_8
+    double now_seconds = current_time.get_seconds();
+    IVP_Time_Event_PSI *last_event = time_manager->psi_event;
+    double diff_seconds = now_seconds - time_manager->base_time.get_seconds();
 
-    v2 = this->time_manager;
-    LODWORD(v3) = LODWORD(this->current_time.get_seconds());
-    v4 = (unsigned int*)v2->psi_event;
-    HIDWORD(v3) = HIDWORD(this->current_time.get_seconds());
-    v5 = v3 - time_manager->base_time.get_seconds();
-    time_manager->min_hash->remove_minlist_elem(v4[1]);
-    v4[1] = time_manager->min_hash->add(v4, v5);*/
-
-    IVP_ASSERT(0 && "Unimplemented");
+    time_manager->min_hash->remove_minlist_elem(last_event->index);
+    last_event->index = time_manager->min_hash->add(last_event, diff_seconds);
 }
 
 IVP_Polygon *IVP_Environment::create_polygon(IVP_SurfaceManager *vic, const IVP_Template_Real_Object *templ,

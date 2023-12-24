@@ -348,6 +348,7 @@ protected:
     // To create a new force actuator, use the method IVP_Environment->create_force
     IVP_Actuator_Force(IVP_Environment *env, IVP_Template_Force *templ);
 public:
+    IVP_DOUBLE get_force() const { return force; }
     void set_force(IVP_DOUBLE new_force);
     virtual ~IVP_Actuator_Force();
 
