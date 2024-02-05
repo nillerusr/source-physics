@@ -2,12 +2,24 @@
 #define HK_VECTOR_FPU_INCLUDED
 
 #define hk_VecFPU_SIZE_DOUBLE 2
+
+#ifndef PLATFORM_64BITS
 #define hk_VecFPU_MEM_MASK_DOUBLE 0xfffffff0 //16Byte per Block
+#else
+#define hk_VecFPU_MEM_MASK_DOUBLE 0xfffffffffffffff0  // 16Byte per Block
+#endif
+
 #define hk_VecFPU_MASK_DOUBLE 0xfffffffe
 #define hk_VecFPU_MEMSHIFT_DOUBLE 3 //8 Bytes per Floating Point Number
 
 #define hk_VecFPU_SIZE_FLOAT 4
+
+#ifndef PLATFORM_64BITS
 #define hk_VecFPU_MEM_MASK_FLOAT 0xfffffff0 //16Byte per Block
+#else
+#define hk_VecFPU_MEM_MASK_FLOAT 0xfffffffffffffff0  // 16Byte per Block
+#endif
+
 #define hk_VecFPU_MASK_FLOAT 0xfffffffc
 #define hk_VecFPU_MEMSHIFT_FLOAT 2 //4 Bytes per Floating Point Number
 
