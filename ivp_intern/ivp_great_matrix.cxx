@@ -143,7 +143,7 @@ inline IVP_DOUBLE IVP_VecFPU::fpu_large_dot_product(IVP_DOUBLE *base_a, IVP_DOUB
 	return result_sum;
     } else {
 	IVP_DOUBLE sum=0.0f;
-	for(int i=size-1;i>=0;i--) {
+	for(int i=0;i<size;i++) {
 	    sum += base_a[i] * base_b[i];
 	}
 	return sum;
