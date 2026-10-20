@@ -820,7 +820,7 @@ void IVP_Friction_Solver::ease_friction_pair(IVP_Friction_Core_Pair *my_pair,IVP
 #if defined(IVP_NO_ALLOCA)
     IVP_U_Float_Point *ease_diff_force_vec_stack = (IVP_U_Float_Point*)my_mem->get_mem(total_n*sizeof(IVP_U_Float_Point));
 #else
-    IVP_U_Float_Point *ease_diff_force_vec_stack=(IVP_U_Float_Point*)alloca(total_n*sizeof(IVP_U_Float_Point));
+    IVP_U_Float_Point *ease_diff_force_vec_stack=(IVP_U_Float_Point*)__builtin_alloca(total_n*sizeof(IVP_U_Float_Point));
 #endif    
     
     int i=0;

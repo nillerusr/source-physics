@@ -2136,7 +2136,7 @@ IVP_RETURN_TYPE IVP_Great_Matrix_Many_Zero::invert(IVP_Great_Matrix_Many_Zero *d
     int index_vec[IVP_MAX_GREAT_MATRIX_SIZE];
     IVP_ASSERT( columns < IVP_MAX_GREAT_MATRIX_SIZE);
 #else    
-    int *index_vec=(int*)alloca( columns*sizeof(IVP_DOUBLE) );
+    int *index_vec=(int*)__builtin_alloca( columns*sizeof(IVP_DOUBLE) );
 #endif
 
     IVP_DOUBLE sign;

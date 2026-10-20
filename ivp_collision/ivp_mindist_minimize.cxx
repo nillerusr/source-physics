@@ -641,7 +641,7 @@ const IVP_Compact_Edge *IVP_Compact_Ledge_Solver::minimize_on_other_side(
 #if defined(IVP_NO_ALLOCA)
     uchar pierce_visited_array[IVP_MAX_TRIANGLES_PER_LEDGE];
 #else
-    uchar *pierce_visited_array = (uchar *)alloca(n_triangles);
+    uchar *pierce_visited_array = (uchar *)__builtin_alloca(n_triangles);
 #endif
     
     memset(pierce_visited_array,0,n_triangles);        // @@@OG could be optimized, depending on how often piercing takes place
